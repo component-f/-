@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #17181a;
+
+    --border: #e5e7eb;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+  }
+  .dark {
+    --background: #17181a;
+    --foreground: #ffffff;
+
+    --destructive: #7f1d1d;
+    --destructive-foreground: #ffffff;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-pretendard), sans-serif;
+  }
+}
