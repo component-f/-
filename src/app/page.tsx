@@ -1,3 +1,9 @@
+import ModeToggle from '@/components/modeToggle';
+
 export default function HomePage() {
-  return <h1>HomePage</h1>
+  return (
+    <div className="container">
+      <ModeToggle />
+    </div>
+  );
 }
