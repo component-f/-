@@ -4,20 +4,32 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #17181a;
+    --background: 0 0% 100%;
+    --foreground: 220 6% 10%;
 
-    --border: #e5e7eb;
+    --border: 220 13% 91%;
 
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
+    --primary: 220 6% 10%;
+    --primary-hover: 240 4% 16%;
+    --primary-active: 240 4% 6%;
+    --primary-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
   }
   .dark {
-    --background: #17181a;
-    --foreground: #ffffff;
+    --background: 220 6% 10%;
+    --foreground: 0 0% 98%;
 
-    --destructive: #7f1d1d;
-    --destructive-foreground: #ffffff;
+    --border: 240 0% 59%;
+
+    --primary: 0 0% 98%;
+    --primary-hover: 220 13% 91%;
+    --primary-active: 220 13% 81%;
+    --primary-foreground: 220 6% 10%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
   }
 }
 
