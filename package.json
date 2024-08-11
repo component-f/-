@@ -11,9 +11,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
+    "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "react": "^18",
