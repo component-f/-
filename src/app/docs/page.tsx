@@ -8,6 +8,7 @@ export default function DocsPage() {
   return (
     <>
       <Link href={PATH.input}>input</Link>
+      <Link href={PATH.alert}>alert</Link>
     </>
   )
 }

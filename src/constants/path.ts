@@ -17,6 +17,7 @@ export const PATH = Object.freeze({
    * 컴포넌트 페이지
    */
   input: '/docs/components/input' as const,
+  alert: '/docs/components/alert' as const,
 
   /**
    * 사용 예시 페이지
