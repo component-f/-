@@ -1,5 +1,5 @@
-import { twMerge } from 'tailwind-merge';
-import React from 'react';
+import { twMerge } from 'tailwind-merge'
+import React from 'react'
 
 type TAlertProps = React.ComponentPropsWithoutRef<'div'> & {
   title?: string
@@ -24,5 +24,5 @@ export default function Alert({ className, icon, title, children, btn, ...rest }
       </div>
       {btn && <button className="pl-[16px]">Undo</button>}
     </div>
-  );
+  )
 }
