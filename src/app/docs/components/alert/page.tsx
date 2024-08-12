@@ -1,7 +1,7 @@
 /**
  * Alert 컴포넌트에 대한 문서 페이지 컴포넌트
  */
-import Alert from '@/components/alert';
+import Alert from '@/components/ui/alert';
 
 export default function AlertPage() {
   return (
