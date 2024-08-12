@@ -44,3 +44,8 @@
     font-family: var(--font-pretendard), sans-serif;
   }
 }
+@layer components {
+  .item-middle {
+    @apply flex justify-center items-center;
+  }
+}
