@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes'
+import { Sun, Moon } from 'lucide-react'
 
 /**
  * 모드 전환 버튼 컴포넌트( light / dark )
  */
 export default function ModeToggle() {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const { systemTheme, theme, setTheme } = useTheme()
+  const currentTheme = theme === 'system' ? systemTheme : theme
 
   const handleToggle = () => {
-    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-  };
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark')
+  }
 
   return (
     <>
@@ -20,5 +20,5 @@ export default function ModeToggle() {
         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
       </button>
     </>
-  );
+  )
 }

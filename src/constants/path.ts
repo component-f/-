@@ -22,6 +22,6 @@ export const PATH = Object.freeze({
    * 사용 예시 페이지
    */
   examples: '/examples' as const,
-});
+})
 
 export type PathValue = ValueOf<typeof PATH>

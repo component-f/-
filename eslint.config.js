@@ -1,10 +1,10 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import typescriptEslintParser from '@typescript-eslint/parser';
-import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
-import reactEslintPlugin from 'eslint-plugin-react';
-import reactHooksEslintPlugin from 'eslint-plugin-react-hooks';
-import globals from 'globals';
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import typescriptEslintParser from '@typescript-eslint/parser'
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
+import reactEslintPlugin from 'eslint-plugin-react'
+import reactHooksEslintPlugin from 'eslint-plugin-react-hooks'
+import globals from 'globals'
 
 /**
  * eslint rule 추가 시
@@ -80,8 +80,8 @@ export default tseslint.config(
       'no-undef': 'error',
       'comma-dangle': 'off',
       quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-      semi: 'warn',
+      semi: ['warn', 'never'],
       ...typescriptEslintPlugin.configs.rules,
     },
   },
-);
+)

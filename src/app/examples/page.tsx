@@ -3,5 +3,5 @@ export default function ExamplesPage() {
     <>
       <h1>ExamplesPage</h1>
     </>
-  );
+  )
 }

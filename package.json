@@ -8,13 +8,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint 'src/**/*.{ts,tsx}' --cache",
-    "prepare": "husky"
+    "format": "prettier -w .",
+    "prepare": "husky",
+    "postinstall": "husky"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
-    "eslint-config-airbnb-typescript": "^18.0.0",
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
@@ -30,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",

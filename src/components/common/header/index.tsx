@@ -1,7 +1,7 @@
-import ModeToggle from './mode-toggle';
-import Logo from '/public/images/logo.svg';
-import { PATH } from '@/constants/path';
-import List from './list';
+import ModeToggle from './mode-toggle'
+import Logo from '/public/images/logo.svg'
+import { PATH } from '@/constants/path'
+import List from './list'
 
 /**
  * 전체 페이지에서 쓰이는 header 컴포넌트
@@ -24,5 +24,5 @@ export default function Header() {
       </nav>
       <ModeToggle />
     </header>
-  );
+  )
 }
