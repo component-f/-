@@ -1,4 +1,5 @@
 import Avatar from '@/components/ui/avatar'
+import { FolderIcon } from 'lucide-react'
 
 export default function Avatarpage() {
   return (
@@ -26,10 +27,15 @@ export default function Avatarpage() {
           </pre>
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-lg">Disabled</label>
-          {/* <Input type="email" className="" placeholder="placeholder" disabled /> */}
+          <label className="text-lg">Icons</label>
+          <Avatar className="bg-[#3ab753] ">
+            <FolderIcon />
+          </Avatar>
           <pre>
-            <code>{`<Input type="email" className="" placeholder="placeholder" disabled />`}</code>
+            <code>{`import { FolderIcon } from 'lucide-react'
+<Avatar className="bg-[#3ab753] ">
+<FolderIcon />
+</Avatar>`}</code>
           </pre>
         </div>
       </div>
