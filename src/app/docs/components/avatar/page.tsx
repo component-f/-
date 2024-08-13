@@ -12,14 +12,17 @@ export default function Avatarpage() {
           <label className="text-lg">Default</label>
           <Avatar src="/images/logo.svg" alt="logo" />
           <pre>
-            <code>{`<Input type="text" className="" placeholder="placeholder" />`}</code>
+            <code>{`<Avatar src="/images/logo.svg" alt="logo" />`}</code>
           </pre>
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-lg">File</label>
-          {/* <Input type="file" className="" placeholder="placeholder" /> */}
+          <label className="text-lg">Letter</label>
+          <Avatar className="bg-[#f44336]">M</Avatar>
+          <Avatar className="bg-[#673ab7]">OH</Avatar>
           <pre>
-            <code>{`<Input type="file" className="" placeholder="placeholder" />`}</code>
+            <code>{`<Avatar className="bg-[#f44336]">M</Avatar>`}</code>
+            <br />
+            <code>{`<Avatar className="bg-[#673ab7]">OH</Avatar>`}</code>
           </pre>
         </div>
         <div className="flex flex-col gap-2">
