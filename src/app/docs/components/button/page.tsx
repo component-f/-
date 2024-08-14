@@ -72,6 +72,32 @@ export default function Buttonpage() {
 </Button>`}</code>
           </pre>
         </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-lg">Color</label>
+          <div className="flex gap-2">
+            <Button className="text-red-500">
+              <Bell />
+            </Button>
+            <Button variant="contained" className="bg-red-500">
+              Error
+            </Button>
+            <Button variant="outlined" className="text-red-500 border-red-500" startIcon={<Delete />}>
+              Delete
+            </Button>
+          </div>
+          <pre>
+            <code>{`import { Bell, Delete } from 'lucide-react'
+<Button className="text-red-500">
+  <Bell />
+</Button>
+<Button variant="contained" className="bg-red-500">
+  Error
+</Button>
+<Button variant="outlined" className="text-red-500 border-red-500" startIcon={<Delete />}>
+  Delete
+</Button>`}</code>
+          </pre>
+        </div>
       </div>
     </>
   )
