@@ -1,5 +1,5 @@
 import Button from '@/components/ui/button'
-import { Delete, Send } from 'lucide-react'
+import { Delete, Send, Bell, ShoppingCart, Heart } from 'lucide-react'
 
 export default function Buttonpage() {
   return (
@@ -37,7 +37,8 @@ export default function Buttonpage() {
             </Button>
           </div>
           <pre>
-            <code>{`<Button variant="outlined" startIcon={<Delete />}>
+            <code>{`import { Delete, Send } from 'lucide-react'
+<Button variant="outlined" startIcon={<Delete />}>
   Delete
 </Button>
 <Button variant="contained" endIcon={<Send size={16} />}>
@@ -47,14 +48,28 @@ export default function Buttonpage() {
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-lg">Icons</label>
-          {/* <Avatar className="bg-[#7F1D1D] "> */}
-          {/* <FolderIcon /> */}
-          {/* </Avatar> */}
+          <div className="flex gap-2">
+            <Button>
+              <Bell />
+            </Button>
+            <Button variant="contained">
+              <ShoppingCart />
+            </Button>
+            <Button variant="outlined">
+              <Heart size={24} />
+            </Button>
+          </div>
           <pre>
-            <code>{`import { FolderIcon } from 'lucide-react'
-<Avatar className="bg-[#7F1D1D] ">
-<FolderIcon />
-</Avatar>`}</code>
+            <code>{`import { Bell, ShoppingCart, Heart } from 'lucide-react'
+<Button>
+  <Bell />
+</Button>
+<Button variant="contained">
+  <ShoppingCart />
+</Button>
+<Button variant="outlined">
+  <Heart size={24} />
+</Button>`}</code>
           </pre>
         </div>
       </div>

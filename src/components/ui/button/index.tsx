@@ -5,17 +5,22 @@ type TButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'text' | 'contained' | 'outlined'
   startIcon?: React.ReactNode
   endIcon?: React.ReactNode
+  children?: React.ReactNode
 }
 
 const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
   ({ className, variant = 'text', startIcon, endIcon, children, ...props }, ref) => {
-    const baseClassName =
-      'py-2 px-4 rounded-[8px] font-medium flex justify-center items-center gap-2 duration-100 disabled:opacity-50'
+    const isIconOnly = !startIcon && !endIcon && React.isValidElement(children)
+
+    const baseClassName = twMerge(
+      'rounded-[8px] flex justify-center items-center duration-100 font-medium text-sm	disabled:opacity-50',
+      isIconOnly ? 'p-2' : 'py-2 px-4',
+    )
 
     const variantClassNames = {
-      text: 'border-none hover:opacity-50',
-      contained: 'bg-primary text-background  hover:opacity-50',
-      outlined: ' border border-border hover:opacity-50',
+      text: 'border-none text-ring hover:opacity-50',
+      contained: 'bg-foreground text-background  hover:opacity-50',
+      outlined: ' border border-border text-ring hover:opacity-50',
     }
 
     return (
