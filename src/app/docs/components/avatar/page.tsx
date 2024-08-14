@@ -18,9 +18,10 @@ export default function Avatarpage() {
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-lg">Letter</label>
-          <Avatar>A</Avatar>
-          <Avatar className="bg-[#EF4444]">CF</Avatar>
-
+          <div className="flex gap-2">
+            <Avatar>A</Avatar>
+            <Avatar className="bg-[#EF4444]">CF</Avatar>
+          </div>
           <pre>
             <code>{`<Avatar>A</Avatar>
 <Avatar className="bg-[#EF4444]">CF</Avatar>
@@ -29,12 +30,12 @@ export default function Avatarpage() {
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-lg">Icons</label>
-          <Avatar className="bg-[#7F1D1D] ">
+          <Avatar className="bg-[#EF4444] ">
             <FolderIcon />
           </Avatar>
           <pre>
             <code>{`import { FolderIcon } from 'lucide-react'
-<Avatar className="bg-[#7F1D1D] ">
+<Avatar className="bg-[#EF4444] ">
 <FolderIcon />
 </Avatar>`}</code>
           </pre>
