@@ -9,9 +9,6 @@ export default function Avatar({ src, alt, className, children, ...props }: Avat
   //이미지 있을때와 없을때를 구분하기 위해
   const isImg = !!src
 
-  // 배경색 유무에 따른 다크모드 적용 설정
-  const defaultBgClass = 'bg-[#E5E7EB] dark:bg-[#969697]'
-  const hasBgClass = className?.includes('bg-')
   return (
     <>
       {isImg ? (
@@ -29,8 +26,8 @@ export default function Avatar({ src, alt, className, children, ...props }: Avat
         <div
           className={twMerge(
             `rounded-full flex items-center justify-center 
-         font-semibold w-[40px] h-[40px] `,
-            hasBgClass ? className : twMerge(defaultBgClass, className),
+         font-medium text-sm w-[40px] h-[40px] bg-border`,
+            className,
           )}
           {...props}
         >
