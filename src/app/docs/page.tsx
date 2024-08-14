@@ -13,6 +13,8 @@ export default function DocsPage() {
         <Link href={PATH.avatar}>avatar</Link>
         <Link href={PATH.textarea}>textarea</Link>
         <Link href={PATH.skeleton}>skeleton</Link>
+
+        <Link href={PATH.button}>button</Link>
       </div>
     </>
   )
