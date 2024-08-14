@@ -9,6 +9,7 @@ export default function DocsPage() {
     <>
       <Link href={PATH.input}>input</Link>
       <Link href={PATH.alert}>alert</Link>
+      <Link href={PATH.radio}>radio</Link>
     </>
   )
 }
