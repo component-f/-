@@ -19,7 +19,9 @@ export const PATH = Object.freeze({
   input: '/docs/components/input' as const,
   alert: '/docs/components/alert' as const,
   radio: '/docs/components/radio' as const,
-
+  avatar: '/docs/components/avatar' as const,
+  textarea: '/docs/components/textarea' as const,
+  skeleton: '/docs/components/skeleton' as const,
   /**
    * 사용 예시 페이지
    */

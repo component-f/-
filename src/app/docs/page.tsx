@@ -7,9 +7,14 @@ import Link from 'next/link'
 export default function DocsPage() {
   return (
     <>
-      <Link href={PATH.input}>input</Link>
-      <Link href={PATH.alert}>alert</Link>
-      <Link href={PATH.radio}>radio</Link>
+      <div className="flex space-x-2">
+        <Link href={PATH.input}>input</Link>
+        <Link href={PATH.alert}>alert</Link>
+        <Link href={PATH.avatar}>avatar</Link>
+        <Link href={PATH.radio}>radio</Link>
+        <Link href={PATH.textarea}>textarea</Link>
+        <Link href={PATH.skeleton}>skeleton</Link>
+      </div>
     </>
   )
 }
