@@ -15,10 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={pretendard.variable}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ThemeProviders attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          {children}
+          <main className="grow container">{children}</main>
         </ThemeProviders>
       </body>
     </html>
