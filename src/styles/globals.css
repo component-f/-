@@ -49,3 +49,8 @@
     @apply flex justify-center items-center;
   }
 }
+
+/* 라디오 버튼 색상 변경*/
+[type='radio'] {
+  accent-color: black;
+}
