@@ -17,13 +17,13 @@ export default function SkeletonPage() {
           </div>
           <pre>
             <code>{`
-            <div className="flex space-x-2">
-              <Skeleton className="rounded-full" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-10 rounded-sm" />
-                <Skeleton className="h-4 w-40 rounded-sm" />
-              </div>
-            </div>`}</code>
+<div className="flex space-x-2">
+  <Skeleton className="rounded-full" />
+  <div className="space-y-2">
+    <Skeleton className="h-4 w-10 rounded-sm" />
+    <Skeleton className="h-4 w-40 rounded-sm" />
+  </div>
+</div>`}</code>
           </pre>
         </div>
       </div>
