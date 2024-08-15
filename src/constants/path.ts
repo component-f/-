@@ -25,6 +25,7 @@ export const PATH = Object.freeze({
   skeleton: '/docs/components/skeleton' as const,
 
   button: '/docs/components/button' as const,
+  switch: '/docs/components/switch' as const,
   pagination: '/docs/components/pagination' as const,
   /**
    * 사용 예시 페이지

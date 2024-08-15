@@ -17,6 +17,7 @@ export default function DocsPage() {
         <Link href={PATH.skeleton}>skeleton</Link>
 
         <Link href={PATH.button}>button</Link>
+        <Link href={PATH.switch}>switch</Link>
         <Link href={PATH.pagination}>pagination</Link>
       </div>
     </>
