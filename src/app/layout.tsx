@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Component-Factory',
   description: '컴포넌트 UI 라이브러리입니다.',
   icons: {
-    icon: '/images/logo.svg',
+    icon: '/images/favicon.ico',
   },
 }
 
