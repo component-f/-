@@ -9,6 +9,7 @@ export default function DocsPage() {
     <>
       <div className="flex space-x-2">
         <Link href={PATH.input}>input</Link>
+        <Link href={PATH.label}>label</Link>
         <Link href={PATH.alert}>alert</Link>
         <Link href={PATH.avatar}>avatar</Link>
         <Link href={PATH.radio}>radio</Link>
@@ -16,6 +17,7 @@ export default function DocsPage() {
         <Link href={PATH.skeleton}>skeleton</Link>
 
         <Link href={PATH.button}>button</Link>
+        <Link href={PATH.pagination}>pagination</Link>
       </div>
     </>
   )

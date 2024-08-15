@@ -8,17 +8,17 @@ export const metadata = {
   title: 'Component-Factory',
   description: '컴포넌트 UI 라이브러리입니다.',
   icons: {
-    icon: '/images/logo.svg',
+    icon: '/images/favicon.ico',
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={pretendard.variable}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ThemeProviders attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          {children}
+          <main className="grow container">{children}</main>
         </ThemeProviders>
       </body>
     </html>
