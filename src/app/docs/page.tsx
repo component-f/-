@@ -9,6 +9,7 @@ export default function DocsPage() {
     <>
       <div className="flex space-x-2">
         <Link href={PATH.input}>input</Link>
+        <Link href={PATH.label}>label</Link>
         <Link href={PATH.alert}>alert</Link>
         <Link href={PATH.avatar}>avatar</Link>
         <Link href={PATH.radio}>radio</Link>
