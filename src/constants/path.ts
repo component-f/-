@@ -24,6 +24,8 @@ export const PATH = Object.freeze({
   skeleton: '/docs/components/skeleton' as const,
 
   button: '/docs/components/button' as const,
+
+  checkbox: '/docs/components/checkbox' as const,
   /**
    * 사용 예시 페이지
    */

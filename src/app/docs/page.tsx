@@ -16,6 +16,7 @@ export default function DocsPage() {
         <Link href={PATH.skeleton}>skeleton</Link>
 
         <Link href={PATH.button}>button</Link>
+        <Link href={PATH.checkbox}>checkbox</Link>
       </div>
     </>
   )
