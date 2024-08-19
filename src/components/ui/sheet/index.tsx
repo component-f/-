@@ -1,9 +1,12 @@
 import React from 'react'
+import Button from '../button'
+import { X } from 'lucide-react'
 
 type TSheetComponentProps = {
   children: React.ReactNode
   sheet?: boolean
   toggleSheet?: () => void
+  // side?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 export function Sheet({ children }: TSheetComponentProps) {
@@ -15,23 +18,32 @@ export function Sheet({ children }: TSheetComponentProps) {
 }
 
 export function SheetTrigger({ children }: TSheetComponentProps) {
-  return <>{children}</>
+  return <div className="inline-flex items-center justify-center border border-border rounded-lg">{children}</div>
 }
 
 export function SheetContent({ children, sheet, toggleSheet }: TSheetComponentProps) {
   return (
     <>
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out z-40"
-        onClick={toggleSheet}
-      />
-      <div
-        className={`fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm ${
-          sheet ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {children}
-      </div>
+      {sheet && (
+        <>
+          <div
+            className={`fixed inset-0 z-10 bg-black bg-opacity-90 transition-opacity duration-300 ease-in-out ${
+              sheet ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={toggleSheet}
+          />
+          <div
+            className={`fixed inset-y-0 right-0 z-10 gap-4 bg-background p-6 transition ease-in-out h-full w-3/4 sm:max-w-sm ${
+              sheet ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
+            <Button className="absolute right-4 top-4 p-1" variant="outlined" onClick={toggleSheet}>
+              <X size={15} />
+            </Button>
+            {children}
+          </div>
+        </>
+      )}
     </>
   )
 }
