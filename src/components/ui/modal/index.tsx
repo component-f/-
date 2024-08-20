@@ -7,26 +7,16 @@ import createContext from '@/utils/createContext'
 import { cn } from '@/utils/cn'
 import { X } from 'lucide-react'
 
-const MODAL_NAME = 'Modal'
-
 type TModalContextValue = {
   onOpen: () => void
   onClose: () => void
   isOpen: boolean
 }
 
-const [ModalProvider, useModalContext] = createContext<TModalContextValue>(MODAL_NAME)
-
-interface IDivProps extends React.ComponentPropsWithRef<'div'> {
-  children?: React.ReactNode
-}
-
-interface IButtonProps extends React.ComponentPropsWithRef<'button'> {
-  children?: React.ReactNode
-}
+const [ModalProvider, useModalContext] = createContext<TModalContextValue>('Modal')
 
 /**
- * 모달 컴포넌트
+ * Modal 컴포넌트
  * @todos animation, asChild pattern, 최적화
  */
 
@@ -43,31 +33,47 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-function ModalPortal({ children }: { children: React.ReactNode }) {
+/* -------------------------------------------------------------------------------------------------
+ * ModalPortal
+ * -----------------------------------------------------------------------------------------------*/
+
+const ModalPortal = ({ children }: { children: React.ReactNode }) => {
   return createPortal(<div>{children}</div>, document.body)
 }
 
-const ModalTrigger = ({ children, className, ...props }: IDivProps) => {
-  const { onOpen } = useModalContext('ModalTrigger')
+/* -------------------------------------------------------------------------------------------------
+ * ModalTrigger
+ * -----------------------------------------------------------------------------------------------*/
 
-  return (
-    <div className={cn('', className)} onClick={onOpen} {...props}>
-      {children}
-    </div>
-  )
-}
+const ModalTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    const { onOpen } = useModalContext('ModalTrigger')
 
-const ModalOverlay = React.forwardRef<HTMLDivElement, IDivProps>(({ className, ...props }, ref) => {
-  return <div ref={ref} className={cn('fixed inset-0 z-50 bg-black/80', className)} {...props}></div>
-})
+    return <div ref={ref} onClick={onOpen} className={cn('', className)} {...props} />
+  },
+)
 
-const ModalContent = React.forwardRef<HTMLDivElement, IDivProps>(({ children, className, ...props }, ref) => {
-  const { isOpen, onClose } = useModalContext('ModalContent')
+/* -------------------------------------------------------------------------------------------------
+ * ModalOverlay
+ * -----------------------------------------------------------------------------------------------*/
 
-  if (!isOpen) return null
+const ModalOverlay = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    return <div ref={ref} className={cn('fixed inset-0 z-50 bg-black/80', className)} {...props} />
+  },
+)
 
-  return (
-    <div>
+/* -------------------------------------------------------------------------------------------------
+ * ModalContent
+ * -----------------------------------------------------------------------------------------------*/
+
+const ModalContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ children, className, ...props }, ref) => {
+    const { isOpen, onClose } = useModalContext('ModalContent')
+
+    if (!isOpen) return null
+
+    return (
       <ModalPortal>
         <ModalOverlay onClick={onClose} />
         <div
@@ -84,35 +90,43 @@ const ModalContent = React.forwardRef<HTMLDivElement, IDivProps>(({ children, cl
           </ModalClose>
         </div>
       </ModalPortal>
-    </div>
-  )
-})
+    )
+  },
+)
 
-const ModalHeader = ({ children, className, ...props }: IDivProps) => {
-  return (
-    <div className={cn('flex flex-col space-y-1.5', className)} {...props}>
-      {children}
-    </div>
-  )
+/* -------------------------------------------------------------------------------------------------
+ * ModalHeader
+ * -----------------------------------------------------------------------------------------------*/
+
+const ModalHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return <div className={cn('flex flex-col space-y-1.5', className)} {...props} />
 }
 
-const ModalTitle = React.forwardRef<HTMLDivElement, IDivProps>(({ children, className, ...props }: IDivProps) => {
-  return (
-    <div className={cn('text-lg font-semibold leading-none tracking-tight', className)} {...props}>
-      {children}
-    </div>
-  )
-})
+/* -------------------------------------------------------------------------------------------------
+ * DialogTitle
+ * -----------------------------------------------------------------------------------------------*/
 
-const ModalDescription = React.forwardRef<HTMLDivElement, IDivProps>(({ children, className, ...props }: IDivProps) => {
-  return (
-    <div className={cn('text-sm text-gray200', className)} {...props}>
-      {children}
-    </div>
-  )
-})
+const ModalTitle = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    return <div ref={ref} className={cn('text-lg font-semibold leading-none tracking-tight', className)} {...props} />
+  },
+)
 
-const ModalFooter = ({ children, className, ...props }: IDivProps) => {
+/* -------------------------------------------------------------------------------------------------
+ * ModalDescription
+ * -----------------------------------------------------------------------------------------------*/
+
+const ModalDescription = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    return <div ref={ref} className={cn('text-sm text-gray200', className)} {...props} />
+  },
+)
+
+/* -------------------------------------------------------------------------------------------------
+ * ModalFooter
+ * -----------------------------------------------------------------------------------------------*/
+
+const ModalFooter = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div className={cn('flex flex-row-reverse', className)} {...props}>
       {children}
@@ -120,11 +134,17 @@ const ModalFooter = ({ children, className, ...props }: IDivProps) => {
   )
 }
 
-const ModalClose = React.forwardRef<HTMLButtonElement, IButtonProps>(({ className, ...props }, ref) => {
-  const { onClose } = useModalContext('ModalClose')
+/* -------------------------------------------------------------------------------------------------
+ * ModalClose
+ * -----------------------------------------------------------------------------------------------*/
 
-  return <button className={cn('', className)} {...props} onClick={onClose} ref={ref}></button>
-})
+const ModalClose = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    const { onClose } = useModalContext('ModalClose')
+
+    return <div ref={ref} className={cn('', className)} {...props} onClick={onClose} />
+  },
+)
 
 export {
   Modal,
