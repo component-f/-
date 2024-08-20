@@ -14,10 +14,17 @@ export default function RadioPage() {
         <div className="flex">
           <Radio label="Female" name="options" value="Female" />
           <Radio label="Male" name="options" value="Male" />
-          <Radio label="Other" name="options" value="Other" />
+          <Radio label="Other" name="options" value="Other" disabled={true} />
         </div>
       </form>
       <h4 className="text-xl font-semibold py-5">Gender</h4>
+      <form className="w-full max-w-xs">
+        <div className="flex flex-col">
+          <Radio label="Female" name="options2" value="Female" />
+          <Radio label="Male" name="options2" value="Male" />
+          <Radio label="Other" name="options2" value="Other" disabled={true} />
+        </div>
+      </form>
     </div>
   )
 }
