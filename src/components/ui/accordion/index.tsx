@@ -5,12 +5,34 @@ import { ChevronDown } from 'lucide-react'
 type AccordionProps = {
   children: React.ReactNode
   className?: string
+  singleOpen?: boolean
 }
 
-export function Accordion({ children, className }: AccordionProps) {
+export function Accordion({ children, className, singleOpen }: AccordionProps) {
+  const [activeItem, setActiveItem] = useState<string | null>(null)
+  const [openItems, setOpenItems] = useState<string[]>([])
+
+  const handleToggle = (value: string) => {
+    if (singleOpen) {
+      setActiveItem(activeItem === value ? null : value)
+    } else {
+      setOpenItems((prevItems) =>
+        prevItems.includes(value) ? prevItems.filter((item) => item !== value) : [...prevItems, value],
+      )
+    }
+  }
+
   return (
     <div className={twMerge('border border-border rounded-lg overflow-hidden w-[400px] accordion-shadow', className)}>
-      {children}
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && child.type === AccordionItem) {
+          return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
+            isOpen: singleOpen ? activeItem === child.props.value : openItems.includes(child.props.value),
+            onToggle: () => handleToggle(child.props.value),
+          })
+        }
+        return child
+      })}
     </div>
   )
 }
@@ -18,19 +40,21 @@ export function Accordion({ children, className }: AccordionProps) {
 type AccordionItemProps = {
   value: string
   children: React.ReactNode
+  isOpen?: boolean
+  onToggle?: () => void
 }
 
-export function AccordionItem({ value, children }: AccordionItemProps) {
-  // eslint-disable-next-line no-console
-  console.log(value)
-  const [isOpen, setIsOpen] = useState(false)
+export function AccordionItem({ value, children, isOpen, onToggle }: AccordionItemProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const unusedValue = value // 이 줄은 ESLint 경고를 방지합니다.
+
   return (
     <div className="border-b last:border-b-0 border-border">
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && (child.type === AccordionSummary || child.type === AccordionDetails)) {
           return React.cloneElement(child as React.ReactElement<AccordionSummaryProps | AccordionDetailsProps>, {
             isOpen,
-            setIsOpen,
+            onToggle,
           })
         }
         return child
@@ -42,25 +66,21 @@ export function AccordionItem({ value, children }: AccordionItemProps) {
 type AccordionSummaryProps = {
   children: React.ReactNode
   isOpen?: boolean
-  setIsOpen?: (open: boolean) => void
+  onToggle?: () => void
   expandIcon?: ReactNode
 }
 
-export function AccordionSummary({ children, isOpen, setIsOpen, expandIcon }: AccordionSummaryProps) {
-  const handleClick = () => {
-    if (setIsOpen) setIsOpen(!isOpen)
-  }
-
+export function AccordionSummary({ children, isOpen, onToggle, expandIcon }: AccordionSummaryProps) {
   return (
-    <div className="relative p-4 flex justify-between items-center cursor-pointer" onClick={handleClick}>
+    <div className="relative p-4 flex justify-between items-center cursor-pointer" onClick={onToggle}>
       <div className="text-sm font-medium">{children}</div>
       <div
         className={twMerge(
-          'transition-transform duration-300 text-primary-hover ',
-          isOpen ? 'transform rotate-180' : '',
+          'flex items-center justify-center transition-transform duration-300 w-4 h-4',
+          isOpen ? 'rotate-180' : '',
         )}
       >
-        {expandIcon ? expandIcon : <ChevronDown className="w-5 h-5 text-[#969697]" />}
+        {expandIcon ? expandIcon : <ChevronDown className="text-[#969697]" />}
       </div>
     </div>
   )
@@ -86,7 +106,7 @@ export function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
       ref={contentRef}
       style={{ height: `${height}px` }}
       className={twMerge(
-        'overflow-hidden transition-all duration-300 font-normal text-[14px]	',
+        'overflow-hidden transition-all duration-300 font-normal text-[14px]',
         isOpen ? 'opacity-100' : 'opacity-0',
       )}
     >
