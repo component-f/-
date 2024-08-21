@@ -17,7 +17,7 @@ export default function BreadcrumbPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">docs</BreadcrumbLink>
+            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
