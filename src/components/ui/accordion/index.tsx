@@ -126,9 +126,9 @@ export function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
   return (
     <div
       ref={contentRef}
-      style={{ height: `${height}px`, transition: 'height 0.5s ease, opacity 0.5s ease' }}
+      style={{ height: `${height}px` }}
       className={twMerge(
-        'overflow-hidden transition-opacity duration-300 ease-in-out',
+        'overflow-hidden transition-all duration-300 font-normal text-[14px]	',
         isOpen ? 'opacity-100' : 'opacity-0',
       )}
     >
