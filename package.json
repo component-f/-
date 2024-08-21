@@ -21,8 +21,10 @@
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
+    "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-simple-code-editor": "^0.14.1",
     "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
