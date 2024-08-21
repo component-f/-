@@ -118,6 +118,44 @@ export default function Accordianpage() {
           </pre>
         </div>
       </div>
+      <div className="flex flex-col gap-8 mt-12">
+        <div className="flex flex-col gap-2">
+          <label className="text-lg">DefaultExpanded &disable</label>
+          <div className="mt-10">
+            <Accordion>
+              <AccordionItem value="item-1">
+                <AccordionSummary expandIcon={<Triangle className="text-red-500 " />}>Accordion 1</AccordionSummary>
+                <AccordionDetails>Content for Accordion 1</AccordionDetails>
+              </AccordionItem>
+              <AccordionItem value="item-2" defaultExpanded>
+                <AccordionSummary>Accordion 2</AccordionSummary>
+                <AccordionDetails>Content for Accordion 2</AccordionDetails>
+              </AccordionItem>
+              <AccordionItem value="item-3" disable>
+                <AccordionSummary expandIcon={<Triangle className="text-green-500" />}>Accordion 3</AccordionSummary>
+                <AccordionDetails>Content for Accordion 3</AccordionDetails>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <pre>
+            <code>{`
+<Accordion singleOpen>
+              <AccordionItem value="item-1">
+                <AccordionSummary expandIcon={<Triangle className="text-red-500 " />}>Accordion 1</AccordionSummary>
+                <AccordionDetails>Content for Accordion 1</AccordionDetails>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionSummary>Accordion 2</AccordionSummary>
+                <AccordionDetails>Content for Accordion 2</AccordionDetails>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionSummary expandIcon={<Triangle className="text-green-500" />}>Accordion 3</AccordionSummary>
+                <AccordionDetails>Content for Accordion 3</AccordionDetails>
+              </AccordionItem>
+            </Accordion>`}</code>
+          </pre>
+        </div>
+      </div>
     </>
   )
 }
