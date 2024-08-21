@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 import { Accordion, AccordionItem, AccordionSummary, AccordionDetails } from '@/components/ui/accordion'
+import { Triangle } from 'lucide-react'
+
 export default function Accordianpage() {
   return (
     <>
@@ -39,6 +41,41 @@ export default function Accordianpage() {
   <AccordionItem value="item-3">
     <AccordionSummary>Accordion 3</AccordionSummary>
     <AccordionDetails>Content for Accordion 3</AccordionDetails>
+  </AccordionItem>
+</Accordion>`}</code>
+          </pre>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-8 mt-12">
+        <div className="flex flex-col gap-2">
+          <label className="text-lg">ExpandIcons</label>
+          <div className="mt-10">
+            <Accordion>
+              <AccordionItem value="item-1">
+                <AccordionSummary>Accordion 1</AccordionSummary>
+                <AccordionDetails>Content for Accordion 1</AccordionDetails>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionSummary expandIcon={<Triangle className="text-red-500 w-4 h-4 mr-[2px]" />}>
+                  Error
+                </AccordionSummary>
+                <AccordionDetails>Content for Error</AccordionDetails>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <pre>
+            <code>{`
+<Accordion>
+  <AccordionItem value="item-1">
+    <AccordionSummary>Accordion 1</AccordionSummary>
+    <AccordionDetails>Content for Accordion 1</AccordionDetails>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionSummary expandIcon={<Triangle className="text-red-500 w-4 h-4 mr-[2px]" />}>
+      Error
+    </AccordionSummary>
+    <AccordionDetails>Content for Error</AccordionDetails>
   </AccordionItem>
 </Accordion>`}</code>
           </pre>

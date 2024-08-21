@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { ChevronDown } from 'lucide-react'
 
@@ -43,9 +43,10 @@ type AccordionSummaryProps = {
   children: React.ReactNode
   isOpen?: boolean
   setIsOpen?: (open: boolean) => void
+  expandIcon?: ReactNode
 }
 
-export function AccordionSummary({ children, isOpen, setIsOpen }: AccordionSummaryProps) {
+export function AccordionSummary({ children, isOpen, setIsOpen, expandIcon }: AccordionSummaryProps) {
   const handleClick = () => {
     if (setIsOpen) setIsOpen(!isOpen)
   }
@@ -59,7 +60,7 @@ export function AccordionSummary({ children, isOpen, setIsOpen }: AccordionSumma
           isOpen ? 'transform rotate-180' : '',
         )}
       >
-        <ChevronDown className="w-5 h-5 text-[#969697]" />
+        {expandIcon ? expandIcon : <ChevronDown className="w-5 h-5 text-[#969697]" />}
       </div>
     </div>
   )
