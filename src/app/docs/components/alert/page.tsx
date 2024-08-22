@@ -107,32 +107,32 @@ export default function AlertPage() {
           {
             prop: 'title',
             type: 'string',
-            description: '알림의 제목을 설정합니다.',
+            default: '',
           },
           {
             prop: 'description',
             type: 'string',
-            description: '알림의 세부 설명을 입력합니다.',
+            default: '',
           },
           {
             prop: 'className',
             type: 'string',
-            description: 'Tailwind CSS 클래스를 추가하여 스타일을 커스터마이즈합니다.',
+            default: '',
           },
           {
             prop: 'btn',
             type: '() => void',
-            description: '버튼 클릭 시 호출할 함수를 정의합니다.',
+            default: '',
           },
           {
             prop: 'btnMsg',
             type: 'string',
-            description: '버튼에 표시할 텍스트를 설정합니다.',
+            default: '',
           },
           {
             prop: 'icon',
             type: 'React.ReactNode',
-            description: '알림에 표시할 아이콘 컴포넌트를 설정합니다.',
+            default: '',
           },
         ]}
       />
