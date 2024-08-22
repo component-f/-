@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Copy, Zap } from 'lucide-react'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-jsx'
 
 type TComponents = {
   children?: React.ReactNode
@@ -8,7 +12,7 @@ type TComponents = {
   example?: string
   code?: string
   variant?: string
-  explain?: { prop: string; type: string; description: string }[]
+  explain?: { prop: string; type: string; default: string }[]
 }
 
 export function Component({ children }: TComponents) {
@@ -41,19 +45,24 @@ export function ComponentExample({ children }: TComponents) {
 }
 
 export function ComponentExampleCode({ children }: TComponents) {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
   return (
     <>
       <div className="flex items-center border-l border-r justify-between">
-        <span className="border-b-2 px-6 py-2 border-sky-500 font-bold">code</span>
+        <span className="border-b-2 px-6 py-2 border-sky-500 font-bold text-sm">code</span>
         <div className="flex items-center space-x-6 pr-4">
-          <span className="rounded-full border px-2 py-0.5 text-sky-500">Expend code</span>
+          <span className="flex justify-center rounded-full border w-[88px] h-[24px] px-1 py-0.5 text-sky-500 text-[12px]">
+            Expend code
+          </span>
           <Zap size={15} />
           <Copy size={15} />
         </div>
       </div>
-      <div className="w-full border-b border-border px-8 rounded-b-xl bg-foreground overflow-auto">
-        <pre>
-          <code className="text-background">{children}</code>
+      <div className="w-full border-b border-border rounded-b-xl bg-foreground overflow-auto">
+        <pre className="object-cover">
+          <code className="language-javascript">{children}</code>
         </pre>
       </div>
     </>
@@ -61,17 +70,17 @@ export function ComponentExampleCode({ children }: TComponents) {
 }
 
 export function ComponentProps({ explain }: TComponents) {
-  const THead = ['Props', 'Type', 'Description']
+  const THead = ['Props', 'Type', 'Default']
   return (
     <>
       <h1 className="mt-8 text-2xl font-bold">Props</h1>
       <p className="mt-6 text-foreground">다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다.</p>
-      <div className="my-6 w-full overflow-y-auto rounded-lg">
-        <table className="w-full overflow-hidden rounded-lg">
+      <div className="my-6 w-full overflow-y-auto rounded-lg border">
+        <table className="w-full overflow-hidden border-collapse border-hidden">
           <thead>
             <tr>
               {THead.map((head, index) => (
-                <th key={index} className="border px-4 py-2 text-left font-bold">
+                <th key={index} className="w-1/3 px-4 py-2 text-left font-bold">
                   {head}
                 </th>
               ))}
@@ -80,9 +89,17 @@ export function ComponentProps({ explain }: TComponents) {
           <tbody>
             {explain?.map((props) => (
               <tr>
-                <td className="border px-4 py-2 text-left">{props.prop}</td>
-                <td className="border px-4 py-2 text-left">{props.type}</td>
-                <td className="border px-4 py-2 text-left">{props.description}</td>
+                <td className="border-t border-b px-4 py-2 text-left">
+                  <span className="rounded-sm px-1 bg-[#E6F4FE] text-[#0090FF]">{props.prop}</span>
+                </td>
+                <td className="border-t border-b px-4 py-2 text-left">
+                  <span className="rounded-sm px-1 bg-[#E5E7EB] text-[#6A6A6A]">{props.type}</span>
+                </td>
+                <td className="border-t border-b px-4 py-2 text-left">
+                  <span className={`rounded-sm px-1 ${props.default && 'bg-[#E5E7EB]'} text-[#6A6A6A]`}>
+                    {props.default}
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
