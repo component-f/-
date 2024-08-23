@@ -18,6 +18,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
+    --blacktogray200: 220 6% 10%;
+
     --shadow-color: rgba(12, 12, 13, 0.1);
   }
   .dark {
@@ -34,6 +36,8 @@
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
+
+    --blacktogray200: 240 1% 59%;
 
     --shadow-color: rgba(213, 207, 207, 0.466);
   }

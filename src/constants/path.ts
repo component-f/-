@@ -24,6 +24,7 @@ export const PATH = Object.freeze({
   textarea: '/docs/components/textarea' as const,
   skeleton: '/docs/components/skeleton' as const,
   button: '/docs/components/button' as const,
+  switch: '/docs/components/switch' as const,
   pagination: '/docs/components/pagination' as const,
   sheet: '/docs/components/sheet' as const,
   breadcrumb: '/docs/components/breadcrumb' as const,
