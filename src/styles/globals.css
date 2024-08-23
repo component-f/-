@@ -17,6 +17,8 @@
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+
+    --blacktogray200: 220 6% 10%;
   }
   .dark {
     --background: 220 6% 10%;
@@ -32,6 +34,8 @@
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
+
+    --blacktogray200: 240 1% 59%;
   }
 }
 
