@@ -9,10 +9,11 @@ type AccordionProps = {
 }
 
 export function Accordion({ children, className, singleOpen = false }: AccordionProps) {
+  // 확장된 상태를 관리
   const [expanded, setExpanded] = useState<string[]>(() => {
     const defaultExpandedItems: string[] = []
 
-    // 기본적으로 열려 있는 패널을 설정하기 위해 초기 상태를 설정합니다.
+    // 초기 확장상태 설정
     React.Children.forEach(children, (child) => {
       if (React.isValidElement(child) && child.props.defaultExpanded) {
         defaultExpandedItems.push(child.props.value)
@@ -22,6 +23,7 @@ export function Accordion({ children, className, singleOpen = false }: Accordion
     return defaultExpandedItems
   })
 
+  //싱글오픈유무에 따른 핸들러설정
   const handleChange = (panel: string) => {
     if (singleOpen) {
       setExpanded(expanded.includes(panel) ? [] : [panel])
