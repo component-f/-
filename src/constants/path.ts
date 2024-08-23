@@ -23,10 +23,12 @@ export const PATH = Object.freeze({
   avatar: '/docs/components/avatar' as const,
   textarea: '/docs/components/textarea' as const,
   skeleton: '/docs/components/skeleton' as const,
-
   button: '/docs/components/button' as const,
   switch: '/docs/components/switch' as const,
   pagination: '/docs/components/pagination' as const,
+  sheet: '/docs/components/sheet' as const,
+  breadcrumb: '/docs/components/breadcrumb' as const,
+  accordion: '/docs/components/accordion' as const,
   /**
    * 사용 예시 페이지
    */

@@ -19,6 +19,8 @@
     --destructive-foreground: 0 0% 98%;
 
     --blacktogray200: 220 6% 10%;
+
+    --shadow-color: rgba(12, 12, 13, 0.1);
   }
   .dark {
     --background: 220 6% 10%;
@@ -36,6 +38,8 @@
     --destructive-foreground: 0 0% 98%;
 
     --blacktogray200: 240 1% 59%;
+
+    --shadow-color: rgba(213, 207, 207, 0.466);
   }
 }
 
@@ -57,4 +61,9 @@
 /* 라디오 버튼 색상 변경*/
 [type='radio'] {
   accent-color: black;
+}
+
+.accordion-shadow {
+  @apply shadow;
+  box-shadow: 0 1px 4px var(--shadow-color);
 }

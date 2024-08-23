@@ -21,13 +21,16 @@
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
+    "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-simple-code-editor": "^0.14.1",
     "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^8.0.0",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
