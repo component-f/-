@@ -1,4 +1,5 @@
 import Switch from '@/components/ui/switch'
+import { Label } from '@/components/ui/label'
 export default function Switchpage() {
   return (
     <>
@@ -8,6 +9,16 @@ export default function Switchpage() {
         <div className="flex flex-col gap-2">
           <label className="text-lg">Default</label>
           <Switch />
+          <pre>
+            <code>{`<Switch />`}</code>
+          </pre>
+          <label className="text-lg">label</label>
+          <div className="flex items-center ">
+            <Switch id="darkmode" />
+            <Label htmlFor="darkmode" className="cursor-pointer ml-2">
+              darkmode
+            </Label>
+          </div>
           <pre>
             <code>{`<Avatar src="/images/logo.svg" alt="logo" />`}</code>
           </pre>
