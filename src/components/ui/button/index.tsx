@@ -1,38 +1,36 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type SwitchProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  checked: boolean
-  onChange: (checked: boolean) => void
-  className?: string
+type TButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: 'text' | 'contained' | 'outlined'
+  startIcon?: React.ReactNode
+  endIcon?: React.ReactNode
+  children?: React.ReactNode
 }
 
-const Switch: React.FC<SwitchProps> = ({ checked, onChange, className, ...rest }) => {
-  return (
-    <label className="relative inline-flex items-center cursor-pointer">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="sr-only"
-        {...rest}
-      />
-      <div
-        className={twMerge(
-          'w-11 h-6 bg-gray-300 rounded-full transition-colors duration-200 ease-in-out',
-          checked ? 'bg-green-500' : 'bg-gray-300',
-          className,
-        )}
-      >
-        <span
-          className={twMerge(
-            'w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-200 ease-in-out',
-            checked ? 'translate-x-6' : 'translate-x-1',
-          )}
-        />
-      </div>
-    </label>
-  )
-}
+const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
+  ({ className, variant = 'text', startIcon, endIcon, children, ...props }, ref) => {
+    const isIconOnly = !startIcon && !endIcon && React.isValidElement(children)
 
-export default Switch
+    const baseClassName = twMerge(
+      'rounded-[8px] flex justify-center items-center duration-100 font-medium text-sm	disabled:opacity-50',
+      isIconOnly ? 'p-2' : 'py-2 px-4',
+    )
+
+    const variantClassNames = {
+      text: 'border-none text-ring hover:opacity-50',
+      contained: 'bg-foreground text-background  hover:opacity-50',
+      outlined: ' border border-border text-ring hover:opacity-50',
+    }
+
+    return (
+      <button ref={ref} className={twMerge(baseClassName, variantClassNames[variant], className)} {...props}>
+        {startIcon && <span className="start-icon mr-2">{startIcon}</span>}
+        {children || 'BUTTON'}
+        {endIcon && <span className="end-icon ml-2">{endIcon}</span>}
+      </button>
+    )
+  },
+)
+
+export default Button

@@ -20,7 +20,51 @@ export default function Switchpage() {
             </Label>
           </div>
           <pre>
-            <code>{`<Avatar src="/images/logo.svg" alt="logo" />`}</code>
+            <code>{`<div className="flex items-center ">
+            <Switch id="darkmode" />
+            <Label htmlFor="darkmode" className="cursor-pointer ml-2">
+              darkmode
+            </Label>
+          </div>`}</code>
+          </pre>
+          <label className="text-lg">Color& Checked & disable</label>
+          <div className="flex items-center ">
+            <Switch id="checked" checked={true} className=" bg-blue-500" />
+            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+              color
+            </Label>
+          </div>
+          <div className="flex items-center ">
+            <Switch id="checked" checked={true} />
+            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+              checked
+            </Label>
+          </div>
+          <div className="flex items-center ">
+            <Switch id="disabled" checked={false} disabled />
+            <Label htmlFor="disabled" className="cursor-pointer ml-2 opacity-50">
+              disabled
+            </Label>
+          </div>
+          <pre>
+            <code>{` <div className="flex items-center ">
+            <Switch id="checked" checked={true} className=" bg-blue-500" />
+            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+              color
+            </Label>
+          </div>
+          <div className="flex items-center ">
+            <Switch id="checked" checked={true} />
+            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+              checked
+            </Label>
+          </div>
+          <div className="flex items-center ">
+            <Switch id="disabled" checked={false} disabled />
+            <Label htmlFor="disabled" className="cursor-pointer ml-2 opacity-50">
+              disabled
+            </Label>
+          </div>`}</code>
           </pre>
         </div>
       </div>
