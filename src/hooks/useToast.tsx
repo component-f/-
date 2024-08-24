@@ -8,6 +8,7 @@ type TToast = {
   title?: string
   description?: string
   open: boolean
+  duration?: number
 }
 
 const actionTypes = {
@@ -37,7 +38,7 @@ type Action =
     }
   | {
       type: ActionType['DISMISS_TOAST']
-      toastId?: TToast['id']
+      toast: { toastId: TToast['id']; duration?: TToast['duration'] }
     }
   | {
       type: ActionType['REMOVE_TOAST']
@@ -51,7 +52,7 @@ const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 /**
  * 일정 시간 후 토스트를 자동으로 제거하기 위한 타이머를 등록합니다.
  * */
-const addToRemoveQueue = (toastId: string) => {
+const addToRemoveQueue = (toastId: string, duration: number) => {
   //제거 대기열에 존재하는지 확인
   if (toastTimeouts.has(toastId)) {
     return
@@ -64,7 +65,7 @@ const addToRemoveQueue = (toastId: string) => {
       type: 'REMOVE_TOAST',
       toastId: toastId,
     })
-  }, TOAST_REMOVE_DELAY)
+  }, duration)
 
   //제거대기열에 타이머 등록
   toastTimeouts.set(toastId, timeout)
@@ -82,13 +83,13 @@ export const reducer = (state: TState, action: Action): TState => {
       return [...state.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t))]
 
     case 'DISMISS_TOAST': {
-      const { toastId } = action
+      const { toastId, duration = TOAST_REMOVE_DELAY } = action.toast
 
       if (toastId) {
-        addToRemoveQueue(toastId)
+        addToRemoveQueue(toastId, duration)
       } else {
-        state.forEach((toast) => {
-          addToRemoveQueue(toast.id)
+        state.forEach(({ id, duration = TOAST_REMOVE_DELAY }) => {
+          addToRemoveQueue(id, duration)
         })
       }
 
@@ -131,6 +132,8 @@ type TToastProps = Omit<TToast, 'id' | 'open'>
  * 새로운 토스트를 추가하고, 업데이트 및 제거 기능을 반환하는 함수입니다.
  */
 function toast(props: TToastProps) {
+  const { duration = TOAST_REMOVE_DELAY } = props
+
   const id = genId()
 
   const update = (props: TToast) =>
@@ -139,7 +142,7 @@ function toast(props: TToastProps) {
       toast: { ...props, id },
     })
 
-  const dismiss = () => dispatch({ type: 'DISMISS_TOAST', toastId: id })
+  const dismiss = () => dispatch({ type: 'DISMISS_TOAST', toast: { toastId: id, duration } })
 
   dispatch({
     type: 'ADD_TOAST',
@@ -150,7 +153,7 @@ function toast(props: TToastProps) {
     },
   })
 
-  addToRemoveQueue(id)
+  addToRemoveQueue(id, duration)
 
   return { update, dismiss, id }
 }
