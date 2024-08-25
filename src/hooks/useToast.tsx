@@ -1,9 +1,10 @@
+import { TToastProps } from '@/components/ui/toast'
 import * as React from 'react'
 
 const TOAST_LIMIT = 3
 const TOAST_REMOVE_DELAY = 3000
 
-type TToast = {
+type TToaster = TToastProps & {
   id: string
   title?: string
   description?: string
@@ -30,22 +31,22 @@ type ActionType = typeof actionTypes
 type Action =
   | {
       type: ActionType['ADD_TOAST']
-      toast: TToast
+      toast: TToaster
     }
   | {
       type: ActionType['UPDATE_TOAST']
-      toast: Partial<TToast>
+      toast: Partial<TToaster>
     }
   | {
       type: ActionType['DISMISS_TOAST']
-      toast: { toastId: TToast['id']; duration?: TToast['duration'] }
+      toast: { toastId: TToaster['id']; duration?: TToaster['duration'] }
     }
   | {
       type: ActionType['REMOVE_TOAST']
-      toastId?: TToast['id']
+      toastId?: TToaster['id']
     }
 
-type TState = TToast[]
+type TState = TToaster[]
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
@@ -77,7 +78,7 @@ const addToRemoveQueue = (toastId: string, duration: number) => {
 export const reducer = (state: TState, action: Action): TState => {
   switch (action.type) {
     case 'ADD_TOAST':
-      return [action.toast, ...state].slice(0, TOAST_LIMIT)
+      return [...state, action.toast].slice(-TOAST_LIMIT)
 
     case 'UPDATE_TOAST':
       return [...state.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t))]
@@ -126,17 +127,17 @@ function dispatch(action: Action) {
   })
 }
 
-type TToastProps = Omit<TToast, 'id' | 'open'>
+type TToast = Omit<TToaster, 'id' | 'open'>
 
 /**
  * 새로운 토스트를 추가하고, 업데이트 및 제거 기능을 반환하는 함수입니다.
  */
-function toast(props: TToastProps) {
+function toast(props: TToast) {
   const { duration = TOAST_REMOVE_DELAY } = props
 
   const id = genId()
 
-  const update = (props: TToast) =>
+  const update = (props: TToaster) =>
     dispatch({
       type: 'UPDATE_TOAST',
       toast: { ...props, id },
@@ -162,7 +163,7 @@ function toast(props: TToastProps) {
  * 컴포넌트 내에서 토스트를 관리하고 상태 변화를 구독하는 커스텀 훅입니다.
  */
 export function useToast() {
-  const [state, setState] = React.useState<TToast[]>(toasts)
+  const [state, setState] = React.useState<TToaster[]>(toasts)
 
   React.useEffect(() => {
     listeners.push(setState)
