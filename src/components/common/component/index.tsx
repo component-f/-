@@ -106,7 +106,9 @@ export function ComponentPropsTable({ title, description, props }: TComponents) 
   return (
     <>
       <h1 className="mt-8 text-2xl font-bold">{title ? title : 'Props'}</h1>
-      <p className="mt-6 text-foreground">{description}</p>
+      <p className="mt-6 text-foreground">
+        {description ? description : '다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다.'}
+      </p>
       <div className="my-6 w-full overflow-y-auto rounded-lg border">
         <table className="w-full overflow-hidden border-collapse border-hidden">
           <thead>
