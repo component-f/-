@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react'
 type TBreadcrumbComponentProps = {
   children: React.ReactNode
   href?: string
+  onClick?: () => void
 }
 
 export function Breadcrumb({ children }: TBreadcrumbComponentProps) {
