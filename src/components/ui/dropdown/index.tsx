@@ -35,7 +35,7 @@ export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar }
   }, [])
 
   return showStatusBar ? (
-    <div ref={menuRef} className="absolute flex flex-col space-y-1 py-1 border rounded-lg shadow-md">
+    <div ref={menuRef} className="absolute flex flex-col space-y-1 py-1 border rounded-lg shadow-md bg-background">
       {children}
     </div>
   ) : null
@@ -47,7 +47,7 @@ export function DropdownMenuLabel({ children }: TDropdownMenu) {
 
 export function DropdownMenuItem({ children, ...props }: TDropdownMenu) {
   return (
-    <a className="flex px-2 text-sm cursor-pointer" {...props}>
+    <a className="flex px-2 text-sm text-foreground cursor-pointer" {...props}>
       {children}
     </a>
   )
