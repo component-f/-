@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Alert from '@/components/ui/alert'
 import * as Babel from '@babel/standalone'
-import { Ellipsis, Ban } from 'lucide-react'
+import { Ellipsis, Ban, Slash, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/button'
 import {
   Breadcrumb,
@@ -24,10 +24,14 @@ import {
 } from '@/components/common/component'
 
 export default function BreadcrumbPage() {
-  const [showStatusBar, setShowStatusBar] = useState(false)
+  const [showStatusBar1, setShowStatusBar1] = useState(false)
+  const [showStatusBar2, setShowStatusBar2] = useState(false)
 
-  const toggleStatusBar = () => {
-    setShowStatusBar((prevState) => !prevState)
+  const toggleStatusBar1 = () => {
+    setShowStatusBar1((prevState) => !prevState)
+  }
+  const toggleStatusBar2 = () => {
+    setShowStatusBar2((prevState) => !prevState)
   }
 
   const [code1, setCode1] = useState(`
@@ -56,15 +60,39 @@ export default function BreadcrumbPage() {
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash size={13} className="-rotate-12" />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash size={13} className="-rotate-12" />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <BreadcrumbText>Breadcrumb</BreadcrumbText>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </>
+    `)
+
+  const [code3, setCode3] = useState(`
+    <>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <Button className="text-gray-500 hover:text-foreground hover:opacity-100" onClick={toggleStatusBar}>
+                <Button className="text-gray-500 hover:text-foreground hover:opacity-100" onClick={toggleStatusBar1}>
                   <Ellipsis size={15} />
                 </Button>
               </DropdownMenuTrigger>
-                <DropdownMenuContent showStatusBar={showStatusBar} toggleStatusBar={toggleStatusBar}>
+                <DropdownMenuContent showStatusBar={showStatusBar1} toggleStatusBar={toggleStatusBar1}>
                   <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
                   <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
                   <DropdownMenuItem href="/github">Github</DropdownMenuItem>
@@ -84,15 +112,54 @@ export default function BreadcrumbPage() {
     </>
     `)
 
+  const [code4, setCode4] = useState(`
+    <>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button className="text-gray-500 hover:text-foreground hover:opacity-100" onClick={toggleStatusBar2}>
+                  Component<ChevronDown size={20} />
+                </Button>
+              </DropdownMenuTrigger>
+                <DropdownMenuContent showStatusBar={showStatusBar2} toggleStatusBar={toggleStatusBar2}>
+                  <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
+                  <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
+                  <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbText>Breadcrumb</BreadcrumbText>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </>
+    `)
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
+  const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
+  const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
   }, [code1])
   useEffect(() => {
     transformAndSetComponent(code2, setRenderedComponent2)
-  }, [code2, showStatusBar])
+  }, [code2])
+  useEffect(() => {
+    transformAndSetComponent(code3, setRenderedComponent3)
+  }, [code3, showStatusBar1])
+  useEffect(() => {
+    transformAndSetComponent(code4, setRenderedComponent4)
+  }, [code4, showStatusBar2])
 
   const transformAndSetComponent = (
     code: string,
@@ -118,8 +185,12 @@ export default function BreadcrumbPage() {
         'Button',
         'Ellipsis',
         'Ban',
-        'showStatusBar',
-        'toggleStatusBar',
+        'Slash',
+        'ChevronDown',
+        'showStatusBar1',
+        'showStatusBar2',
+        'toggleStatusBar1',
+        'toggleStatusBar2',
         `return ${transformedCode};`,
       )
 
@@ -138,8 +209,12 @@ export default function BreadcrumbPage() {
         Button,
         Ellipsis,
         Ban,
-        showStatusBar,
-        toggleStatusBar,
+        Slash,
+        ChevronDown,
+        showStatusBar1,
+        showStatusBar2,
+        toggleStatusBar1,
+        toggleStatusBar2,
       )
 
       setComponent(element)
@@ -183,6 +258,22 @@ export default function BreadcrumbPage() {
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="custom2" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExampleCode code={code3} setCode={setCode3} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="custom3" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent4}</ComponentExample>
+          <ComponentExampleCode code={code4} setCode={setCode4} />
         </ComponentContainer>
       </Component>
 
