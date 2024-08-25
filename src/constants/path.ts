@@ -29,6 +29,7 @@ export const PATH = Object.freeze({
   sheet: '/docs/components/sheet' as const,
   breadcrumb: '/docs/components/breadcrumb' as const,
   accordion: '/docs/components/accordion' as const,
+  dropdown: '/docs/components/dropdown' as const,
   /**
    * 사용 예시 페이지
    */

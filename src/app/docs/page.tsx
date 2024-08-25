@@ -21,6 +21,7 @@ export default function DocsPage() {
         <Link href={PATH.pagination}>pagination</Link>
         <Link href={PATH.sheet}>sheet</Link>
         <Link href={PATH.accordion}>accordion</Link>
+        <Link href={PATH.dropdown}>dropdown</Link>
       </div>
     </>
   )
