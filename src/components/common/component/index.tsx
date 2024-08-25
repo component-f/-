@@ -45,7 +45,7 @@ export function ComponentContainer({ children }: TComponents) {
 
 export function ComponentExample({ children }: TComponents) {
   return (
-    <div className="w-full border border-border h-96 flex items-center justify-center rounded-t-xl">{children}</div>
+    <div className="w-full border border-border py-20 flex items-center justify-center rounded-t-xl">{children}</div>
   )
 }
 
