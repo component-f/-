@@ -1,38 +1,243 @@
 'use client'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Alert from '@/components/ui/alert'
+import * as Babel from '@babel/standalone'
+import {
+  ArrowBigLeft,
+  ArrowBigRight,
+  ArrowBigLeftDash,
+  ArrowBigRightDash,
+  ChevronLeft,
+  ChevronRight,
+  Ban,
+} from 'lucide-react'
 import Pagination from '@/components/ui/pagination'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbText,
+} from '@/components/ui/breadcrumb'
+import {
+  Component,
+  ComponentContainer,
+  ComponentExample,
+  ComponentExampleCode,
+  ComponentExplain,
+  ComponentPropsTable,
+} from '@/components/common/component'
 
 export default function PaginationPage() {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage1, setCurrentPage1] = useState(1)
   const [currentPage2, setCurrentPage2] = useState(1)
+  const [currentPage3, setCurrentPage3] = useState(1)
+  const [code1, setCode1] = useState(`
+    <>
+      <Pagination
+        showingPages={5}
+        totalPages={20}
+        currentPage={currentPage1}
+        onPageChange={handlePageChange1}
+      />
+    </>
+    `)
+  const [code2, setCode2] = useState(`
+    <>
+      <Pagination
+        showingPages={10}
+        totalPages={20}
+        currentPage={currentPage2}
+        onPageChange={handlePageChange2}
+        currentPageStyle="rounded-full"
+      />
+    </>
+    `)
+  const [code3, setCode3] = useState(`
+    <>
+      <Pagination
+        showingPages={5}
+        totalPages={20}
+        currentPage={currentPage3}
+        onPageChange={handlePageChange3}
+        prevIcon={<ArrowBigLeft />}
+        nextIcon={<ArrowBigRight />}
+        startIcon={<ArrowBigLeftDash />}
+        lastIcon={<ArrowBigRightDash />}
+      />
+    </>
+    `)
+  const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
+  const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
+  const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
+  const handlePageChange1 = (page: number) => {
+    setCurrentPage1(page)
   }
 
   const handlePageChange2 = (page: number) => {
     setCurrentPage2(page)
   }
 
+  const handlePageChange3 = (page: number) => {
+    setCurrentPage3(page)
+  }
+
+  useEffect(() => {
+    transformAndSetComponent(code1, setRenderedComponent1)
+  }, [code1, currentPage1])
+  useEffect(() => {
+    transformAndSetComponent(code2, setRenderedComponent2)
+  }, [code2, currentPage2])
+  useEffect(() => {
+    transformAndSetComponent(code3, setRenderedComponent3)
+  }, [code3, currentPage3])
+
+  const transformAndSetComponent = (
+    code: string,
+    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
+  ) => {
+    try {
+      const transformedCode = Babel.transform(code, {
+        presets: ['react'],
+      }).code
+
+      const Component = new Function(
+        'React',
+        'Pagination',
+        'ArrowBigLeft',
+        'ArrowBigRight',
+        'ArrowBigLeftDash',
+        'ArrowBigRightDash',
+        'ChevronLeft',
+        'ChevronRight',
+        'currentPage1',
+        'currentPage2',
+        'currentPage3',
+        'handlePageChange1',
+        'handlePageChange2',
+        'handlePageChange3',
+        `return ${transformedCode};`,
+      )
+
+      const element = Component(
+        React,
+        Pagination,
+        ArrowBigLeft,
+        ArrowBigRight,
+        ArrowBigLeftDash,
+        ArrowBigRightDash,
+        ChevronLeft,
+        ChevronRight,
+        currentPage1,
+        currentPage2,
+        currentPage3,
+        handlePageChange1,
+        handlePageChange2,
+        handlePageChange3,
+        Ban,
+      )
+
+      setComponent(element)
+    } catch (error) {
+      console.error('Error rendering component:', error)
+      setComponent(
+        <Alert className="w-1/3 bg-red-500 text-white" title="오류" icon={<Ban size={35} />}>
+          컴포넌트를 렌더링 하는 데 실패했습니다.
+        </Alert>,
+      )
+    }
+  }
+
   return (
     <>
-      <div className="mt-8 text-3xl font-bold">Pagination</div>
-      <p className="mt-2 text-lg text-gray200">페이지 탐색, 다음 및 이전 링크가 있는 페이지 번호 매기기.</p>
-      <div className="flex flex-col gap-8 mt-12">
-        <div className="flex flex-col gap-2">
-          <label className="text-lg">Default</label>
-          <Pagination showingPages={5} currentPage={currentPage} totalPages={20} onPageChange={handlePageChange} />
-          <pre>
-            <code>{`<Pagination showingPages={5} currentPage={currentPage} totalPages={20} onPageChange={handlePageChange} />`}</code>
-          </pre>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbText>Pagination</BreadcrumbText>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-          <label className="text-lg">Variant</label>
-          <Pagination showingPages={10} currentPage={currentPage2} totalPages={20} onPageChange={handlePageChange2} />
-          <pre>
-            <code>{`<Pagination showingPages={10} currentPage={currentPage} totalPages={20} onPageChange={handlePageChange} />`}</code>
-          </pre>
-        </div>
-      </div>
+      <Component>
+        <ComponentExplain title="Pagination" description="페이지 탐색, 다음 및 이전 링크가 있는 페이지 번호 매기기." />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent1}</ComponentExample>
+          <ComponentExampleCode code={code1} setCode={setCode1} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="custom1" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent2}</ComponentExample>
+          <ComponentExampleCode code={code2} setCode={setCode2} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="custom2" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExampleCode code={code3} setCode={setCode3} />
+        </ComponentContainer>
+      </Component>
+
+      <ComponentPropsTable
+        props={[
+          {
+            prop: 'showingPages',
+            type: 'number',
+            default: '',
+            description: '사용자에게 보여줄 페이지 수를 설정합니다.',
+          },
+          {
+            prop: 'totalPages',
+            type: 'number',
+            default: '',
+            description: '총 페이지 수를 설정합니다.',
+          },
+          {
+            prop: 'prevIcon',
+            type: 'React.ReactNode',
+            default: '<ChevronLeft size={20} /> Previous',
+            description: '이전 페이지로 이동하는 아이콘을 설정합니다.',
+          },
+          {
+            prop: 'nextIcon',
+            type: 'React.ReactNode',
+            default: 'Next <ChevronRight size={20} />',
+            description: '다음 페이지로 이동하는 아이콘을 설정합니다.',
+          },
+          {
+            prop: 'startIcon',
+            type: 'React.ReactNode',
+            default: '<ChevronsLeft size={20} />',
+            description: '첫 페이지로 이동하는 아이콘을 설정합니다.',
+          },
+          {
+            prop: 'lastIcon',
+            type: 'React.ReactNode',
+            default: '<ChevronsRight size={20} />',
+            description: '첫 페이지로 이동하는 아이콘을 설정합니다.',
+          },
+          {
+            prop: 'currentPageStyle',
+            type: 'string',
+            default: 'border border-border rounded-lg',
+            description: '현재 페이지의 스타일을 설정합니다.',
+          },
+        ]}
+      />
     </>
   )
 }
