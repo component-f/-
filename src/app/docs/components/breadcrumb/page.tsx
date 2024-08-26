@@ -278,14 +278,85 @@ export default function BreadcrumbPage() {
       </Component>
 
       <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
+        title="Breadcrumb"
+        description="페이지 탐색을 위한 Breadcrumb 컴포넌트의 속성들입니다."
         props={[
           {
-            prop: 'child',
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Breadcrumb의 각 항목을 포함하는 콘텐츠를 전달합니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="BreadcrumbList"
+        description="Breadcrumb 내에서 리스트를 구성하는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Breadcrumb 내에서 여러 항목을 리스트 형식으로 포함합니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="BreadcrumbItem"
+        description="Breadcrumb 내의 각 항목을 나타내는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Breadcrumb의 각 항목에 해당하는 콘텐츠를 포함합니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="BreadcrumbLink"
+        description="Breadcrumb 항목에 대한 링크를 제공하는 요소입니다."
+        props={[
+          {
+            prop: 'href',
             type: 'string',
-            default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            default: 'null',
+            description: '클릭 시 이동할 URL을 지정합니다.',
+          },
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: '링크 텍스트 또는 콘텐츠를 포함합니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="BreadcrumbSeparator"
+        description="Breadcrumb 항목들 사이를 구분하는 구분자 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: '구분자 기호나 텍스트를 포함할 수 있습니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="BreadcrumbText"
+        description="Breadcrumb 내에서 현재 위치를 나타내는 텍스트 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: '현재 위치를 설명하는 텍스트를 포함합니다.',
           },
         ]}
       />
