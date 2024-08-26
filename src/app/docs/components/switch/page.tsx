@@ -50,8 +50,8 @@ export default function Switchpage() {
 
   const [code4, setCode4] = useState(`<> 
 <div className="flex items-center ">
-            <Switch id="checked" checked={true} className=" bg-blue-500" />
-            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+            <Switch id="color" checked={true} className=" bg-blue-500" />
+            <Label htmlFor="color" className="cursor-pointer ml-2 ">
               color
             </Label>
           </div>
