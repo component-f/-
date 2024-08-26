@@ -7,7 +7,9 @@ import { PATH } from '@/constants/path'
 
 export default function Sidebar() {
   const pathname = usePathname()
-  const componentPaths = Object.entries(PATH).filter(([, path]) => path.startsWith('/docs/components'))
+  const componentPaths = Object.entries(PATH)
+    .filter(([, path]) => path.startsWith('/docs/components'))
+    .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
 
   return (
     <div className="flex flex-col space-y-1 w-[200px] p-4 h-full min-h-screen">
