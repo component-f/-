@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
-import createContext from '@/utils/createContext'
+import useCreateContext from '@/hooks/useCreateContext'
 import { cn } from '@/utils/cn'
 import { X } from 'lucide-react'
 
@@ -13,7 +13,7 @@ type TModalContextValue = {
   isOpen: boolean
 }
 
-const [ModalProvider, useModalContext] = createContext<TModalContextValue>('Modal')
+const [ModalProvider, useModalContext] = useCreateContext<TModalContextValue>('Modal')
 
 /**
  * Modal 컴포넌트
