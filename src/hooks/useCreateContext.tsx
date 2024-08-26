@@ -1,6 +1,9 @@
 import * as React from 'react'
 
-export default function createContext<ContextValueType>(rootComponentName: string, defaultContext?: ContextValueType) {
+export default function useCreateContext<ContextValueType>(
+  rootComponentName: string,
+  defaultContext?: ContextValueType,
+) {
   const Context = React.createContext<ContextValueType | undefined>(defaultContext)
 
   function Provider(props: ContextValueType & { children: React.ReactNode }) {

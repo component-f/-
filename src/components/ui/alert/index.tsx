@@ -4,11 +4,12 @@ import React from 'react'
 type TAlertProps = React.ComponentPropsWithoutRef<'div'> & {
   title?: string
   btn?: () => void
+  btnMsg?: string
   icon?: React.ReactNode
   children: React.ReactNode
 }
 
-export default function Alert({ className, icon, title, children, btn, ...props }: TAlertProps) {
+export default function Alert({ className, icon, title, children, btn, btnMsg, ...props }: TAlertProps) {
   return (
     <div
       className={twMerge(
@@ -22,7 +23,11 @@ export default function Alert({ className, icon, title, children, btn, ...props 
         {title && <h2 className="font-bold">{title}</h2>}
         <p>{children}</p>
       </div>
-      {btn && <button className="pl-[16px]">Undo</button>}
+      {btn && (
+        <button onClick={btn} className="pl-[16px]">
+          {btnMsg}
+        </button>
+      )}
     </div>
   )
 }

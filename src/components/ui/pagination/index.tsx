@@ -1,21 +1,28 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-
+import React from 'react'
+import { ChevronsLeft, ChevronsRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { twMerge } from 'tailwind-merge'
 type TPaginationProps = {
   currentPage: number
-  currentPage2?: number
   totalPages: number
-  onPageChange?: (page: number) => void
-  onPageChange2?: (page: number) => void
+  onPageChange: (page: number) => void
   showingPages: number
+  startIcon?: React.ReactNode
+  prevIcon?: React.ReactNode
+  nextIcon?: React.ReactNode
+  lastIcon?: React.ReactNode
+  currentPageStyle?: string
 }
 
 export default function Pagination({
   currentPage,
-  currentPage2,
   totalPages,
   showingPages,
   onPageChange,
-  onPageChange2,
+  startIcon,
+  prevIcon,
+  nextIcon,
+  lastIcon,
+  currentPageStyle,
 }: TPaginationProps) {
   function generatePages(currentPage: number, totalPages: number): number[] {
     const maxPagesToShow = showingPages % 2 === 0 ? showingPages - 1 : showingPages
@@ -41,48 +48,64 @@ export default function Pagination({
 
   const pages = generatePages(currentPage, totalPages)
 
-  const renderPagination = (currentPage: number, onPageChange: (page: number) => void) => (
-    <ul className="flex list-none">
-      <li>
-        <button
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="flex px-4 py-2 mr-1 items-center"
-        >
-          <ChevronLeft size={20} />
-          Previous
-        </button>
-      </li>
-      {pages.map((page) => (
-        <li key={page}>
-          <button
-            onClick={() => onPageChange(page)}
-            className={`px-4 py-2 mr-1 ${page === currentPage ? 'border border-border rounded-lg' : ''}`}
-          >
-            {page}
-          </button>
-        </li>
-      ))}
-      <li>
-        <button
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="flex items-center px-4 py-2"
-        >
-          Next
-          <ChevronRight size={20} />
-        </button>
-      </li>
-    </ul>
-  )
-
   return (
     <nav>
-      {onPageChange
-        ? renderPagination(currentPage, onPageChange)
-        : onPageChange2 && currentPage2 !== undefined
-          ? renderPagination(currentPage2, onPageChange2)
-          : null}
+      <ul className="flex items-center">
+        <li>
+          <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="py-2">
+            {startIcon ? startIcon : <ChevronsLeft size={20} />}
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="flex pr-4 py-2 items-center"
+          >
+            {prevIcon ? (
+              prevIcon
+            ) : (
+              <>
+                <ChevronLeft size={20} />
+                Previous
+              </>
+            )}
+          </button>
+        </li>
+        {pages.map((page) => (
+          <li key={page}>
+            <button
+              onClick={() => onPageChange(page)}
+              className={twMerge(
+                `px-4 py-2 mr-1 ${page === currentPage ? `border border-border ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
+                currentPageStyle,
+              )}
+            >
+              {page}
+            </button>
+          </li>
+        ))}
+        <li>
+          <button
+            onClick={() => onPageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="flex items-center pl-4 py-2"
+          >
+            {nextIcon ? (
+              nextIcon
+            ) : (
+              <>
+                Next <ChevronRight size={20} />
+              </>
+            )}
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="py-2">
+            {lastIcon ? lastIcon : <ChevronsRight size={20} />}
+          </button>
+        </li>
+      </ul>
     </nav>
   )
 }
