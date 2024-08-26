@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 type TDropdownMenu = {
   children: React.ReactNode
@@ -6,8 +6,9 @@ type TDropdownMenu = {
   asChild?: true
   onClick?: () => void
   showStatusBar?: boolean
-  toggleStatusBar?: (status: boolean) => void
+  toggleStatusBar?: (event: React.MouseEvent) => void
   href?: string
+  menuRef?: React.RefObject<HTMLDivElement>
 }
 
 export function DropdownMenu({ children }: TDropdownMenu) {
@@ -18,12 +19,10 @@ export function DropdownMenuTrigger({ children }: TDropdownMenu) {
   return <div>{children}</div>
 }
 
-export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar }: TDropdownMenu) {
-  const menuRef = useRef<HTMLDivElement>(null)
-
+export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar, menuRef }: TDropdownMenu) {
   const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      toggleStatusBar?.(false)
+    if (menuRef?.current && !menuRef.current.contains(event.target as Node)) {
+      toggleStatusBar?.(event as unknown as React.MouseEvent)
     }
   }
 
@@ -42,13 +41,23 @@ export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar }
 }
 
 export function DropdownMenuLabel({ children }: TDropdownMenu) {
-  return <>{children}</>
+  return <label className="pb-2 mb-2 border-b border-border">{children}</label>
 }
 
-export function DropdownMenuItem({ children, ...props }: TDropdownMenu) {
+export function DropdownMenuItem({ children, href, ...props }: TDropdownMenu) {
   return (
-    <a className="flex px-2 text-sm text-foreground cursor-pointer" {...props}>
-      {children}
-    </a>
+    <>
+      {href ? (
+        <a className="flex px-2 text-sm text-foreground cursor-pointer" {...props}>
+          {children}
+        </a>
+      ) : (
+        <>{children}</>
+      )}
+    </>
   )
+}
+
+export function DropdownCheckboxItem({ children }: TDropdownMenu) {
+  return <>{children}</>
 }
