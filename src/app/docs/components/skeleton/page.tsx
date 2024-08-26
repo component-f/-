@@ -92,13 +92,14 @@ export default function SkeletonPage() {
       </Component>
 
       <ComponentPropsTable
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
+        title="Skeleton Loading UI"
+        description="로딩 상태를 나타내기 위해 사용되는 스켈레톤 컴포넌트의 속성들입니다."
         props={[
           {
             prop: 'className',
             type: 'string',
-            default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            default: 'bg-foreground rounded-full h-10 w-10',
+            description: 'Skeleton 컴포넌트에 추가적인 스타일을 적용할 수 있습니다.',
           },
         ]}
       />
