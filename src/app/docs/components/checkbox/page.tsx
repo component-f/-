@@ -4,11 +4,19 @@ import React, { useState } from 'react'
 import CheckBox from '@/components/ui/checkbox'
 
 export default function CheckboxPage() {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+  const [checkboxValue, setCheckboxValue] = useState<string[]>([])
+  const [checkboxValue2, setCheckboxValue2] = useState<string[]>([])
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
-    setSelectedOptions((prevOptions) =>
+    setCheckboxValue((prevOptions) =>
+      prevOptions.includes(value) ? prevOptions.filter((option) => option !== value) : [...prevOptions, value],
+    )
+  }
+
+  const handleCheckboxChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setCheckboxValue2((prevOptions) =>
       prevOptions.includes(value) ? prevOptions.filter((option) => option !== value) : [...prevOptions, value],
     )
   }
@@ -25,21 +33,21 @@ export default function CheckboxPage() {
             label="Option 1"
             name="options"
             value="option1"
-            checked={selectedOptions.includes('option1')}
+            checked={checkboxValue.includes('option1')}
             onChange={handleCheckboxChange}
           />
           <CheckBox
             label="Option 2"
             name="options"
             value="option2"
-            checked={selectedOptions.includes('option2')}
+            checked={checkboxValue.includes('option2')}
             onChange={handleCheckboxChange}
           />
           <CheckBox
             label="Option 3"
             name="options"
             value="option3"
-            checked={selectedOptions.includes('option3')}
+            checked={checkboxValue.includes('option3')}
             onChange={handleCheckboxChange}
             disabled={true}
           />
@@ -53,23 +61,23 @@ export default function CheckboxPage() {
             label="Option 1"
             name="options1"
             value="option1-1"
-            checked={selectedOptions.includes('option1-1')}
-            onChange={handleCheckboxChange}
+            checked={checkboxValue2.includes('option1-1')}
+            onChange={handleCheckboxChange2}
           />
           <CheckBox
             label="Option 2"
             name="options1"
             value="option1-2"
-            checked={selectedOptions.includes('option1-2')}
-            onChange={handleCheckboxChange}
+            checked={checkboxValue2.includes('option1-2')}
+            onChange={handleCheckboxChange2}
           />
           <CheckBox
             label="Option 3"
             name="options1"
             value="option1-3"
-            //checked={selectedOptions.includes('option1-3')}
+            //checked={checkboxValue2.includes('option1-3')}
             checked={true}
-            onChange={handleCheckboxChange}
+            onChange={handleCheckboxChange2}
             disabled={true}
           />
         </div>
