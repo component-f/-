@@ -31,6 +31,7 @@ export const PATH = Object.freeze({
   accordion: '/docs/components/accordion' as const,
   dropdown: '/docs/components/dropdown' as const,
   table: '/docs/components/table' as const,
+  checkbox: '/docs/components/checkbox' as const,
   /**
    * 사용 예시 페이지
    */
