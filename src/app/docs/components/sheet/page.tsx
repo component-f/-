@@ -168,14 +168,116 @@ export default function SheetPage() {
       </Component>
 
       <ComponentPropsTable
-        title="Child"
-        description=""
+        title="Sheet"
+        description="프로필 편집 등의 작업을 위한 시트를 구성하는 데 사용되는 컴포넌트의 속성들입니다."
         props={[
           {
-            prop: 'className',
-            type: 'string',
-            default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            prop: 'sheet',
+            type: 'boolean',
+            default: 'false',
+            description: '시트의 표시 상태를 결정하는 데 사용됩니다.',
+          },
+          {
+            prop: 'toggleSheet',
+            type: '() => void',
+            default: 'undefined',
+            description: '시트의 열림 또는 닫힘을 토글하는 함수입니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetTrigger"
+        description="Sheet 컴포넌트를 열기 위한 트리거 버튼의 속성입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Sheet를 열기 위한 트리거 요소로서의 콘텐츠를 전달합니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetContent"
+        description="Sheet 내부의 콘텐츠를 포함하는 컴포넌트의 속성입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Sheet 내부에 표시될 콘텐츠를 포함합니다.',
+          },
+          {
+            prop: 'sheet',
+            type: 'boolean',
+            default: 'false',
+            description: '시트의 표시 상태를 결정하는 데 사용됩니다.',
+          },
+          {
+            prop: 'toggleSheet',
+            type: '() => void',
+            default: 'undefined',
+            description: '시트의 열림 또는 닫힘을 토글하는 함수입니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetHeader"
+        description="Sheet의 헤더를 구성하는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: '헤더 내에 표시될 콘텐츠를 포함합니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetTitle"
+        description="Sheet의 제목을 나타내는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Sheet의 제목으로 사용되는 텍스트 또는 콘텐츠를 전달합니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetDescription"
+        description="Sheet에 대한 설명을 제공하는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Sheet 설명을 제공하는 텍스트 또는 콘텐츠를 전달합니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetFooter"
+        description="Sheet의 하단 영역을 구성하는 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: '하단 영역에 포함될 버튼이나 기타 콘텐츠를 전달합니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="SheetClose"
+        description="Sheet를 닫기 위한 요소입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Sheet를 닫는 기능을 제공하는 버튼 등의 콘텐츠를 포함합니다.',
           },
         ]}
       />

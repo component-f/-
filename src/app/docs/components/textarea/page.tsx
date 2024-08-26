@@ -159,32 +159,37 @@ export default function TextareaPage() {
       </Component>
 
       <ComponentPropsTable
-        description="다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다."
+        description="사용자 입력을 받기 위해 사용되는 텍스트 입력 컴포넌트의 속성들입니다."
         props={[
-          {
-            prop: 'ref',
-            type: '',
-            default: '',
-            description: '',
-          },
           {
             prop: 'className',
             type: 'string',
-            default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            default: '""',
+            description: '추가적인 Tailwind CSS 클래스를 적용하여 텍스트 영역의 스타일을 조정합니다.',
           },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
-        props={[
           {
-            prop: 'child',
+            prop: 'ref',
+            type: 'React.RefObject<HTMLTextAreaElement>',
+            default: 'null',
+            description: '텍스트 영역의 참조를 전달할 때 사용됩니다.',
+          },
+          {
+            prop: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: '텍스트 영역을 비활성화합니다. 비활성화된 경우 커서가 표시되지 않습니다.',
+          },
+          {
+            prop: 'placeholder',
             type: 'string',
             default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            description: '사용자에게 입력할 내용에 대한 힌트를 제공합니다.',
+          },
+          {
+            prop: 'value',
+            type: 'string | number | readonly string[]',
+            default: '',
+            description: '텍스트 영역의 현재 값을 설정합니다.',
           },
         ]}
       />

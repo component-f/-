@@ -25,6 +25,8 @@ export default function DocsPage() {
         <Link href={PATH.checkbox}>checkbox</Link>
         <Link href={PATH.table}>table</Link>
         <Link href={PATH.select}>select</Link>
+        <Link href={PATH.modal}>modal</Link>
+        <Link href={PATH.toast}>toast</Link>
       </div>
     </>
   )
