@@ -27,6 +27,8 @@ export const PATH = Object.freeze({
   pagination: '/docs/components/pagination' as const,
   sheet: '/docs/components/sheet' as const,
   breadcrumb: '/docs/components/breadcrumb' as const,
+  checkbox: '/docs/components/checkbox' as const,
+  table: '/docs/components/table' as const,
   /**
    * 사용 예시 페이지
    */

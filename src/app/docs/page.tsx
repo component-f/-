@@ -19,6 +19,8 @@ export default function DocsPage() {
         <Link href={PATH.button}>button</Link>
         <Link href={PATH.pagination}>pagination</Link>
         <Link href={PATH.sheet}>sheet</Link>
+        <Link href={PATH.checkbox}>checkbox</Link>
+        <Link href={PATH.table}>table</Link>
       </div>
     </>
   )
