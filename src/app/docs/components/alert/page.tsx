@@ -123,50 +123,44 @@ export default function AlertPage() {
       </Component>
 
       <ComponentPropsTable
-        description="다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다."
+        title="Alert"
+        description="경고 메시지나 정보 메시지를 표시하기 위한 Alert 컴포넌트의 속성들입니다."
         props={[
-          {
-            prop: 'title',
-            type: 'string',
-            default: '',
-            description: '컴포넌트의 제목을 지정할 때 사용됩니다.',
-          },
           {
             prop: 'className',
             type: 'string',
-            default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            default: 'null',
+            description: 'Alert 컴포넌트의 추가적인 CSS 클래스를 지정합니다.',
+          },
+          {
+            prop: 'title',
+            type: 'string',
+            default: 'null',
+            description: 'Alert의 제목을 지정합니다.',
           },
           {
             prop: 'btn',
             type: '() => void',
-            default: '',
-            description: '버튼 클릭 시 실행될 함수를 정의합니다.',
+            default: 'null',
+            description: '버튼을 클릭했을 때 호출되는 함수입니다.',
           },
           {
             prop: 'btnMsg',
             type: 'string',
-            default: '',
-            description: '버튼에 표시될 텍스트를 지정합니다.',
+            default: 'null',
+            description: '버튼에 표시될 메시지를 지정합니다.',
           },
           {
             prop: 'icon',
             type: 'React.ReactNode',
-            default: '',
-            description: '표시될 아이콘을 지정합니다.',
+            default: 'null',
+            description: 'Alert의 왼쪽에 표시될 아이콘을 지정합니다.',
           },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
-        props={[
           {
-            prop: 'child',
-            type: 'string',
-            default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: 'null',
+            description: 'Alert에 표시될 메시지나 콘텐츠를 지정합니다.',
           },
         ]}
       />
