@@ -1,11 +1,13 @@
 'use client'
 
 import * as React from 'react'
-import { createPortal } from 'react-dom'
 
 import useCreateContext from '@/hooks/useCreateContext'
 import { cn } from '@/utils/cn'
 import { X } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+const Portal = dynamic(() => import('@/components/common/portal').then((mod) => mod.Portal), { ssr: false })
 
 type TModalContextValue = {
   onOpen: () => void
@@ -38,7 +40,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
  * -----------------------------------------------------------------------------------------------*/
 
 const ModalPortal = ({ children }: { children: React.ReactNode }) => {
-  return createPortal(<div>{children}</div>, document.body)
+  return <Portal>{children}</Portal>
 }
 
 /* -------------------------------------------------------------------------------------------------
