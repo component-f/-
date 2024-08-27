@@ -34,6 +34,7 @@ export const PATH = Object.freeze({
   select: '/docs/components/select' as const,
   modal: '/docs/components/modal' as const,
   toast: '/docs/components/toast' as const,
+  checkbox: '/docs/components/checkbox' as const,
 
   /**
    * 사용 예시 페이지
