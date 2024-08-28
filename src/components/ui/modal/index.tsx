@@ -22,8 +22,13 @@ const [ModalProvider, useModalContext] = useCreateContext<TModalContextValue>('M
  * @todos animation, asChild pattern, 최적화
  */
 
-const Modal = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
+type TModalProps = {
+  children: React.ReactNode
+  defaultOpen?: boolean
+}
+const Modal = (props: TModalProps) => {
+  const { defaultOpen = false, children } = props
+  const [isOpen, setIsOpen] = React.useState<boolean>(defaultOpen)
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
