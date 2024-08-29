@@ -6,10 +6,10 @@ type TAlertProps = React.ComponentPropsWithoutRef<'div'> & {
   btn?: () => void
   btnMsg?: string
   icon?: React.ReactNode
-  children: React.ReactNode
+  description?: string
 }
 
-export default function Alert({ className, icon, title, children, btn, btnMsg, ...props }: TAlertProps) {
+export default function Alert({ className, icon, title, description, btn, btnMsg, ...props }: TAlertProps) {
   return (
     <div
       className={twMerge(
@@ -21,7 +21,7 @@ export default function Alert({ className, icon, title, children, btn, btnMsg, .
       {icon && icon}
       <div className={`flex flex-1 flex-col ${icon && 'pl-[16px]'}`}>
         {title && <h2 className="font-bold">{title}</h2>}
-        <p>{children}</p>
+        <p>{description}</p>
       </div>
       {btn && (
         <button onClick={btn} className="pl-[16px]">
