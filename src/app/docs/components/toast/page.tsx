@@ -13,7 +13,8 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 import Button from '@/components/ui/button'
-
+import Editor from 'react-simple-code-editor'
+import { highlight, languages } from 'prismjs'
 /**
  * Toast 컴포넌트 문서 페이지 컴포넌트
  */
@@ -101,6 +102,25 @@ export default function ToastPage() {
     }
   }
 
+  const installCode = {
+    install: `npm com-fac@latest add toast`,
+    addToaster: `
+  import { Toaster } from "@/components/ui/toaster"
+ 
+  export default function RootLayout({ children }) {
+      return (
+          <html lang="en">
+              <head />
+              <body>
+                  <main>{children}</main>
+                  <Toaster />
+              </body>
+          </html>
+      )
+  }
+  `,
+  }
+
   return (
     <div className="container pb-14">
       <Component>
@@ -111,6 +131,44 @@ export default function ToastPage() {
         </ComponentContainer>
       </Component>
 
+      <div>
+        <div className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+          Installation
+        </div>
+        <div>
+          <div className="font-heading mt-8 scroll-m-20 text-md font-medium tracking-tight">
+            1. 다음 명령을 실행하세요.
+          </div>
+          <div className="w-full border-b rounded-xl bg-foreground overflow-auto mt-4">
+            <Editor
+              value={installCode.install}
+              highlight={(code) => highlight(code, languages.jsx, 'jsx')}
+              padding={10}
+              className="text-md text-white"
+              readOnly={true}
+              onValueChange={() => {}}
+            />
+          </div>
+        </div>
+
+        <div>
+          <div className="font-heading mt-8 scroll-m-20 text-md font-medium tracking-tight">
+            2. 토스터 구성 요소를 추가합니다
+          </div>
+          <div className="w-full border-b rounded-xl bg-foreground overflow-auto  mt-4">
+            <Editor
+              value={installCode.addToaster}
+              highlight={(code) => highlight(code, languages.jsx, 'jsx')}
+              padding={10}
+              className="text-md text-white"
+              readOnly={true}
+              onValueChange={() => {}}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Usage</div>
       <Component>
         <ComponentExplain variant="Simple" />
         <ComponentContainer>
