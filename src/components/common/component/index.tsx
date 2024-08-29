@@ -88,7 +88,7 @@ export function ComponentExampleCode({ code, setCode }: { code: string; setCode:
           </div>
         </div>
       </div>
-      <div className="w-full border-b border-border rounded-b-xl bg-foreground overflow-auto">
+      <div className="w-full border-border rounded-b-xl bg-foreground overflow-auto hover:ring-4 ring-[#0090FF]">
         <Editor
           value={code}
           onValueChange={(code) => setCode(code)}
