@@ -34,35 +34,40 @@ export default function PaginationPage() {
   const [currentPage2, setCurrentPage2] = useState(1)
   const [currentPage3, setCurrentPage3] = useState(1)
   const [code1, setCode1] = useState(`
-    <Pagination
-      showingPages={5}
-      totalPages={20}
-      currentPage={currentPage1}
-      onPageChange={handlePageChange1}
-    />
-  `)
+    <>
+      <Pagination
+        showingPages={5}
+        totalPages={20}
+        currentPage={currentPage1}
+        onPageChange={handlePageChange1}
+      />
+    </>
+    `)
   const [code2, setCode2] = useState(`
-    <Pagination
-      showingPages={10}
-      totalPages={20}
-      currentPage={currentPage2}
-      onPageChange={handlePageChange2}
-      currentPageStyle="rounded-full"
-    />
-  `)
+    <>
+      <Pagination
+        showingPages={10}
+        totalPages={20}
+        currentPage={currentPage2}
+        onPageChange={handlePageChange2}
+        currentPageStyle="rounded-full"
+      />
+    </>
+    `)
   const [code3, setCode3] = useState(`
-    <Pagination
-      showingPages={5}
-      totalPages={20}
-      currentPage={currentPage3}
-      onPageChange={handlePageChange3}
-      prevIcon={<ArrowBigLeft />}
-      nextIcon={<ArrowBigRight />}
-      startIcon={<ArrowBigLeftDash />}
-      lastIcon={<ArrowBigRightDash />}
-      currentPageStyle="border-black rounded-sm"
-    />
-  `)
+    <>
+      <Pagination
+        showingPages={5}
+        totalPages={20}
+        currentPage={currentPage3}
+        onPageChange={handlePageChange3}
+        prevIcon={<ArrowBigLeft />}
+        nextIcon={<ArrowBigRight />}
+        startIcon={<ArrowBigLeftDash />}
+        lastIcon={<ArrowBigRightDash />}
+      />
+    </>
+    `)
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
@@ -190,10 +195,10 @@ export default function PaginationPage() {
       <ComponentPropsTable
         props={[
           {
-            prop: 'currentPage',
+            prop: 'showingPages',
             type: 'number',
             default: '',
-            description: '현재 선택된 페이지 번호를 설정합니다.',
+            description: '사용자에게 보여줄 페이지 수를 설정합니다.',
           },
           {
             prop: 'totalPages',
@@ -202,46 +207,34 @@ export default function PaginationPage() {
             description: '총 페이지 수를 설정합니다.',
           },
           {
-            prop: 'showingPages',
-            type: 'number',
-            default: '',
-            description: '한 번에 표시할 페이지 번호의 수를 설정합니다.',
-          },
-          {
-            prop: 'onPageChange',
-            type: '(page: number) => void',
-            default: '',
-            description: '페이지 번호가 변경될 때 호출되는 콜백 함수입니다.',
-          },
-          {
-            prop: 'startIcon',
-            type: 'React.ReactNode',
-            default: '<ChevronsLeft size={20} />',
-            description: '첫 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
-          },
-          {
             prop: 'prevIcon',
             type: 'React.ReactNode',
             default: '<ChevronLeft size={20} /> Previous',
-            description: '이전 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: '이전 페이지로 이동하는 아이콘을 설정합니다.',
           },
           {
             prop: 'nextIcon',
             type: 'React.ReactNode',
             default: 'Next <ChevronRight size={20} />',
-            description: '다음 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: '다음 페이지로 이동하는 아이콘을 설정합니다.',
+          },
+          {
+            prop: 'startIcon',
+            type: 'React.ReactNode',
+            default: '<ChevronsLeft size={20} />',
+            description: '첫 페이지로 이동하는 아이콘을 설정합니다.',
           },
           {
             prop: 'lastIcon',
             type: 'React.ReactNode',
             default: '<ChevronsRight size={20} />',
-            description: '마지막 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: '첫 페이지로 이동하는 아이콘을 설정합니다.',
           },
           {
             prop: 'currentPageStyle',
             type: 'string',
             default: 'border border-border rounded-lg',
-            description: '현재 선택된 페이지의 스타일을 설정합니다.',
+            description: '현재 페이지의 스타일을 설정합니다.',
           },
         ]}
       />
