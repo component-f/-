@@ -44,21 +44,21 @@ export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar, 
   }, [])
 
   return showStatusBar ? (
-    <div ref={menuRef} className="absolute flex flex-col space-y-1 py-1 border rounded-lg shadow-md bg-background">
+    <div ref={menuRef} className="absolute flex flex-col border rounded-lg shadow-md bg-background mt-1 w-auto">
       {children}
     </div>
   ) : null
 }
 
 export function DropdownMenuLabel({ children }: TDropdownMenu) {
-  return <label className="pb-2 mb-2 border-b border-border">{children}</label>
+  return <label className="flex items-center justify-center py-2 border-b border-border text-sm">{children}</label>
 }
 
-export function DropdownMenuItem({ children, href, ...props }: TDropdownMenu) {
+export function DropdownMenuItem({ children, href }: TDropdownMenu) {
   return (
     <>
       {href ? (
-        <a className="flex px-2 text-sm text-foreground cursor-pointer" {...props}>
+        <a className="flex px-2 text-sm text-foreground cursor-pointer" href={href}>
           {children}
         </a>
       ) : (
@@ -66,8 +66,4 @@ export function DropdownMenuItem({ children, href, ...props }: TDropdownMenu) {
       )}
     </>
   )
-}
-
-export function DropdownCheckboxItem({ children }: TDropdownMenu) {
-  return <>{children}</>
 }
