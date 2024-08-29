@@ -9,19 +9,29 @@ type TDropdownMenu = {
   toggleStatusBar?: (event: React.MouseEvent) => void
   href?: string
   menuRef?: React.RefObject<HTMLDivElement>
+  buttonRef?: React.RefObject<HTMLButtonElement>
 }
 
 export function DropdownMenu({ children }: TDropdownMenu) {
   return <div className="relative">{children}</div>
 }
 
-export function DropdownMenuTrigger({ children }: TDropdownMenu) {
-  return <div>{children}</div>
+export function DropdownMenuTrigger({ children, toggleStatusBar, buttonRef }: TDropdownMenu) {
+  return (
+    <button ref={buttonRef} onClick={toggleStatusBar}>
+      {children}
+    </button>
+  )
 }
 
-export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar, menuRef }: TDropdownMenu) {
+export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar, menuRef, buttonRef }: TDropdownMenu) {
   const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef?.current && !menuRef.current.contains(event.target as Node)) {
+    if (
+      menuRef?.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      buttonRef?.current &&
+      !buttonRef.current.contains(event.target as Node)
+    ) {
       toggleStatusBar?.(event as unknown as React.MouseEvent)
     }
   }

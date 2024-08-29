@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Alert from '@/components/ui/alert'
+import React, { useState, useEffect, useRef } from 'react'
 import * as Babel from '@babel/standalone'
 import { Ellipsis, Ban, Slash, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/button'
@@ -26,6 +25,10 @@ import {
 export default function BreadcrumbPage() {
   const [showStatusBar1, setShowStatusBar1] = useState(false)
   const [showStatusBar2, setShowStatusBar2] = useState(false)
+  const menuRef1 = useRef<HTMLDivElement>(null)
+  const buttonRef1 = useRef<HTMLButtonElement>(null)
+  const menuRef2 = useRef<HTMLDivElement>(null)
+  const buttonRef2 = useRef<HTMLButtonElement>(null)
 
   const toggleStatusBar1 = () => {
     setShowStatusBar1((prevState) => !prevState)
@@ -34,113 +37,116 @@ export default function BreadcrumbPage() {
     setShowStatusBar2((prevState) => !prevState)
   }
 
-  const [code1, setCode1] = useState(`
-    <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </>
+  const [defaultCode, setDefaultCode] = useState(`
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
     `)
-  const [code2, setCode2] = useState(`
-    <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <Slash size={13} className="-rotate-12" />
-          </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <Slash size={13} className="-rotate-12" />
-          </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </>
+  const [separatorCode, setSeparatorCode] = useState(`
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>
+          <Slash size={13} className="-rotate-12" />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>
+          <Slash size={13} className="-rotate-12" />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
     `)
 
-  const [code3, setCode3] = useState(`
-    <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button className="text-gray-500 hover:text-foreground hover:opacity-100" onClick={toggleStatusBar1}>
-                  <Ellipsis size={15} />
-                </Button>
-              </DropdownMenuTrigger>
-                <DropdownMenuContent showStatusBar={showStatusBar1} toggleStatusBar={toggleStatusBar1}>
-                  <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                  <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                  <DropdownMenuItem href="/github">Github</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </>
+  const [collapsedCode, setCollapsedCode] = useState(`
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <DropdownMenu>
+            <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
+              <Button className="text-gray-500 hover:text-foreground hover:opacity-100">
+                <Ellipsis size={15} />
+              </Button>
+            </DropdownMenuTrigger>
+              <DropdownMenuContent
+                showStatusBar={showStatusBar1}
+                toggleStatusBar={toggleStatusBar1}
+                menuRef={menuRef1}
+                buttonRef={buttonRef1}
+              >
+                <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
+                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+              </DropdownMenuContent>
+          </DropdownMenu>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
     `)
 
-  const [code4, setCode4] = useState(`
-    <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button className="text-gray-500 hover:text-foreground hover:opacity-100" onClick={toggleStatusBar2}>
-                  Component<ChevronDown size={20} />
-                </Button>
-              </DropdownMenuTrigger>
-                <DropdownMenuContent showStatusBar={showStatusBar2} toggleStatusBar={toggleStatusBar2}>
-                  <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                  <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                  <DropdownMenuItem href="/github">Github</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </>
+  const [dropdownCode, setDropdownCode] = useState(`
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <DropdownMenu>
+            <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2}>
+              <div className="flex items-center text-gray-500">
+                Components
+                <ChevronDown size={20} />
+              </div>
+            </DropdownMenuTrigger>
+              <DropdownMenuContent
+                showStatusBar={showStatusBar2}
+                toggleStatusBar={toggleStatusBar2}
+                menuRef={menuRef2}
+                buttonRef={buttonRef2}
+              >
+                <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
+                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+              </DropdownMenuContent>
+          </DropdownMenu>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
     `)
 
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
@@ -149,17 +155,17 @@ export default function BreadcrumbPage() {
   const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
-    transformAndSetComponent(code1, setRenderedComponent1)
-  }, [code1])
+    transformAndSetComponent(defaultCode, setRenderedComponent1)
+  }, [defaultCode])
   useEffect(() => {
-    transformAndSetComponent(code2, setRenderedComponent2)
-  }, [code2])
+    transformAndSetComponent(separatorCode, setRenderedComponent2)
+  }, [separatorCode])
   useEffect(() => {
-    transformAndSetComponent(code3, setRenderedComponent3)
-  }, [code3, showStatusBar1])
+    transformAndSetComponent(collapsedCode, setRenderedComponent3)
+  }, [collapsedCode, showStatusBar1])
   useEffect(() => {
-    transformAndSetComponent(code4, setRenderedComponent4)
-  }, [code4, showStatusBar2])
+    transformAndSetComponent(dropdownCode, setRenderedComponent4)
+  }, [dropdownCode, showStatusBar2])
 
   const transformAndSetComponent = (
     code: string,
@@ -183,6 +189,10 @@ export default function BreadcrumbPage() {
         'DropdownMenuContent',
         'DropdownMenuItem',
         'Button',
+        'menuRef1',
+        'buttonRef1',
+        'menuRef2',
+        'buttonRef2',
         'Ellipsis',
         'Ban',
         'Slash',
@@ -207,6 +217,10 @@ export default function BreadcrumbPage() {
         DropdownMenuContent,
         DropdownMenuItem,
         Button,
+        menuRef1,
+        buttonRef1,
+        menuRef2,
+        buttonRef2,
         Ellipsis,
         Ban,
         Slash,
@@ -220,11 +234,7 @@ export default function BreadcrumbPage() {
       setComponent(element)
     } catch (error) {
       console.error('Error rendering component:', error)
-      setComponent(
-        <Alert className="w-1/3 bg-red-500 text-white" title="오류" icon={<Ban size={35} />}>
-          컴포넌트를 렌더링 하는 데 실패했습니다.
-        </Alert>,
-      )
+      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
     }
   }
   return (
@@ -246,34 +256,34 @@ export default function BreadcrumbPage() {
       </Breadcrumb>
 
       <Component>
-        <ComponentExplain title="Breadcrumb" description="빵부스러기" />
+        <ComponentExplain title="Breadcrumb" description="현재 리소스의 경로를 계층적인 링크 형태로 표시합니다." />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
-          <ComponentExampleCode code={code1} setCode={setCode1} />
+          <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
         </ComponentContainer>
       </Component>
 
       <Component>
-        <ComponentExplain variant="custom1" />
+        <ComponentExplain variant="Custom separator" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
-          <ComponentExampleCode code={code2} setCode={setCode2} />
+          <ComponentExampleCode code={separatorCode} setCode={setSeparatorCode} />
         </ComponentContainer>
       </Component>
 
       <Component>
-        <ComponentExplain variant="custom2" />
+        <ComponentExplain variant="Collapsed" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent3}</ComponentExample>
-          <ComponentExampleCode code={code3} setCode={setCode3} />
+          <ComponentExampleCode code={collapsedCode} setCode={setCollapsedCode} />
         </ComponentContainer>
       </Component>
 
       <Component>
-        <ComponentExplain variant="custom3" />
+        <ComponentExplain variant="Dropdown" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent4}</ComponentExample>
-          <ComponentExampleCode code={code4} setCode={setCode4} />
+          <ComponentExampleCode code={dropdownCode} setCode={setDropdownCode} />
         </ComponentContainer>
       </Component>
 
