@@ -294,7 +294,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb의 각 항목을 포함하는 콘텐츠를 전달합니다.',
           },
         ]}
@@ -307,7 +307,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb 내에서 여러 항목을 리스트 형식으로 포함합니다.',
           },
         ]}
@@ -320,7 +320,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb의 각 항목에 해당하는 콘텐츠를 포함합니다.',
           },
         ]}
@@ -333,13 +333,13 @@ export default function BreadcrumbPage() {
           {
             prop: 'href',
             type: 'string',
-            default: 'null',
+            default: '',
             description: '클릭 시 이동할 URL을 지정합니다.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '링크 텍스트 또는 콘텐츠를 포함합니다.',
           },
         ]}
@@ -352,7 +352,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '<ChevronRight size={20} className="text-gray-500" />',
             description: '구분자 기호나 텍스트를 포함할 수 있습니다.',
           },
         ]}
@@ -365,7 +365,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '현재 위치를 설명하는 텍스트를 포함합니다.',
           },
         ]}
