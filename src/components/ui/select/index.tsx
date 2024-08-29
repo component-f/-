@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface Option {
   label: string
@@ -8,11 +8,19 @@ interface Option {
 interface SelectProps {
   options: Option[]
   onSelect: (value: string) => void
+  className?: string
+  defaultSelected?: string
 }
 
-const Select: React.FC<SelectProps> = ({ options, onSelect }) => {
-  const [selectedValue, setSelectedValue] = useState(options[0].value)
+const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSelected }) => {
+  const [selectedValue, setSelectedValue] = useState(defaultSelected || options[0].value)
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (defaultSelected) {
+      setSelectedValue(defaultSelected)
+    }
+  }, [defaultSelected])
 
   const handleSelect = (value: string) => {
     setSelectedValue(value)
@@ -21,7 +29,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect }) => {
   }
 
   return (
-    <div className="relative inline-block w-64">
+    <div className={`relative inline-block w-64 ${className}`}>
       <button
         className="w-full px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={() => setIsOpen(!isOpen)}
