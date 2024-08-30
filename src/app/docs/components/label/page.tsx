@@ -9,6 +9,7 @@ import {
   ComponentExample,
   ComponentExampleCode,
   ComponentExplain,
+  ComponentPropsTable,
 } from '@/components/common/component'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -103,6 +104,19 @@ export default function LabelPage() {
             <ComponentExampleCode code={withInputCode} setCode={setWithInputCode} />
           </ComponentContainer>
         </Component>
+
+        <ComponentPropsTable
+          title="Label"
+          description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다."
+          props={[
+            {
+              prop: 'htmlFor',
+              type: 'string',
+              default: '',
+              description: '레이블이 연결된 요소의 ID입니다.',
+            },
+          ]}
+        />
       </div>
     </>
   )
