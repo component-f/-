@@ -61,6 +61,7 @@
 /* 라디오 버튼 색상 변경*/
 [type='radio'] {
   accent-color: black;
+  vertical-align: -4px;
 }
 
 .accordion-shadow {
