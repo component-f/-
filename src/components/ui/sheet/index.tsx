@@ -6,7 +6,6 @@ type TSheetComponentProps = {
   children: React.ReactNode
   sheet?: boolean
   toggleSheet?: () => void
-  // side?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 export function Sheet({ children }: TSheetComponentProps) {
