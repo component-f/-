@@ -22,54 +22,55 @@ import {
 } from '@/components/common/component'
 
 export default function Buttonpage() {
-  const [code1, setCode1] = useState(`<>
-          <div className="flex gap-2">
-            <Button />
-            <Button variant="text"> Text</Button>
-            <Button variant="contained">Contained</Button>
-            <Button variant="outlined">Outlined</Button>
-            <Button disabled>Disabled</Button>
-          </div>
-    </>`)
+  const [code1, setCode1] = useState(`
+    <div className="flex space-x-2">
+      <Button />
+      <Button variant="text"> Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button disabled>Disabled</Button>
+    </div>
+    `)
 
-  const [code2, setCode2] = useState(`<> 
-    <div className="flex gap-2">
-              <Button className="text-red-500">
-                Error
-              </Button>
-              <Button variant="contained" className="bg-red-500">
-                Error
-              </Button>
-              <Button variant="outlined" className="text-red-500 border-red-500">
-                Error
-              </Button>
-            </div>
-    </>`)
+  const [code2, setCode2] = useState(`
+    <div className="flex space-x-2">
+      <Button className="text-red-500">
+        Error
+      </Button>
+      <Button variant="contained" className="bg-red-500">
+        Error
+      </Button>
+      <Button variant="outlined" className="text-red-500 border-red-500">
+        Error
+      </Button>
+    </div>
+    `)
 
-  const [code3, setCode3] = useState(`<>
-    <div className="flex gap-2">
-            <Button variant="outlined" startIcon={<Delete />}>
-              Delete
-            </Button>
-            <Button variant="contained" endIcon={<Send size={16} />}>
-              Send
-            </Button>
-          </div>
-    </>`)
+  const [code3, setCode3] = useState(`
+    <div className="flex space-x-2">
+      <Button variant="outlined" startIcon={<Delete />}>
+        Delete
+      </Button>
+      <Button variant="contained" endIcon={<Send size={16} />}>
+        Send
+      </Button>
+    </div>
+    `)
 
-  const [code4, setCode4] = useState(`<> 
-      <div className="flex gap-2">
-                  <Button className="text-red-500">
-                    <Bell />
-                  </Button>
-                  <Button variant="contained" className="bg-red-500">
-                    Error
-                  </Button>
-                  <Button variant="outlined" className="text-red-500 border-red-500" startIcon={<Delete />}>
-                    Delete
-                  </Button>
-                </div>
-      </>`)
+  const [code4, setCode4] = useState(`
+    <div className="flex space-x-2">
+      <Button className="text-red-500">
+        <Bell />
+      </Button>
+      <Button variant="contained" className="bg-red-500">
+        Error
+      </Button>
+      <Button variant="outlined" className="text-red-500 border-red-500" startIcon={<Delete />}>
+        Delete
+      </Button>
+    </div>
+    `)
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
@@ -116,21 +117,7 @@ export default function Buttonpage() {
 
       setComponent(element)
     } catch (error) {
-      if (error instanceof Error) {
-        // console.log('Error rendering component:', error.message, error.stack)
-        setComponent(
-          <Button variant="contained" className="bg-red-500">
-            Error
-          </Button>,
-        )
-      } else {
-        // console.error('Unknown error occurred:', error)
-        setComponent(
-          <Button variant="contained" className="bg-red-500">
-            Error
-          </Button>,
-        )
-      }
+      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
     }
   }
   return (
@@ -187,50 +174,38 @@ export default function Buttonpage() {
       </Component>
 
       <ComponentPropsTable
-        description="다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다."
+        title="Button"
+        description="사용자가 상호작용할 수 있는 버튼 컴포넌트의 속성입니다."
         props={[
           {
-            prop: 'title',
-            type: 'string',
+            prop: 'variant',
+            type: `'text' | 'contained' | 'outlined'`,
+            default: `'text'`,
+            description: '버튼의 스타일 변형을 지정합니다.',
+          },
+          {
+            prop: 'startIcon',
+            type: 'React.ReactNode',
             default: '',
-            description: '컴포넌트의 제목을 지정할 때 사용됩니다.',
+            description: '버튼의 시작 부분에 표시할 아이콘입니다.',
+          },
+          {
+            prop: 'endIcon',
+            type: 'React.ReactNode',
+            default: '',
+            description: '버튼의 끝 부분에 표시할 아이콘입니다.',
+          },
+          {
+            prop: 'children',
+            type: 'React.ReactNode',
+            default: '',
+            description: '버튼 내부에 표시될 텍스트나 요소를 포함합니다.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
-          },
-          {
-            prop: 'btn',
-            type: '() => void',
-            default: '',
-            description: '버튼 클릭 시 실행될 함수를 정의합니다.',
-          },
-          {
-            prop: 'btnMsg',
-            type: 'string',
-            default: '',
-            description: '버튼에 표시될 텍스트를 지정합니다.',
-          },
-          {
-            prop: 'icon',
-            type: 'React.ReactNode',
-            default: '',
-            description: '표시될 아이콘을 지정합니다.',
-          },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
-        props={[
-          {
-            prop: 'child',
-            type: 'string',
-            default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            description: '추가적인 CSS 클래스를 지정하여 버튼의 스타일을 커스터마이즈합니다.',
           },
         ]}
       />

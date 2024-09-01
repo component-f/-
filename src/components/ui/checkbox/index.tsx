@@ -5,7 +5,7 @@ interface CheckBoxProps {
   name: string
   value: string
   checked?: boolean
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   direction?: 'horizontal' | 'vertical'
   disabled?: boolean
 }

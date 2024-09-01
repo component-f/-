@@ -8,13 +8,13 @@ type TableProps = {
 const Table: React.FC<TableProps> = ({ headers, data }) => {
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="min-w-full bg-white border-collapse">
+      <table className="min-w-full border-collapse">
         <thead>
           <tr>
             {headers.map((header, index) => (
               <th
                 key={header}
-                className={`px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider ${
+                className={`px-6 py-3 text-left text-xs font-bold uppercase tracking-wider ${
                   index === 0 ? 'rounded-tl-lg' : ''
                 } ${index === headers.length - 1 ? 'rounded-tr-lg' : ''}`}
               >
@@ -25,7 +25,7 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
         </thead>
         <tbody>
           {data.map((row, rowIndex) => (
-            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-50' : ''}>
               {headers.map((header, cellIndex) => {
                 const isLastRow = rowIndex === data.length - 1
                 const isFirstColumn = cellIndex === 0
@@ -34,7 +34,7 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
                 return (
                   <td
                     key={`${rowIndex}-${header}`}
-                    className={`px-6 py-4 whitespace-nowrap text-sm text-black ${
+                    className={`px-6 py-4 whitespace-nowrap text-sm text-gray-600 ${
                       isLastRow && isFirstColumn ? 'rounded-bl-lg' : ''
                     } ${isLastRow && isLastColumn ? 'rounded-br-lg' : ''}`}
                   >

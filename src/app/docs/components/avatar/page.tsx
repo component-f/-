@@ -1,4 +1,5 @@
 'use client'
+
 import Avatar from '@/components/ui/avatar'
 import { FolderIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
@@ -20,19 +21,22 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 
-export default function Avatarpage() {
+export default function AvatarPage() {
   const [code1, setCode1] = useState(`<Avatar src="/images/logo.svg" alt="logo" />`)
 
-  const [code2, setCode2] = useState(`<>
-    <Avatar>A</Avatar>
-    <Avatar className="bg-red-500">CF</Avatar>
-    </>`)
+  const [code2, setCode2] = useState(`
+    <div className="flex space-x-2">
+      <Avatar>A</Avatar>
+      <Avatar className="bg-red-500">CF</Avatar>
+    </div>
+  `)
 
-  const [code3, setCode3] = useState(`<> 
-<Avatar className="bg-[#EF4444] ">
-<FolderIcon />
-</Avatar>
-</>`)
+  const [code3, setCode3] = useState(`
+    <Avatar className="bg-[#EF4444] ">
+      <FolderIcon />
+    </Avatar>
+  `)
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
@@ -48,6 +52,7 @@ export default function Avatarpage() {
   useEffect(() => {
     transformAndSetComponent(code3, setRenderedComponent3)
   }, [code3])
+
   const transformAndSetComponent = (
     code: string,
     setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
@@ -63,15 +68,10 @@ export default function Avatarpage() {
 
       setComponent(element)
     } catch (error) {
-      if (error instanceof Error) {
-        // console.log('Error rendering component:', error.message, error.stack)
-        setComponent(<Avatar className="text-red-500">Error</Avatar>)
-      } else {
-        // console.error('Unknown error occurred:', error)
-        setComponent(<Avatar className="text-red-500">Unknown Error</Avatar>)
-      }
+      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
     }
   }
+
   return (
     <>
       <Breadcrumb>
@@ -118,50 +118,32 @@ export default function Avatarpage() {
       </Component>
 
       <ComponentPropsTable
-        description="다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다."
+        title="Avatar"
+        description="사용자의 프로필 사진이나 아이콘을 표시하는 데 사용되는 아바타 컴포넌트의 속성입니다."
         props={[
           {
-            prop: 'title',
+            prop: 'src',
             type: 'string',
             default: '',
-            description: '컴포넌트의 제목을 지정할 때 사용됩니다.',
+            description: '아바타에 표시할 이미지의 URL입니다.',
+          },
+          {
+            prop: 'alt',
+            type: 'string',
+            default: '',
+            description: '이미지가 로드되지 않을 때 표시할 대체 텍스트입니다.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            description: '추가적인 스타일을 지정하기 위한 CSS 클래스입니다.',
           },
           {
-            prop: 'btn',
-            type: '() => void',
-            default: '',
-            description: '버튼 클릭 시 실행될 함수를 정의합니다.',
-          },
-          {
-            prop: 'btnMsg',
-            type: 'string',
-            default: '',
-            description: '버튼에 표시될 텍스트를 지정합니다.',
-          },
-          {
-            prop: 'icon',
+            prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '표시될 아이콘을 지정합니다.',
-          },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
-        props={[
-          {
-            prop: 'child',
-            type: 'string',
-            default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            description: '이미지가 없는 경우 아바타 내에 표시할 이니셜이나 아이콘을 포함합니다.',
           },
         ]}
       />

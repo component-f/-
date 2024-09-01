@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Alert from '@/components/ui/alert'
 import * as Babel from '@babel/standalone'
 import { Ban } from 'lucide-react'
 import Skeleton from '@/components/ui/skeleton'
@@ -22,22 +21,20 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 export default function SkeletonPage() {
-  const [code1, setCode1] = useState(`
-    <>
-      <div className="flex space-x-2">
-        <Skeleton className="rounded-full" />
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-10 rounded-sm" />
-          <Skeleton className="h-4 w-40 rounded-sm" />
-        </div>
+  const [defaultCode, setDefaultCode] = useState(`
+    <div className="flex space-x-2">
+      <Skeleton className="rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-10 rounded-sm" />
+        <Skeleton className="h-4 w-40 rounded-sm" />
       </div>
-    </>
+    </div>
     `)
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
-    transformAndSetComponent(code1, setRenderedComponent1)
-  }, [code1])
+    transformAndSetComponent(defaultCode, setRenderedComponent1)
+  }, [defaultCode])
 
   const transformAndSetComponent = (
     code: string,
@@ -55,11 +52,7 @@ export default function SkeletonPage() {
       setComponent(element)
     } catch (error) {
       console.error('Error rendering component:', error)
-      setComponent(
-        <Alert className="w-1/3 bg-red-500 text-white" title="오류" icon={<Ban size={35} />}>
-          컴포넌트를 렌더링 하는 데 실패했습니다.
-        </Alert>,
-      )
+      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
     }
   }
   return (
@@ -87,7 +80,7 @@ export default function SkeletonPage() {
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
-          <ComponentExampleCode code={code1} setCode={setCode1} />
+          <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
         </ComponentContainer>
       </Component>
 
