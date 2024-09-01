@@ -6,7 +6,6 @@ import { Ellipsis, Ban, Slash, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/button'
 import {
   Breadcrumb,
-  BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbLink,
   BreadcrumbSeparator,
@@ -40,38 +39,22 @@ export default function BreadcrumbPage() {
   const [defaultCode, setDefaultCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
   const [separatorCode, setSeparatorCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -79,11 +62,8 @@ export default function BreadcrumbPage() {
   const [collapsedCode, setCollapsedCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
               <Button className="text-gray-500 hover:text-foreground hover:opacity-100">
@@ -97,19 +77,14 @@ export default function BreadcrumbPage() {
                 buttonRef={buttonRef1}
               >
                 <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/breadcrumb">Themes</DropdownMenuItem>
+                <DropdownMenuItem href="/examples">examples</DropdownMenuItem>
               </DropdownMenuContent>
           </DropdownMenu>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -117,11 +92,8 @@ export default function BreadcrumbPage() {
   const [dropdownCode, setDropdownCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2}>
               <div className="flex items-center text-gray-500">
@@ -136,15 +108,12 @@ export default function BreadcrumbPage() {
                 buttonRef={buttonRef2}
               >
                 <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/breadcrumb">breadcrumb</DropdownMenuItem>
+                <DropdownMenuItem href="/examples">examples</DropdownMenuItem>
               </DropdownMenuContent>
           </DropdownMenu>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -179,7 +148,6 @@ export default function BreadcrumbPage() {
       const Component = new Function(
         'React',
         'Breadcrumb',
-        'BreadcrumbItem',
         'BreadcrumbList',
         'BreadcrumbLink',
         'BreadcrumbSeparator',
@@ -207,7 +175,6 @@ export default function BreadcrumbPage() {
       const element = Component(
         React,
         Breadcrumb,
-        BreadcrumbItem,
         BreadcrumbList,
         BreadcrumbLink,
         BreadcrumbSeparator,
@@ -241,17 +208,11 @@ export default function BreadcrumbPage() {
     <>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
         </BreadcrumbList>
       </Breadcrumb>
 
