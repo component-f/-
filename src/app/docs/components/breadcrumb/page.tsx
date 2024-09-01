@@ -206,16 +206,6 @@ export default function BreadcrumbPage() {
   }
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          <BreadcrumbSeparator />
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          <BreadcrumbSeparator />
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Breadcrumb" description="현재 리소스의 경로를 계층적인 링크 형태로 표시합니다." />
         <ComponentContainer>
