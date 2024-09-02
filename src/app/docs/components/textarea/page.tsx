@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import * as Babel from '@babel/standalone'
 import {
   Component,
   ComponentContainer,
@@ -11,55 +10,34 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 import Textarea from '@/components/ui/textarea'
-import { Ban } from 'lucide-react'
-import Button from '@/components/ui/button'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function TextareaPage() {
   const [defaultCode, setDefaultCode] = useState(`
-    <Textarea placeholder="type your message here." />
+    <Textarea placeholder="type your message here." className="w-[500px]" />
   `)
   const [variantCode, setVariantCode] = useState(`
     <Textarea
       placeholder="type your message here."
-      className="border-sky-500 focus:ring-sky-500 placeholder:text-sky-500 text-sky-500"
+      className="border-sky-500 focus:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[500px]"
     />
     `)
   const [disabledCode, setDisabledCode] = useState(`
-    <Textarea placeholder="type your message here." disabled />
+    <Textarea placeholder="type your message here." disabled className="w-[500px]" />
   `)
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setRenderedComponent1)
+    transformAndSetComponent(defaultCode, setRenderedComponent1, { Textarea })
   }, [defaultCode])
   useEffect(() => {
-    transformAndSetComponent(variantCode, setRenderedComponent2)
+    transformAndSetComponent(variantCode, setRenderedComponent2, { Textarea })
   }, [variantCode])
   useEffect(() => {
-    transformAndSetComponent(disabledCode, setRenderedComponent3)
+    transformAndSetComponent(disabledCode, setRenderedComponent3, { Textarea })
   }, [disabledCode])
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function('React', 'Textarea', 'Button', `return ${transformedCode};`)
-
-      const element = Component(React, Textarea, Ban, Button)
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
 
   return (
     <>
