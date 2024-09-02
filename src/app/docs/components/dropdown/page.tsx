@@ -4,7 +4,6 @@ import * as Babel from '@babel/standalone'
 import { Ban } from 'lucide-react'
 import {
   Breadcrumb,
-  BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbLink,
   BreadcrumbSeparator,
@@ -120,7 +119,6 @@ export default function DropdownPage() {
       const Component = new Function(
         'React',
         'Breadcrumb',
-        'BreadcrumbItem',
         'BreadcrumbList',
         'BreadcrumbLink',
         'BreadcrumbSeparator',
@@ -147,7 +145,6 @@ export default function DropdownPage() {
       const element = Component(
         React,
         Breadcrumb,
-        BreadcrumbItem,
         BreadcrumbList,
         BreadcrumbLink,
         BreadcrumbSeparator,
@@ -179,22 +176,6 @@ export default function DropdownPage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Dropdown</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Dropdown"

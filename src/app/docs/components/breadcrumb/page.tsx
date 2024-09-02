@@ -6,7 +6,6 @@ import { Ellipsis, Ban, Slash, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/button'
 import {
   Breadcrumb,
-  BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbLink,
   BreadcrumbSeparator,
@@ -40,38 +39,22 @@ export default function BreadcrumbPage() {
   const [defaultCode, setDefaultCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
   const [separatorCode, setSeparatorCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -79,11 +62,8 @@ export default function BreadcrumbPage() {
   const [collapsedCode, setCollapsedCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
               <Button className="text-gray-500 hover:text-foreground hover:opacity-100">
@@ -97,19 +77,14 @@ export default function BreadcrumbPage() {
                 buttonRef={buttonRef1}
               >
                 <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/breadcrumb">Themes</DropdownMenuItem>
+                <DropdownMenuItem href="/examples">examples</DropdownMenuItem>
               </DropdownMenuContent>
           </DropdownMenu>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -117,11 +92,8 @@ export default function BreadcrumbPage() {
   const [dropdownCode, setDropdownCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2}>
               <div className="flex items-center text-gray-500">
@@ -136,15 +108,12 @@ export default function BreadcrumbPage() {
                 buttonRef={buttonRef2}
               >
                 <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/breadcrumb">breadcrumb</DropdownMenuItem>
+                <DropdownMenuItem href="/examples">examples</DropdownMenuItem>
               </DropdownMenuContent>
           </DropdownMenu>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -179,7 +148,6 @@ export default function BreadcrumbPage() {
       const Component = new Function(
         'React',
         'Breadcrumb',
-        'BreadcrumbItem',
         'BreadcrumbList',
         'BreadcrumbLink',
         'BreadcrumbSeparator',
@@ -207,7 +175,6 @@ export default function BreadcrumbPage() {
       const element = Component(
         React,
         Breadcrumb,
-        BreadcrumbItem,
         BreadcrumbList,
         BreadcrumbLink,
         BreadcrumbSeparator,
@@ -239,22 +206,6 @@ export default function BreadcrumbPage() {
   }
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Breadcrumb" description="현재 리소스의 경로를 계층적인 링크 형태로 표시합니다." />
         <ComponentContainer>
@@ -294,7 +245,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb의 각 항목을 포함하는 콘텐츠를 전달합니다.',
           },
         ]}
@@ -307,7 +258,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb 내에서 여러 항목을 리스트 형식으로 포함합니다.',
           },
         ]}
@@ -320,7 +271,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb의 각 항목에 해당하는 콘텐츠를 포함합니다.',
           },
         ]}
@@ -333,13 +284,13 @@ export default function BreadcrumbPage() {
           {
             prop: 'href',
             type: 'string',
-            default: 'null',
+            default: '',
             description: '클릭 시 이동할 URL을 지정합니다.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '링크 텍스트 또는 콘텐츠를 포함합니다.',
           },
         ]}
@@ -352,7 +303,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '<ChevronRight size={20} className="text-gray-500" />',
             description: '구분자 기호나 텍스트를 포함할 수 있습니다.',
           },
         ]}
@@ -365,7 +316,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '현재 위치를 설명하는 텍스트를 포함합니다.',
           },
         ]}
