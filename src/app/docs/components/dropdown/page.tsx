@@ -1,14 +1,6 @@
 'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
-import * as Babel from '@babel/standalone'
-import { Ban } from 'lucide-react'
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -26,16 +18,26 @@ import {
 } from '@/components/common/component'
 import Button from '@/components/ui/button'
 import Radio from '@/components/ui/radio'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function DropdownPage() {
+  const [showDefault, setShowDefault] = useState(false)
+  const [showRadio, setShowRadio] = useState(false)
   const menuRef1 = useRef<HTMLDivElement>(null)
   const buttonRef1 = useRef<HTMLButtonElement>(null)
   const menuRef2 = useRef<HTMLDivElement>(null)
   const buttonRef2 = useRef<HTMLButtonElement>(null)
 
+  const toggleStatusBar1 = () => {
+    setShowDefault((prevState) => !prevState)
+  }
+  const toggleStatusBar2 = () => {
+    setShowRadio((prevState) => !prevState)
+  }
+
   const [defaultCode, setDefaultCode] = useState(`
     <DropdownMenu>
-      <DropdownMenuTrigger toggleStatusBar={toggleStatusBar} buttonRef={buttonRef1}>
+      <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
         <Button
           variant="outlined"
           className="text-gray-500 hover:text-foreground hover:opacity-100"
@@ -45,7 +47,7 @@ export default function DropdownPage() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         showStatusBar={showDefault}
-        toggleStatusBar={toggleStatusBar}
+        toggleStatusBar={toggleStatusBar1}
         menuRef={menuRef1}
         buttonRef={buttonRef1}
       >
@@ -57,7 +59,7 @@ export default function DropdownPage() {
     `)
   const [radioCode, setRadioCode] = useState(`
     <DropdownMenu>
-      <DropdownMenuTrigger toggleStatusBar={toggleRadioStatusBar} buttonRef={buttonRef2} >
+      <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2} >
         <Button
           variant="outlined"
           className="text-gray-500 hover:text-foreground hover:opacity-100"
@@ -67,7 +69,7 @@ export default function DropdownPage() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         showStatusBar={showRadio}
-        toggleStatusBar={toggleRadioStatusBar}
+        toggleStatusBar={toggleStatusBar2}
         menuRef={menuRef2}
         buttonRef={buttonRef2}
       >
@@ -88,91 +90,40 @@ export default function DropdownPage() {
   const [defaultComponent, setDefaultComponent] = useState<JSX.Element | null>(null)
   const [radioComponent, setRadioComponent] = useState<JSX.Element | null>(null)
 
-  const [showDefault, setShowDefault] = useState(false)
-  const [showRadio, setShowRadio] = useState(false)
+  const dropdownElements = {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    Button,
+  }
+
+  const dependencies = {
+    default: {
+      ...dropdownElements,
+      showDefault,
+      toggleStatusBar1,
+      menuRef1,
+      buttonRef1,
+    },
+    radio: {
+      ...dropdownElements,
+      showRadio,
+      toggleStatusBar2,
+      menuRef2,
+      buttonRef2,
+      Radio,
+    },
+  }
 
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setDefaultComponent)
+    transformAndSetComponent(defaultCode, setDefaultComponent, dependencies.default)
   }, [defaultCode, showDefault])
 
   useEffect(() => {
-    transformAndSetComponent(radioCode, setRadioComponent)
+    transformAndSetComponent(radioCode, setRadioComponent, dependencies.radio)
   }, [radioCode, showRadio])
-
-  const toggleStatusBar = () => {
-    setShowDefault((prevState) => !prevState)
-  }
-
-  const toggleRadioStatusBar = () => {
-    setShowRadio((prevState) => !prevState)
-  }
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function(
-        'React',
-        'Breadcrumb',
-        'BreadcrumbList',
-        'BreadcrumbLink',
-        'BreadcrumbSeparator',
-        'BreadcrumbText',
-        'DropdownMenu',
-        'DropdownMenuLabel',
-        'DropdownMenuTrigger',
-        'DropdownMenuContent',
-        'DropdownMenuItem',
-        'toggleStatusBar',
-        'toggleRadioStatusBar',
-        'showDefault',
-        'showRadio',
-        'menuRef1',
-        'menuRef2',
-        'buttonRef1',
-        'buttonRef2',
-        'Radio',
-        'Button',
-        'Ban',
-        `return ${transformedCode};`,
-      )
-
-      const element = Component(
-        React,
-        Breadcrumb,
-        BreadcrumbList,
-        BreadcrumbLink,
-        BreadcrumbSeparator,
-        BreadcrumbText,
-        DropdownMenu,
-        DropdownMenuLabel,
-        DropdownMenuTrigger,
-        DropdownMenuContent,
-        DropdownMenuItem,
-        toggleStatusBar,
-        toggleRadioStatusBar,
-        showDefault,
-        showRadio,
-        menuRef1,
-        menuRef2,
-        buttonRef1,
-        buttonRef2,
-        Radio,
-        Button,
-        Ban,
-      )
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
 
   return (
     <>
