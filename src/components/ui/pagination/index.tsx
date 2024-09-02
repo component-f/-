@@ -51,27 +51,31 @@ export default function Pagination({
   return (
     <nav>
       <ul className="flex items-center">
-        <li>
-          <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="py-2">
-            {startIcon ? startIcon : <ChevronsLeft size={20} />}
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="flex pr-4 py-2 items-center"
-          >
-            {prevIcon ? (
-              prevIcon
-            ) : (
-              <>
-                <ChevronLeft size={20} />
-                Previous
-              </>
-            )}
-          </button>
-        </li>
+        {currentPage === 1 ? null : (
+          <>
+            <li>
+              <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="py-2">
+                {startIcon ? startIcon : <ChevronsLeft size={20} />}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="flex pr-4 py-2 items-center"
+              >
+                {prevIcon ? (
+                  prevIcon
+                ) : (
+                  <>
+                    <ChevronLeft size={20} />
+                    Previous
+                  </>
+                )}
+              </button>
+            </li>
+          </>
+        )}
         {pages.map((page) => (
           <li key={page}>
             <button
@@ -85,26 +89,30 @@ export default function Pagination({
             </button>
           </li>
         ))}
-        <li>
-          <button
-            onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="flex items-center pl-4 py-2"
-          >
-            {nextIcon ? (
-              nextIcon
-            ) : (
-              <>
-                Next <ChevronRight size={20} />
-              </>
-            )}
-          </button>
-        </li>
-        <li>
-          <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="py-2">
-            {lastIcon ? lastIcon : <ChevronsRight size={20} />}
-          </button>
-        </li>
+        {currentPage === totalPages ? null : (
+          <>
+            <li>
+              <button
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="flex items-center pl-4 py-2"
+              >
+                {nextIcon ? (
+                  nextIcon
+                ) : (
+                  <>
+                    Next <ChevronRight size={20} />
+                  </>
+                )}
+              </button>
+            </li>
+            <li>
+              <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="py-2">
+                {lastIcon ? lastIcon : <ChevronsRight size={20} />}
+              </button>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   )
