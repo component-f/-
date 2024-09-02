@@ -80,50 +80,48 @@ export default function InputPage() {
 
   return (
     <>
-      <div className="container pb-14">
-        <Component>
-          <ComponentExplain
-            title="Input"
-            description="양식 입력 필드 또는 입력 필드처럼 보이는 구성 요소를 표시합니다."
-          />
-          <ComponentContainer>
-            <ComponentExample>
-              <div className="p-10 w-full  max-w-md">{DefaultComponent}</div>
-            </ComponentExample>
-            <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain
+          title="Input"
+          description="양식 입력 필드 또는 입력 필드처럼 보이는 구성 요소를 표시합니다."
+        />
+        <ComponentContainer>
+          <ComponentExample>
+            <div className="p-10 w-full  max-w-md">{DefaultComponent}</div>
+          </ComponentExample>
+          <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
+        </ComponentContainer>
+      </Component>
 
-        <Component>
-          <ComponentExplain variant="With Label" />
-          <ComponentContainer>
-            <ComponentExample>
-              <div className="p-10 w-full  max-w-md">{WithLabelComponent}</div>
-            </ComponentExample>
-            <ComponentExampleCode code={withLabelCode} setCode={setWithLabelCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain variant="With Label" />
+        <ComponentContainer>
+          <ComponentExample>
+            <div className="p-10 w-full  max-w-md">{WithLabelComponent}</div>
+          </ComponentExample>
+          <ComponentExampleCode code={withLabelCode} setCode={setWithLabelCode} />
+        </ComponentContainer>
+      </Component>
 
-        <Component>
-          <ComponentExplain variant="File" />
-          <ComponentContainer>
-            <ComponentExample>
-              <div className="p-10 w-full  max-w-md">{FileComponent}</div>
-            </ComponentExample>
-            <ComponentExampleCode code={fileCode} setCode={setFileCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain variant="File" />
+        <ComponentContainer>
+          <ComponentExample>
+            <div className="p-10 w-full  max-w-md">{FileComponent}</div>
+          </ComponentExample>
+          <ComponentExampleCode code={fileCode} setCode={setFileCode} />
+        </ComponentContainer>
+      </Component>
 
-        <Component>
-          <ComponentExplain variant="Disabled" />
-          <ComponentContainer>
-            <ComponentExample>
-              <div className="p-10 w-full  max-w-md">{DisabledComponent}</div>
-            </ComponentExample>
-            <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
-          </ComponentContainer>
-        </Component>
-      </div>
+      <Component>
+        <ComponentExplain variant="Disabled" />
+        <ComponentContainer>
+          <ComponentExample>
+            <div className="p-10 w-full  max-w-md">{DisabledComponent}</div>
+          </ComponentExample>
+          <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
+        </ComponentContainer>
+      </Component>
     </>
   )
 }

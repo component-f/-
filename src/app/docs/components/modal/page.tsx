@@ -103,122 +103,120 @@ export default function ModalPage() {
   }
   return (
     <>
-      <div className="container pb-14">
-        <Component>
-          <ComponentExplain
-            title="Modal"
-            description="기본 창이나 다른 대화 상자 창 위에 겹쳐서 그 아래의 콘텐츠를 비활성화한 창입니다."
-          />
-          <ComponentContainer>
-            <ComponentExample>{DefaultComponent}</ComponentExample>
-            <ComponentExampleCode code={code} setCode={setCode} />
-          </ComponentContainer>
-        </Component>
-
-        <ComponentPropsTable
+      <Component>
+        <ComponentExplain
           title="Modal"
-          description="Modal의 모든 부분을 포함합니다."
-          props={[
-            {
-              prop: 'defaultOpen',
-              type: 'boolean',
-              default: 'false',
-              description: '모달이 처음 렌더링될 때의 열린 상태입니다.',
-            },
-          ]}
+          description="기본 창이나 다른 대화 상자 창 위에 겹쳐서 그 아래의 콘텐츠를 비활성화한 창입니다."
         />
+        <ComponentContainer>
+          <ComponentExample>{DefaultComponent}</ComponentExample>
+          <ComponentExampleCode code={code} setCode={setCode} />
+        </ComponentContainer>
+      </Component>
 
-        <ComponentPropsTable
-          title="ModalTrigger"
-          description="Modal을 여는 버튼입니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="Modal"
+        description="Modal의 모든 부분을 포함합니다."
+        props={[
+          {
+            prop: 'defaultOpen',
+            type: 'boolean',
+            default: 'false',
+            description: '모달이 처음 렌더링될 때의 열린 상태입니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalContent"
-          description="Modal에서 렌더링할 콘텐츠를 포함합니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="ModalTrigger"
+        description="Modal을 여는 버튼입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalHeader"
-          description="Modal에서 렌더링할 콘텐츠의 헤더를 포함합니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="ModalContent"
+        description="Modal에서 렌더링할 콘텐츠를 포함합니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalTitle"
-          description="Modal을 열었을 때 접근 가능한 제목입니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="ModalHeader"
+        description="Modal에서 렌더링할 콘텐츠의 헤더를 포함합니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalDescription"
-          description="Modal을 열었을 때 접근 가능한 설명입니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="ModalTitle"
+        description="Modal을 열었을 때 접근 가능한 제목입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalFooter"
-          description="Modal에서 렌더링할 콘텐츠의 푸터를 포함합니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
+      <ComponentPropsTable
+        title="ModalDescription"
+        description="Modal을 열었을 때 접근 가능한 설명입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
 
-        <ComponentPropsTable
-          title="ModalClose"
-          description="Modal을 닫는 버튼입니다."
-          props={[
-            {
-              prop: 'children',
-              type: 'node',
-              default: 'false',
-              description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
-            },
-          ]}
-        />
-      </div>
+      <ComponentPropsTable
+        title="ModalFooter"
+        description="Modal에서 렌더링할 콘텐츠의 푸터를 포함합니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
+
+      <ComponentPropsTable
+        title="ModalClose"
+        description="Modal을 닫는 버튼입니다."
+        props={[
+          {
+            prop: 'children',
+            type: 'node',
+            default: 'false',
+            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+          },
+        ]}
+      />
     </>
   )
 }
