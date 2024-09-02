@@ -1,8 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import * as Babel from '@babel/standalone'
-import { Ban } from 'lucide-react'
 import Skeleton from '@/components/ui/skeleton'
 import {
   Component,
@@ -12,6 +10,8 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
+
 export default function SkeletonPage() {
   const [defaultCode, setDefaultCode] = useState(`
     <div className="flex space-x-2">
@@ -25,28 +25,9 @@ export default function SkeletonPage() {
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setRenderedComponent1)
+    transformAndSetComponent(defaultCode, setRenderedComponent1, { Skeleton })
   }, [defaultCode])
 
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function('React', 'Skeleton', `return ${transformedCode};`)
-
-      const element = Component(React, Skeleton, Ban)
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
   return (
     <>
       <Component>

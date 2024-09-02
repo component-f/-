@@ -1,8 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import * as Babel from '@babel/standalone'
-import { Ban } from 'lucide-react'
 import Button from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -23,6 +21,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function SheetPage() {
   const [defaultCode, setDefaultCode] = useState(`
@@ -69,59 +68,24 @@ export default function SheetPage() {
     setSheet(!sheet)
   }
 
-  useEffect(() => {
-    transformAndSetComponent(defaultCode, setDefaultComponent)
-  }, [defaultCode, sheet])
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function(
-        'React',
-        'Input',
-        'Sheet',
-        'SheetClose',
-        'SheetContent',
-        'SheetDescription',
-        'SheetHeader',
-        'SheetFooter',
-        'SheetTitle',
-        'SheetTrigger',
-        'sheet',
-        'toggleSheet',
-        'Button',
-        `return ${transformedCode};`,
-      )
-
-      const element = Component(
-        React,
-        Input,
-        Sheet,
-        SheetClose,
-        SheetContent,
-        SheetDescription,
-        SheetHeader,
-        SheetFooter,
-        SheetTitle,
-        SheetTrigger,
-        sheet,
-        toggleSheet,
-        Button,
-        Ban,
-      )
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
+  const sheetElement = {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetFooter,
+    SheetTitle,
+    SheetTrigger,
+    sheet,
+    toggleSheet,
+    Button,
+    Input,
   }
+
+  useEffect(() => {
+    transformAndSetComponent(defaultCode, setDefaultComponent, sheetElement)
+  }, [defaultCode, sheet])
 
   return (
     <>
