@@ -9,7 +9,7 @@ type TDropdownMenu = {
   toggleStatusBar?: (event: React.MouseEvent) => void
   href?: string
   menuRef?: React.RefObject<HTMLDivElement>
-  buttonRef?: React.RefObject<HTMLButtonElement>
+  buttonRef?: React.RefObject<HTMLDivElement>
 }
 
 export function DropdownMenu({ children }: TDropdownMenu) {
@@ -18,9 +18,9 @@ export function DropdownMenu({ children }: TDropdownMenu) {
 
 export function DropdownMenuTrigger({ children, toggleStatusBar, buttonRef }: TDropdownMenu) {
   return (
-    <button ref={buttonRef} onClick={toggleStatusBar}>
+    <div ref={buttonRef} onClick={toggleStatusBar}>
       {children}
-    </button>
+    </div>
   )
 }
 
