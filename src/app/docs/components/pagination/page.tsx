@@ -1,15 +1,7 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
-import * as Babel from '@babel/standalone'
-import {
-  ArrowBigLeft,
-  ArrowBigRight,
-  ArrowBigLeftDash,
-  ArrowBigRightDash,
-  ChevronLeft,
-  ChevronRight,
-  Ban,
-} from 'lucide-react'
+import { ArrowBigLeft, ArrowBigRight, ArrowBigLeftDash, ArrowBigRightDash } from 'lucide-react'
 import Pagination from '@/components/ui/pagination'
 import {
   Component,
@@ -19,6 +11,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function PaginationPage() {
   const [currentPage1, setCurrentPage1] = useState(1)
@@ -71,67 +64,29 @@ export default function PaginationPage() {
     setCurrentPage3(page)
   }
 
+  const dependencies = {
+    default: { Pagination, currentPage1, handlePageChange1 },
+    variant1: { Pagination, currentPage2, handlePageChange2 },
+    variant2: {
+      Pagination,
+      currentPage3,
+      handlePageChange3,
+      ArrowBigLeft,
+      ArrowBigRight,
+      ArrowBigLeftDash,
+      ArrowBigRightDash,
+    },
+  }
+
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setRenderedComponent1)
+    transformAndSetComponent(defaultCode, setRenderedComponent1, dependencies.default)
   }, [defaultCode, currentPage1])
   useEffect(() => {
-    transformAndSetComponent(variantCode1, setRenderedComponent2)
+    transformAndSetComponent(variantCode1, setRenderedComponent2, dependencies.variant1)
   }, [variantCode1, currentPage2])
   useEffect(() => {
-    transformAndSetComponent(variantCode2, setRenderedComponent3)
+    transformAndSetComponent(variantCode2, setRenderedComponent3, dependencies.variant2)
   }, [variantCode2, currentPage3])
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function(
-        'React',
-        'Pagination',
-        'ArrowBigLeft',
-        'ArrowBigRight',
-        'ArrowBigLeftDash',
-        'ArrowBigRightDash',
-        'ChevronLeft',
-        'ChevronRight',
-        'currentPage1',
-        'currentPage2',
-        'currentPage3',
-        'handlePageChange1',
-        'handlePageChange2',
-        'handlePageChange3',
-        `return ${transformedCode};`,
-      )
-
-      const element = Component(
-        React,
-        Pagination,
-        ArrowBigLeft,
-        ArrowBigRight,
-        ArrowBigLeftDash,
-        ArrowBigRightDash,
-        ChevronLeft,
-        ChevronRight,
-        currentPage1,
-        currentPage2,
-        currentPage3,
-        handlePageChange1,
-        handlePageChange2,
-        handlePageChange3,
-        Ban,
-      )
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
 
   return (
     <>
