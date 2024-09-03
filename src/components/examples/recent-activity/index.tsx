@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Skeleton from '@/components/ui/skeleton'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 type TData = {
   id: number
@@ -77,39 +78,41 @@ export default function RecentActivity() {
   }, [])
 
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm ">
-      <header className="flex flex-col space-y-1.5 p-6">
+    <Card>
+      <CardHeader className="flex flex-col justify-between space-y-1.5 p-6">
         <h1 className="text-2xl font-semibold leading-none tracking-tight">Recent Activity</h1>
         <p className="text-sm text-muted-foreground">Review what happened over the past days.</p>
-      </header>
-      <ul className="p-6 pt-0">
-        {data.map((item) => (
-          <li key={item.id} className="flex items-center w-full h-16 border-b">
-            {item.img ? (
-              <>
-                <img src={item.img || 'placeholder_image_url'} className="rounded-lg w-10 h-10 object-cover" />
-                <div className="pl-4">
-                  <span className="font-semibold text-sm">{item.name}</span>
-                  <p className="text-sm">{item.comment}</p>
-                </div>
-                <span className="text-sm ml-auto">{item.time}</span>
-              </>
-            ) : (
-              <>
-                <Skeleton className="rounded-lg w-10 h-10" />
-                <div className="pl-4 grid gap-1">
-                  <Skeleton className="rounded-md h-4 w-16" />
-                  <Skeleton className="rounded-md h-4 w-80" />
-                </div>
-                <div className="ml-auto">
-                  <Skeleton className="rounded-md h-4 w-14" />
-                </div>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+      </CardHeader>
+      <CardContent className="p-6 pt-0">
+        <ul>
+          {data.map((item) => (
+            <li key={item.id} className="flex items-center w-full h-16 border-b">
+              {item.img ? (
+                <>
+                  <img src={item.img} className="rounded-lg w-10 h-10 object-cover" />
+                  <div className="flex flex-col ml-4">
+                    <span className="font-semibold text-sm">{item.name}</span>
+                    <p className="text-sm">{item.comment}</p>
+                  </div>
+                  <span className="text-sm ml-auto">{item.time}</span>
+                </>
+              ) : (
+                <>
+                  <Skeleton className="rounded-lg w-10 h-10" />
+                  <div className="pl-4 grid gap-1">
+                    <Skeleton className="rounded-md h-4 w-16" />
+                    <Skeleton className="rounded-md h-4 w-80" />
+                  </div>
+                  <div className="ml-auto">
+                    <Skeleton className="rounded-md h-4 w-14" />
+                  </div>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
   )
 }
 
