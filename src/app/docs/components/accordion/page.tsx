@@ -4,14 +4,6 @@ import * as Babel from '@babel/standalone'
 import { Accordion, AccordionItem, AccordionSummary, AccordionDetails } from '@/components/ui/accordion'
 import { Triangle } from 'lucide-react'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
-import {
   Component,
   ComponentContainer,
   ComponentExample,
@@ -135,22 +127,6 @@ export default function AccordionPage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Accordion</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Accordion" description="페이지에서 관련 콘텐츠 섹션을 표시하거나 숨길 수 있습니다." />
         <ComponentContainer>
