@@ -80,44 +80,42 @@ export default function LabelPage() {
 
   return (
     <>
-      <div className="container pb-14">
-        <Component>
-          <ComponentExplain title="Label" description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다." />
-          <ComponentContainer>
-            <ComponentExample>{DefaultComponent}</ComponentExample>
-            <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain title="Label" description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다." />
+        <ComponentContainer>
+          <ComponentExample>{DefaultComponent}</ComponentExample>
+          <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
+        </ComponentContainer>
+      </Component>
 
-        <Component>
-          <ComponentExplain variant="Disabled" />
-          <ComponentContainer>
-            <ComponentExample>{DisabledComponent}</ComponentExample>
-            <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain variant="Disabled" />
+        <ComponentContainer>
+          <ComponentExample>{DisabledComponent}</ComponentExample>
+          <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
+        </ComponentContainer>
+      </Component>
 
-        <Component>
-          <ComponentExplain variant="With Input" />
-          <ComponentContainer>
-            <ComponentExample>{WithInputComponent}</ComponentExample>
-            <ComponentExampleCode code={withInputCode} setCode={setWithInputCode} />
-          </ComponentContainer>
-        </Component>
+      <Component>
+        <ComponentExplain variant="With Input" />
+        <ComponentContainer>
+          <ComponentExample>{WithInputComponent}</ComponentExample>
+          <ComponentExampleCode code={withInputCode} setCode={setWithInputCode} />
+        </ComponentContainer>
+      </Component>
 
-        <ComponentPropsTable
-          title="Label"
-          description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다."
-          props={[
-            {
-              prop: 'htmlFor',
-              type: 'string',
-              default: '',
-              description: '레이블이 연결된 요소의 ID입니다.',
-            },
-          ]}
-        />
-      </div>
+      <ComponentPropsTable
+        title="Label"
+        description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다."
+        props={[
+          {
+            prop: 'htmlFor',
+            type: 'string',
+            default: '',
+            description: '레이블이 연결된 요소의 ID입니다.',
+          },
+        ]}
+      />
     </>
   )
 }

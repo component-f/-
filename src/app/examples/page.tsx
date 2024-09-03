@@ -1,7 +1,11 @@
+import ReportForm from '@/components/examples/report-form'
+
 export default function ExamplesPage() {
   return (
     <>
-      <h1>ExamplesPage</h1>
+      <div className="grid items-start">
+        <ReportForm />
+      </div>
     </>
   )
 }

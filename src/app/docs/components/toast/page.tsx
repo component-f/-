@@ -122,7 +122,7 @@ export default function ToastPage() {
   }
 
   return (
-    <div className="container pb-14">
+    <>
       <Component>
         <ComponentExplain title="Toast" description="일시적으로 표시되는 간결한 메시지입니다." />
         <ComponentContainer>
@@ -214,6 +214,6 @@ export default function ToastPage() {
           },
         ]}
       />
-    </div>
+    </>
   )
 }
