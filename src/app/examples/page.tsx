@@ -1,3 +1,4 @@
+import RecentActivity from '@/components/examples/recent-activity'
 import ReportForm from '@/components/examples/report-form'
 
 export default function ExamplesPage() {
@@ -5,6 +6,7 @@ export default function ExamplesPage() {
     <>
       <div className="grid items-start">
         <ReportForm />
+        <RecentActivity />
       </div>
     </>
   )
