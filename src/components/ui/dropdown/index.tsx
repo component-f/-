@@ -18,7 +18,7 @@ export function DropdownMenu({ children }: TDropdownMenu) {
 
 export function DropdownMenuTrigger({ children, toggleStatusBar, buttonRef }: TDropdownMenu) {
   return (
-    <div ref={buttonRef} onClick={toggleStatusBar}>
+    <div ref={buttonRef} onClick={toggleStatusBar} className="hover:cursor-pointer">
       {children}
     </div>
   )
