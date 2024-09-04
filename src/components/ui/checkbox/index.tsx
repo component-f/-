@@ -22,7 +22,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   return (
     <label
       className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center'} mb-4 mr-4 ${
-        disabled ? 'cursor-not-allowed opacity-20' : 'cursor-pointer'
+        disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       }`}
     >
       <input
@@ -37,10 +37,12 @@ const CheckBox: React.FC<CheckBoxProps> = ({
       <span
         className={`w-5 h-5 inline-block border-2 rounded-md transition-all duration-200 ${
           disabled && checked
-            ? 'bg-gray-400 border-gray-400'
+            ? 'bg-gray-200 border-gray-200'
             : checked
               ? 'bg-black border-black'
-              : 'bg-white border-black'
+              : disabled
+                ? 'border-gray-200 opacity-50'
+                : 'bg-white border-black'
         }`}
       >
         {checked && (
@@ -57,7 +59,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           </svg>
         )}
       </span>
-      <span className="ml-2 peer-disabled:text-gray-400">{label}</span>
+      <span className="ml-2 peer-disabled:text-gray-200">{label}</span>
     </label>
   )
 }
