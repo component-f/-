@@ -3,11 +3,12 @@ import React from 'react'
 type TableProps = {
   headers: string[]
   data: Array<{ [key: string]: React.ReactNode }>
+  className?: string
 }
 
-const Table: React.FC<TableProps> = ({ headers, data }) => {
+const Table: React.FC<TableProps> = ({ headers, data, className }) => {
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
+    <div className={`overflow-x-auto rounded-lg border border-border ${className}`}>
       <table className="min-w-full border-collapse">
         <thead>
           <tr>
@@ -25,7 +26,7 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
         </thead>
         <tbody>
           {data.map((row, rowIndex) => (
-            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-50' : ''}>
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-200' : ''}>
               {headers.map((header, cellIndex) => {
                 const isLastRow = rowIndex === data.length - 1
                 const isFirstColumn = cellIndex === 0
@@ -34,7 +35,7 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
                 return (
                   <td
                     key={`${rowIndex}-${header}`}
-                    className={`px-6 py-4 whitespace-nowrap text-sm text-gray-600 ${
+                    className={`px-6 py-4 whitespace-nowrap text-sm ${
                       isLastRow && isFirstColumn ? 'rounded-bl-lg' : ''
                     } ${isLastRow && isLastColumn ? 'rounded-br-lg' : ''}`}
                   >

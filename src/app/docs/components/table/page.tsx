@@ -1,16 +1,9 @@
 'use client'
 
 import Table from '@/components/ui/table'
+import DataTable from '@/components/ui/datatable'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
 import {
   Component,
   ComponentContainer,
@@ -32,11 +25,31 @@ export default function TablePage() {
     />
   `)
 
+  const [code2, setCode2] = useState(`
+    <DataTable
+      data={[
+        { id: 1, name: 'John Doe', email: 'john@example.com' },
+        { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
+        { id: 3, name: 'Alice Smith', email: 'alice@example.com' },
+      ]}
+      columns={[
+        { header: 'ID', accessor: 'id' },
+        { header: 'Name', accessor: 'name' },
+        { header: 'Email', accessor: 'email' },
+      ]}
+    />
+  `)
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
+  const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
   }, [code1])
+
+  useEffect(() => {
+    transformAndSetComponent(code2, setRenderedComponent2)
+  }, [code2])
 
   const transformAndSetComponent = (
     code: string,
@@ -47,9 +60,9 @@ export default function TablePage() {
         presets: ['react'],
       }).code
 
-      const Component = new Function('React', 'Table', `return ${transformedCode};`)
+      const Component = new Function('React', 'Table', 'DataTable', `return ${transformedCode};`)
 
-      const element = Component(React, Table)
+      const element = Component(React, Table, DataTable)
 
       setComponent(element)
     } catch (error) {
@@ -59,27 +72,22 @@ export default function TablePage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Table</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Table" description="데이터를 행과 열의 구조로 표시하는 테이블 컴포넌트입니다." />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={code1} setCode={setCode1} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain
+          title="DataTable"
+          description="다양한 데이터와 컬럼을 표시할 수 있는 데이터 테이블 컴포넌트입니다."
+        />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent2}</ComponentExample>
+          <ComponentExampleCode code={code2} setCode={setCode2} />
         </ComponentContainer>
       </Component>
 
@@ -98,6 +106,36 @@ export default function TablePage() {
             type: 'Array<Record<string, any>>',
             default: '[]',
             description: '각 행의 데이터를 포함하는 객체 배열입니다.',
+          },
+          {
+            prop: 'className',
+            type: 'string',
+            default: '""',
+            description: '테이블의 최상위 div 요소에 적용할 수 있는 추가 클래스입니다.',
+          },
+        ]}
+      />
+      <ComponentPropsTable
+        title="DataTable"
+        description="데이터 테이블 컴포넌트의 속성들입니다."
+        props={[
+          {
+            prop: 'data',
+            type: 'Array<Record<string, any>>',
+            default: '[]',
+            description: '테이블에 표시할 데이터 배열입니다.',
+          },
+          {
+            prop: 'columns',
+            type: 'Array<{ header: string, accessor: keyof T }>',
+            default: '[]',
+            description: '컬럼의 헤더와 접근자를 정의하는 배열입니다.',
+          },
+          {
+            prop: 'className',
+            type: 'string',
+            default: '""',
+            description: '데이터 테이블의 최상위 div 요소에 적용할 수 있는 추가 클래스입니다.',
           },
         ]}
       />
