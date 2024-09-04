@@ -4,14 +4,7 @@ import { Delete, Send, Bell, ShoppingCart, Heart } from 'lucide-react'
 
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
+
 import {
   Component,
   ComponentContainer,
@@ -122,22 +115,6 @@ export default function Buttonpage() {
   }
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Button</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Button"

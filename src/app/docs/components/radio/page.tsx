@@ -4,14 +4,6 @@ import Radio from '@/components/ui/radio'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
-import {
   Component,
   ComponentContainer,
   ComponentExample,
@@ -26,56 +18,108 @@ export default function RadioPage() {
   // 본래 체크된 라디오 value를 불러오기 위해 넣은 useState
   // 코드를 코드러너에 넣자 인식이 불가, 주석처리
 
+  //디폴트 라디오박스(가로정렬)
   const [code1, setCode1] = useState(`
+    <form className="w-full max-w-xs">
+      <h1 className="text-xl font-semibold py-3">Gender</h1>
+      <div className="flex">
+        <Radio
+          label="Female"
+          name="gender"
+          value={'Female'}
+        />
+        <Radio
+          label="Male"
+          name="gender"
+          value={'Male'}
+        />
+        <Radio
+          label="Other"
+          name="gender"
+          value={'Other'}
+        />
+      </div>
+    </form>
+    `)
+
+  //세로 정렬 라디오박스
+  const [code2, setCode2] = useState(`
     <form className="flex flex-col">
-        <h1 className="text-xl font-semibold py-5">Gender</h1>
+        <h1 className="text-xl font-semibold py-3">Gender</h1>
         <div>
           <Radio
             label="Female"
-            name="gender1"
+            name="gender"
             value={'Female'}
           />
           <Radio
             label="Male"
-            name="gender1"
+            name="gender"
             value={'Male'}
           />
           <Radio
             label="Other"
-            name="gender1"
+            name="gender"
             value={'Other'}
-            disabled={true}
           />
         </div>
       </form>
       `)
 
-  const [code2, setCode2] = useState(`
-      <form className="w-full max-w-xs">
-        <h1 className="text-xl font-semibold py-3">Gender</h1>
-        <div className="flex">
-          <Radio
-            label="Female"
-            name="gender"
-            value={'Female'}
-            defaultChecked
-          />
-          <Radio
-            label="Male"
-            name="gender"
-            value={'Male'}
-          />
-          <Radio
-            label="Other"
-            name="gender"
-            value={'Other'}
-          />
-        </div>
-      </form>
-      `)
+  //defaultChecked 라디오박스
+  const [code3, setCode3] = useState(`
+    <form className="w-full max-w-xs">
+      <h1 className="text-xl font-semibold py-3">Gender</h1>
+      <div className="flex">
+        <Radio
+          label="Female"
+          name="gender"
+          value={'Female'}
+          defaultChecked
+        />
+        <Radio
+          label="Male"
+          name="gender"
+          value={'Male'}
+        />
+        <Radio
+          label="Other"
+          name="gender"
+          value={'Other'}
+        />
+      </div>
+    </form>
+    `)
+
+  //disabled 라디오박스
+  const [code4, setCode4] = useState(`
+    <form className="w-full max-w-xs">
+      <h1 className="text-xl font-semibold py-3">Gender</h1>
+      <div className="flex">
+        <Radio
+          label="Female"
+          name="gender"
+          value={'Female'}
+        />
+        <Radio
+          label="Male"
+          name="gender"
+          value={'Male'}
+        />
+        <Radio
+          label="Other"
+          name="gender"
+          value={'Other'}
+          disabled={true}
+        />
+      </div>
+    </form>
+    `)
 
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
+  const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
+  const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
@@ -84,6 +128,14 @@ export default function RadioPage() {
   useEffect(() => {
     transformAndSetComponent(code2, setRenderedComponent2)
   }, [code2])
+
+  useEffect(() => {
+    transformAndSetComponent(code3, setRenderedComponent3)
+  }, [code3])
+
+  useEffect(() => {
+    transformAndSetComponent(code4, setRenderedComponent4)
+  }, [code4])
 
   const transformAndSetComponent = (
     code: string,
@@ -106,22 +158,6 @@ export default function RadioPage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Radio</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Radio"
@@ -134,10 +170,26 @@ export default function RadioPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="가로 정렬 및 defaultChecked" />
+        <ComponentExplain variant="세로 정렬" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="DefaultChecked" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExampleCode code={code3} setCode={setCode3} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="Disabled" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent4}</ComponentExample>
+          <ComponentExampleCode code={code4} setCode={setCode4} />
         </ComponentContainer>
       </Component>
 

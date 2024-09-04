@@ -4,14 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Select from '@/components/ui/select'
 import * as Babel from '@babel/standalone'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
-import {
   Component,
   ComponentContainer,
   ComponentExample,
@@ -29,16 +21,31 @@ export default function SelectPage() {
         { label: 'select 3', value: '3' }
       ]}
       onSelect={value => console.log('Selected:', value)}
-      className="my-custom-class"
+    />
+  `)
+  //defaultSelected
+  const [code2, setCode2] = useState(`
+    <Select
+      options={[
+        { label: 'select 1', value: '1' },
+        { label: 'select 2', value: '2' },
+        { label: 'select 3', value: '3' }
+      ]}
+      onSelect={value => console.log('Selected:', value)}
       defaultSelected="2"
     />
   `)
 
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
+  const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
   }, [code1])
+
+  useEffect(() => {
+    transformAndSetComponent(code2, setRenderedComponent2)
+  }, [code2])
 
   const transformAndSetComponent = (
     code: string,
@@ -61,22 +68,6 @@ export default function SelectPage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Select</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Select"
@@ -85,6 +76,14 @@ export default function SelectPage() {
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={code1} setCode={setCode1} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="defaultSelected" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent2}</ComponentExample>
+          <ComponentExampleCode code={code2} setCode={setCode2} />
         </ComponentContainer>
       </Component>
 

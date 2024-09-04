@@ -4,14 +4,6 @@ import CheckBox from '@/components/ui/checkbox'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
-import {
   Component,
   ComponentContainer,
   ComponentExample,
@@ -23,90 +15,135 @@ import {
 export default function CheckBoxPage() {
   const [checkboxValue, setCheckboxValue] = useState<string[]>([]) //체크박스 value checked용
   const [checkboxValue2, setCheckboxValue2] = useState<string[]>([]) //체크박스2 value checked용
+  const [checkboxValue3, setCheckboxValue3] = useState<string[]>([]) //체크박스3 value checked용
 
+  //체크박스 이벤트 핸들러
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
     setCheckboxValue((prevOptions) =>
       prevOptions.includes(value) ? prevOptions.filter((option) => option !== value) : [...prevOptions, value],
     )
   }
-
   const handleCheckboxChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
     setCheckboxValue2((prevOptions) =>
       prevOptions.includes(value) ? prevOptions.filter((option) => option !== value) : [...prevOptions, value],
     )
   }
+  const handleCheckboxChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setCheckboxValue3((prevOptions) =>
+      prevOptions.includes(value) ? prevOptions.filter((option) => option !== value) : [...prevOptions, value],
+    )
+  }
 
+  // 디폴트 체크박스 (세로정렬)
   const [code1, setCode1] = useState(`
     <form className="mt-4 w-full max-w-xs">
-        <h1 className="text-xl font-semibold mb-4">Select options</h1>
-        <div>
-          <CheckBox
-            label="Option 1"
-            name="options"
-            value="option1-1"
-            checked={checkboxValue.includes('option1-1')}
-            onChange={handleCheckboxChange}
-          />
-          <CheckBox
-            label="Option 2"
-            name="options"
-            value="option1-2"
-            checked={checkboxValue.includes('option1-2')}
-            onChange={handleCheckboxChange}
-          />
-          <CheckBox
-            label="Option 3"
-            name="options"
-            value="option1-3"
-            checked={true}
-            onChange={handleCheckboxChange}
-            disabled={true}
-          />
-        </div>
-      </form>
-      `)
+      <h1 className="text-xl font-semibold mb-4">Select options</h1>
+      <div>
+        <CheckBox
+          label="Option 1"
+          name="options"
+          value="option1"
+          checked={checkboxValue.includes('option1')}
+          onChange={handleCheckboxChange}
+        />
+        <CheckBox
+          label="Option 2"
+          name="options"
+          value="option2"
+          checked={checkboxValue.includes('option2')}
+          onChange={handleCheckboxChange}
+        />
+        <CheckBox
+          label="Option 3"
+          name="options"
+          value="option3"
+          checked={checkboxValue.includes('option3')}
+          onChange={handleCheckboxChange}
+        />
+      </div>
+    </form>
+    `)
 
+  // 가로정렬
   const [code2, setCode2] = useState(`
     <form className="mt-4 w-full max-w-xs">
-      <h1 className="text-xl font-semibold mb-1">Select options</h1>
+      <h1 className="text-xl font-semibold mb-4">Select options</h1>
       <div className="flex">
         <CheckBox
           label="Option 1"
-          name="options1"
-          value="option2-1"
-          checked={checkboxValue2.includes('option2-1')}
+          name="options"
+          value="option1"
+          checked={checkboxValue2.includes('option1')}
           onChange={handleCheckboxChange2}
         />
         <CheckBox
           label="Option 2"
-          name="options1"
-          value="option2-2"
-          checked={checkboxValue2.includes('option2-2')}
+          name="options"
+          value="option2"
+          checked={checkboxValue2.includes('option2')}
           onChange={handleCheckboxChange2}
         />
         <CheckBox
           label="Option 3"
-          name="options1"
-          value="option2-3"
-          checked={checkboxValue2.includes('option2-3')}
+          name="options"
+          value="option3"
+          checked={checkboxValue2.includes('option3')}
           onChange={handleCheckboxChange2}
+        />
+      </div>
+    </form>
+    `)
+
+  //checked & disabled
+  const [code3, setCode3] = useState(`
+    <form className="mt-4 w-full max-w-xs">
+      <h1 className="text-xl font-semibold mb-4">Select options</h1>
+      <div>
+        <CheckBox
+          label="Option 1"
+          name="options"
+          value="option1"
+          checked={checkboxValue3.includes('option1')}
+          onChange={handleCheckboxChange3}
+        />
+        <CheckBox
+          label="Option 2"
+          name="options"
+          value="option2"
+          checked={checkboxValue3.includes('option2')}
+          onChange={handleCheckboxChange3}
+        />
+        <CheckBox
+          label="Option 3"
+          name="options"
+          value="option3"
+          //checked={checkboxValue3.includes('option3')}
+          checked={true}
+          onChange={handleCheckboxChange3}
           disabled={true}
         />
       </div>
-    </form>`)
+    </form>
+    `)
 
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
+  const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
-  }, [code1])
+  }, [code1, checkboxValue])
 
   useEffect(() => {
     transformAndSetComponent(code2, setRenderedComponent2)
-  }, [code2])
+  }, [code2, checkboxValue2])
+
+  useEffect(() => {
+    transformAndSetComponent(code3, setRenderedComponent3)
+  }, [code3, checkboxValue3])
 
   const transformAndSetComponent = (
     code: string,
@@ -123,8 +160,10 @@ export default function CheckBoxPage() {
           'CheckBox',
           'checkboxValue',
           'checkboxValue2',
+          'checkboxValue3',
           'handleCheckboxChange',
           'handleCheckboxChange2',
+          'handleCheckboxChange3',
           `return ${transformedCode};`,
         )
 
@@ -133,8 +172,10 @@ export default function CheckBoxPage() {
           CheckBox,
           checkboxValue,
           checkboxValue2,
+          checkboxValue3,
           handleCheckboxChange,
           handleCheckboxChange2,
+          handleCheckboxChange3,
         )
 
         setComponent(element)
@@ -146,22 +187,6 @@ export default function CheckBoxPage() {
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Checkbox</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Checkbox"
@@ -174,10 +199,18 @@ export default function CheckBoxPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="가로 정렬 및 disabled" />
+        <ComponentExplain variant="가로 정렬" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="checked & disabled" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExampleCode code={code3} setCode={setCode3} />
         </ComponentContainer>
       </Component>
 
@@ -208,6 +241,12 @@ export default function CheckBoxPage() {
             type: `boolean`,
             default: `false`,
             description: '체크박스의 체크 상태를 나타내며, 상태를 제어합니다.',
+          },
+          {
+            prop: `defaultChecked`,
+            type: `boolean`,
+            default: `false`,
+            description: '체크박스의 초기 체크 상태를 제어합니다.',
           },
           {
             prop: 'onChange',
