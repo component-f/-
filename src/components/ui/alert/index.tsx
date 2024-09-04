@@ -12,10 +12,7 @@ type TAlertProps = React.ComponentPropsWithoutRef<'div'> & {
 export default function Alert({ className, icon, title, description, btn, btnMsg, ...props }: TAlertProps) {
   return (
     <div
-      className={twMerge(
-        'flex place-items-center text-sm rounded-lg w-[500px] h-[54px] px-[16px] border-border border',
-        className,
-      )}
+      className={twMerge('flex place-items-center text-sm rounded-lg w-[500px] h-[54px] px-[16px] border', className)}
       {...props}
     >
       {icon && icon}

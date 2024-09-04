@@ -40,7 +40,6 @@ export default function DropdownPage() {
       <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
         <Button
           variant="outlined"
-          className="text-gray-500 hover:text-foreground hover:opacity-100"
         >
           Open
         </Button>
@@ -62,7 +61,6 @@ export default function DropdownPage() {
       <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2} >
         <Button
           variant="outlined"
-          className="text-gray-500 hover:text-foreground hover:opacity-100"
         >
           Open
         </Button>

@@ -44,9 +44,7 @@ export function ComponentContainer({ children }: TComponents) {
 }
 
 export function ComponentExample({ children }: TComponents) {
-  return (
-    <div className="w-full border border-border py-20 flex items-center justify-center rounded-t-xl">{children}</div>
-  )
+  return <div className="w-full border py-20 flex items-center justify-center rounded-t-xl">{children}</div>
 }
 
 export function ComponentExampleCode({ code, setCode }: { code: string; setCode: Dispatch<SetStateAction<string>> }) {
@@ -88,7 +86,7 @@ export function ComponentExampleCode({ code, setCode }: { code: string; setCode:
           </div>
         </div>
       </div>
-      <div className="w-full border-border rounded-b-xl bg-foreground overflow-auto hover:ring-4 ring-[#0090FF]">
+      <div className="w-full rounded-b-xl bg-foreground overflow-auto hover:ring-4 ring-[#0090FF]">
         <Editor
           value={code}
           onValueChange={(code) => setCode(code)}

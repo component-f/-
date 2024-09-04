@@ -35,7 +35,7 @@ export function Accordion({ children, className, singleOpen = false }: Accordion
   }
 
   return (
-    <div className={twMerge('border border-border rounded-lg overflow-hidden w-[400px] accordion-shadow', className)}>
+    <div className={twMerge('border rounded-lg overflow-hidden w-[400px] accordion-shadow', className)}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === AccordionItem) {
           return React.cloneElement(child, {
@@ -68,7 +68,7 @@ export function AccordionItem({ value, children, isOpen = false, onToggle, disab
   }
 
   return (
-    <div className={`border-b last:border-b-0 border-border ${disable ? 'opacity-50 cursor-not-allowed' : ''}`}>
+    <div className={`border-b last:border-b-0 ${disable ? 'opacity-50 cursor-not-allowed' : ''}`}>
       <div onClick={handleClick}>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && (child.type === AccordionSummary || child.type === AccordionDetails)) {
