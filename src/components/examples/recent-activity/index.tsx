@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Skeleton from '@/components/ui/skeleton'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 type TData = {
   id: number
@@ -79,9 +79,9 @@ export default function RecentActivity() {
 
   return (
     <Card>
-      <CardHeader className="flex flex-col justify-between space-y-1.5 p-6">
-        <h1 className="text-2xl font-semibold leading-none tracking-tight">Recent Activity</h1>
-        <p className="text-sm text-muted-foreground">Review what happened over the past days.</p>
+      <CardHeader>
+        <CardTitle>Recent Activity</CardTitle>
+        <CardDescription>Review what happened over the past days.</CardDescription>
       </CardHeader>
       <CardContent className="p-6 pt-0">
         <ul>
