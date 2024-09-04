@@ -1,4 +1,4 @@
-import Chat from '@/components/examples/\bchat'
+import Chat from '@/components/examples/chat'
 import RecentActivity from '@/components/examples/recent-activity'
 import ReportForm from '@/components/examples/report-form'
 
