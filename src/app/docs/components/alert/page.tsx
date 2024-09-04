@@ -3,15 +3,6 @@
 import React, { useState, useEffect } from 'react'
 import { CircleCheckBig, Ban, Info } from 'lucide-react'
 import Alert from '@/components/ui/alert'
-import * as Babel from '@babel/standalone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
 import {
   Component,
   ComponentContainer,
@@ -20,6 +11,8 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
+import Skeleton from '@/components/ui/skeleton'
 
 export default function AlertPage() {
   const [defaultCode, setDefaultCode] = useState(`
@@ -59,64 +52,64 @@ export default function AlertPage() {
       btnMsg="확인"
     />`)
 
+  // 렌더링 상태를 추적하는 상태
+  const [loading, setLoading] = useState({
+    default: true,
+    variant: true,
+    error: true,
+  })
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
 
+  const dependencies = {
+    default: { Alert, CircleCheckBig },
+    variant: { Alert, CircleCheckBig, Info },
+    error: { Alert, Ban },
+  }
+
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setRenderedComponent1)
+    transformAndSetComponent(
+      defaultCode,
+      (component) => {
+        setRenderedComponent1(component)
+        setLoading((prev) => ({ ...prev, default: false }))
+      },
+      dependencies.default,
+    )
   }, [defaultCode])
 
   useEffect(() => {
-    transformAndSetComponent(variantCode, setRenderedComponent2)
+    transformAndSetComponent(
+      variantCode,
+      (component) => {
+        setRenderedComponent2(component)
+        setLoading((prev) => ({ ...prev, variant: false }))
+      },
+      dependencies.variant,
+    )
   }, [variantCode])
 
   useEffect(() => {
-    transformAndSetComponent(errorCode, setRenderedComponent3)
+    transformAndSetComponent(
+      errorCode,
+      (component) => {
+        setRenderedComponent3(component)
+        setLoading((prev) => ({ ...prev, error: false }))
+      },
+      dependencies.error,
+    )
   }, [errorCode])
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function('React', 'Alert', 'CircleCheckBig', 'Ban', 'Info', `return ${transformedCode};`)
-
-      const element = Component(React, Alert, CircleCheckBig, Ban, Info)
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Alert</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Alert" description="사용자의 주의를 끌기 위한 콜아웃을 표시합니다." />
         <ComponentContainer>
-          <ComponentExample>{RenderedComponent1}</ComponentExample>
+          <ComponentExample>
+            {loading.default ? <Skeleton className="w-[500px] h-[54px] rounded-lg" /> : RenderedComponent1}
+          </ComponentExample>
           <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
         </ComponentContainer>
       </Component>
@@ -124,7 +117,16 @@ export default function AlertPage() {
       <Component>
         <ComponentExplain variant="Variant" />
         <ComponentContainer>
-          <ComponentExample>{RenderedComponent2}</ComponentExample>
+          <ComponentExample>
+            {loading.variant ? (
+              <div className="flex gap-2">
+                <Skeleton className="w-[300px] h-[54px] rounded-lg" />
+                <Skeleton className="w-[300px] h-[54px] rounded-lg" />
+              </div>
+            ) : (
+              RenderedComponent2
+            )}
+          </ComponentExample>
           <ComponentExampleCode code={variantCode} setCode={setVariantCode} />
         </ComponentContainer>
       </Component>
@@ -132,7 +134,9 @@ export default function AlertPage() {
       <Component>
         <ComponentExplain variant="Error with button" />
         <ComponentContainer>
-          <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExample>
+            {loading.error ? <Skeleton className="w-[300px] h-[54px] rounded-lg" /> : RenderedComponent3}
+          </ComponentExample>
           <ComponentExampleCode code={errorCode} setCode={setErrorCode} />
         </ComponentContainer>
       </Component>

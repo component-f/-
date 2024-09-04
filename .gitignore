@@ -20,6 +20,9 @@
 .DS_Store
 *.pem
 
+# Ignore general env files
+.env
+
 # debug
 npm-debug.log*
 yarn-debug.log*
