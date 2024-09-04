@@ -1,15 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import * as Babel from '@babel/standalone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
 import {
   Component,
   ComponentContainer,
@@ -19,104 +10,37 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 import Textarea from '@/components/ui/textarea'
-import Alert from '@/components/ui/alert'
-import { Ban } from 'lucide-react'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function TextareaPage() {
-  const [code1, setCode1] = useState(`
-    <>
-      <Textarea placeholder="type your message here." />
-    </>
+  const [defaultCode, setDefaultCode] = useState(`
+    <Textarea placeholder="type your message here." className="w-[500px]" />
   `)
-  const [code2, setCode2] = useState(`
-    <>
-      <Textarea placeholder="type your message here." />
-    </>
+  const [variantCode, setVariantCode] = useState(`
+    <Textarea
+      placeholder="type your message here."
+      className="border-sky-500 focus:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[500px]"
+    />
     `)
-  const [code3, setCode3] = useState(`
-    <Textarea placeholder="type your message here." disabled />
+  const [disabledCode, setDisabledCode] = useState(`
+    <Textarea placeholder="type your message here." disabled className="w-[500px]" />
   `)
-  const [code4, setCode4] = useState(`
-    <div className="flex flex-col space-y-2">
-      <Textarea placeholder="type your message here." />
-      <button className="border border-border p-2 w-[500px] rounded-lg bg-foreground text-background">
-        Send message
-      </button>
-    </div>
-  `)
-  const [code5, setCode5] = useState(`
-    <div className="flex flex-col space-y-2">
-      <Textarea placeholder="type your message here." />
-      <button className="border border-border p-2 w-[500px] rounded-lg bg-foreground text-background">
-        Send message
-      </button>
-    </div>
-  `)
-
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
-  const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
-  const [RenderedComponent5, setRenderedComponent5] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
-    transformAndSetComponent(code1, setRenderedComponent1)
-  }, [code1])
+    transformAndSetComponent(defaultCode, setRenderedComponent1, { Textarea })
+  }, [defaultCode])
   useEffect(() => {
-    transformAndSetComponent(code2, setRenderedComponent2)
-  }, [code2])
+    transformAndSetComponent(variantCode, setRenderedComponent2, { Textarea })
+  }, [variantCode])
   useEffect(() => {
-    transformAndSetComponent(code3, setRenderedComponent3)
-  }, [code3])
-  useEffect(() => {
-    transformAndSetComponent(code4, setRenderedComponent4)
-  }, [code4])
-  useEffect(() => {
-    transformAndSetComponent(code5, setRenderedComponent5)
-  }, [code5])
-
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function('React', 'Textarea', `return ${transformedCode};`)
-
-      const element = Component(React, Textarea, Ban)
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(
-        <Alert className="w-1/3 bg-red-500 text-white" title="오류" icon={<Ban size={35} />}>
-          컴포넌트를 렌더링 하는 데 실패했습니다.
-        </Alert>,
-      )
-    }
-  }
+    transformAndSetComponent(disabledCode, setRenderedComponent3, { Textarea })
+  }, [disabledCode])
 
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Textarea</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain
           title="Textarea"
@@ -124,53 +48,40 @@ export default function TextareaPage() {
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
-          <ComponentExampleCode code={code1} setCode={setCode1} />
+          <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
         </ComponentContainer>
       </Component>
 
       <Component>
-        <ComponentExplain variant="Custom" />
+        <ComponentExplain variant="Variant" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
-          <ComponentExampleCode code={code2} setCode={setCode2} />
+          <ComponentExampleCode code={variantCode} setCode={setVariantCode} />
         </ComponentContainer>
       </Component>
 
       <Component>
-        <ComponentExplain variant="Custom2" />
+        <ComponentExplain variant="Disabled" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent3}</ComponentExample>
-          <ComponentExampleCode code={code3} setCode={setCode3} />
-        </ComponentContainer>
-      </Component>
-      <Component>
-        <ComponentExplain variant="Custom3" />
-        <ComponentContainer>
-          <ComponentExample>{RenderedComponent4}</ComponentExample>
-          <ComponentExampleCode code={code4} setCode={setCode4} />
-        </ComponentContainer>
-      </Component>
-      <Component>
-        <ComponentExplain variant="Custom4" />
-        <ComponentContainer>
-          <ComponentExample>{RenderedComponent5}</ComponentExample>
-          <ComponentExampleCode code={code5} setCode={setCode5} />
+          <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
         </ComponentContainer>
       </Component>
 
       <ComponentPropsTable
-        description="사용자 입력을 받기 위해 사용되는 텍스트 입력 컴포넌트의 속성들입니다."
+        title="Textarea"
+        description="사용자 입력을 받기 위한 텍스트 영역 컴포넌트입니다."
         props={[
           {
             prop: 'className',
             type: 'string',
-            default: '""',
+            default: '',
             description: '추가적인 Tailwind CSS 클래스를 적용하여 텍스트 영역의 스타일을 조정합니다.',
           },
           {
             prop: 'ref',
             type: 'React.RefObject<HTMLTextAreaElement>',
-            default: 'null',
+            default: '',
             description: '텍스트 영역의 참조를 전달할 때 사용됩니다.',
           },
           {
@@ -190,6 +101,12 @@ export default function TextareaPage() {
             type: 'string | number | readonly string[]',
             default: '',
             description: '텍스트 영역의 현재 값을 설정합니다.',
+          },
+          {
+            prop: 'onChange',
+            type: '(event: React.ChangeEvent<HTMLTextAreaElement>) => void',
+            default: 'undefined',
+            description: '텍스트 영역의 값이 변경될 때 호출되는 콜백 함수입니다.',
           },
         ]}
       />

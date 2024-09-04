@@ -1,12 +1,10 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import * as Babel from '@babel/standalone'
-import { Ellipsis, Ban, Slash, ChevronDown } from 'lucide-react'
+import { Ellipsis, Slash, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/button'
 import {
   Breadcrumb,
-  BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbLink,
   BreadcrumbSeparator,
@@ -21,6 +19,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
+import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function BreadcrumbPage() {
   const [showStatusBar1, setShowStatusBar1] = useState(false)
@@ -40,38 +39,22 @@ export default function BreadcrumbPage() {
   const [defaultCode, setDefaultCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
   const [separatorCode, setSeparatorCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash size={13} className="-rotate-12" />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        <BreadcrumbSeparator separator={<Slash size={13} className="-rotate-12" />} />
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -79,37 +62,29 @@ export default function BreadcrumbPage() {
   const [collapsedCode, setCollapsedCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
-              <Button className="text-gray-500 hover:text-foreground hover:opacity-100">
-                <Ellipsis size={15} />
-              </Button>
-            </DropdownMenuTrigger>
-              <DropdownMenuContent
-                showStatusBar={showStatusBar1}
-                toggleStatusBar={toggleStatusBar1}
-                menuRef={menuRef1}
-                buttonRef={buttonRef1}
-              >
-                <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
-              </DropdownMenuContent>
-          </DropdownMenu>
-        </BreadcrumbItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger toggleStatusBar={toggleStatusBar1} buttonRef={buttonRef1}>
+            <Button className="text-gray-500 hover:text-foreground hover:opacity-100">
+              <Ellipsis size={15} />
+            </Button>
+          </DropdownMenuTrigger>
+            <DropdownMenuContent
+              showStatusBar={showStatusBar1}
+              toggleStatusBar={toggleStatusBar1}
+              menuRef={menuRef1}
+              buttonRef={buttonRef1}
+            >
+              <DropdownMenuItem href="/">Home</DropdownMenuItem>
+              <DropdownMenuItem href="/docs/components/breadcrumb">Breadcrumb</DropdownMenuItem>
+              <DropdownMenuItem href="/examples">Examples</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        </BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
+        <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -117,11 +92,8 @@ export default function BreadcrumbPage() {
   const [dropdownCode, setDropdownCode] = useState(`
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2}>
               <div className="flex items-center text-gray-500">
@@ -135,16 +107,13 @@ export default function BreadcrumbPage() {
                 menuRef={menuRef2}
                 buttonRef={buttonRef2}
               >
-                <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-                <DropdownMenuItem href="/docs/components/alert">Themes</DropdownMenuItem>
-                <DropdownMenuItem href="/github">Github</DropdownMenuItem>
+                <DropdownMenuItem href="/">Home</DropdownMenuItem>
+                <DropdownMenuItem href="/docs/components/breadcrumb">Breadcrumb</DropdownMenuItem>
+                <DropdownMenuItem href="/examples">Examples</DropdownMenuItem>
               </DropdownMenuContent>
           </DropdownMenu>
-        </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbText>Breadcrumb</BreadcrumbText>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     `)
@@ -154,107 +123,50 @@ export default function BreadcrumbPage() {
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
   const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
 
+  const breadcrumbElement = { Breadcrumb, BreadcrumbList, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbText }
+  const dropdownElement = { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem }
+  const dependencies = {
+    default: { ...breadcrumbElement },
+    separator: { ...breadcrumbElement, ...dropdownElement, Slash },
+    collapsed: {
+      ...breadcrumbElement,
+      ...dropdownElement,
+      Button,
+      menuRef1,
+      buttonRef1,
+      Ellipsis,
+      showStatusBar1,
+      toggleStatusBar1,
+    },
+    dropdown: {
+      ...breadcrumbElement,
+      ...dropdownElement,
+      ChevronDown,
+      menuRef2,
+      buttonRef2,
+      showStatusBar2,
+      toggleStatusBar2,
+    },
+  }
+
   useEffect(() => {
-    transformAndSetComponent(defaultCode, setRenderedComponent1)
+    transformAndSetComponent(defaultCode, setRenderedComponent1, dependencies.default)
   }, [defaultCode])
+
   useEffect(() => {
-    transformAndSetComponent(separatorCode, setRenderedComponent2)
+    transformAndSetComponent(separatorCode, setRenderedComponent2, dependencies.separator)
   }, [separatorCode])
+
   useEffect(() => {
-    transformAndSetComponent(collapsedCode, setRenderedComponent3)
+    transformAndSetComponent(collapsedCode, setRenderedComponent3, dependencies.collapsed)
   }, [collapsedCode, showStatusBar1])
+
   useEffect(() => {
-    transformAndSetComponent(dropdownCode, setRenderedComponent4)
+    transformAndSetComponent(dropdownCode, setRenderedComponent4, dependencies.dropdown)
   }, [dropdownCode, showStatusBar2])
 
-  const transformAndSetComponent = (
-    code: string,
-    setComponent: React.Dispatch<React.SetStateAction<JSX.Element | null>>,
-  ) => {
-    try {
-      const transformedCode = Babel.transform(code, {
-        presets: ['react'],
-      }).code
-
-      const Component = new Function(
-        'React',
-        'Breadcrumb',
-        'BreadcrumbItem',
-        'BreadcrumbList',
-        'BreadcrumbLink',
-        'BreadcrumbSeparator',
-        'BreadcrumbText',
-        'DropdownMenu',
-        'DropdownMenuTrigger',
-        'DropdownMenuContent',
-        'DropdownMenuItem',
-        'Button',
-        'menuRef1',
-        'buttonRef1',
-        'menuRef2',
-        'buttonRef2',
-        'Ellipsis',
-        'Ban',
-        'Slash',
-        'ChevronDown',
-        'showStatusBar1',
-        'showStatusBar2',
-        'toggleStatusBar1',
-        'toggleStatusBar2',
-        `return ${transformedCode};`,
-      )
-
-      const element = Component(
-        React,
-        Breadcrumb,
-        BreadcrumbItem,
-        BreadcrumbList,
-        BreadcrumbLink,
-        BreadcrumbSeparator,
-        BreadcrumbText,
-        DropdownMenu,
-        DropdownMenuTrigger,
-        DropdownMenuContent,
-        DropdownMenuItem,
-        Button,
-        menuRef1,
-        buttonRef1,
-        menuRef2,
-        buttonRef2,
-        Ellipsis,
-        Ban,
-        Slash,
-        ChevronDown,
-        showStatusBar1,
-        showStatusBar2,
-        toggleStatusBar1,
-        toggleStatusBar2,
-      )
-
-      setComponent(element)
-    } catch (error) {
-      console.error('Error rendering component:', error)
-      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
-    }
-  }
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Breadcrumb</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Breadcrumb" description="현재 리소스의 경로를 계층적인 링크 형태로 표시합니다." />
         <ComponentContainer>
@@ -294,7 +206,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb의 각 항목을 포함하는 콘텐츠를 전달합니다.',
           },
         ]}
@@ -307,21 +219,8 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: 'Breadcrumb 내에서 여러 항목을 리스트 형식으로 포함합니다.',
-          },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="BreadcrumbItem"
-        description="Breadcrumb 내의 각 항목을 나타내는 요소입니다."
-        props={[
-          {
-            prop: 'children',
-            type: 'React.ReactNode',
-            default: 'null',
-            description: 'Breadcrumb의 각 항목에 해당하는 콘텐츠를 포함합니다.',
           },
         ]}
       />
@@ -333,13 +232,13 @@ export default function BreadcrumbPage() {
           {
             prop: 'href',
             type: 'string',
-            default: 'null',
+            default: '',
             description: '클릭 시 이동할 URL을 지정합니다.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '링크 텍스트 또는 콘텐츠를 포함합니다.',
           },
         ]}
@@ -352,7 +251,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '<ChevronRight size={20} className="text-gray-500" />',
             description: '구분자 기호나 텍스트를 포함할 수 있습니다.',
           },
         ]}
@@ -365,7 +264,7 @@ export default function BreadcrumbPage() {
           {
             prop: 'children',
             type: 'React.ReactNode',
-            default: 'null',
+            default: '',
             description: '현재 위치를 설명하는 텍스트를 포함합니다.',
           },
         ]}

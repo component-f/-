@@ -4,14 +4,7 @@ import Switch from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbText,
-} from '@/components/ui/breadcrumb'
+
 import {
   Component,
   ComponentContainer,
@@ -24,38 +17,38 @@ import {
 export default function Switchpage() {
   const [code1, setCode1] = useState(`<Switch />`)
 
-  const [code2, setCode2] = useState(`<> 
-<div className="flex items-center ">
-            <Switch id="darkmode" />
-            <Label htmlFor="darkmode" className="cursor-pointer ml-2">
-              darkmode
-            </Label>
-          </div>
-</>`)
+  const [code2, setCode2] = useState(` 
+    <div className="flex items-center ">
+      <Switch id="darkmode" />
+      <Label htmlFor="darkmode" className="cursor-pointer ml-2">
+        darkmode
+      </Label>
+    </div>
+    `)
 
-  const [code3, setCode3] = useState(`<>
-          <div className="flex items-center mr-2 ">
-            <Switch id="checked" checked={true} />
-            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
-              checked
-            </Label>
-          </div>
-          <div className="flex items-center ">
-            <Switch id="disabled" checked={false} disabled />
-            <Label htmlFor="disabled" className="cursor-pointer ml-2 opacity-50">
-              disabled
-            </Label>
-          </div>
-</>`)
+  const [code3, setCode3] = useState(`
+    <div className="flex items-center mr-2 ">
+      <Switch id="checked" checked={true} />
+      <Label htmlFor="checked" className="cursor-pointer ml-2 ">
+        checked
+      </Label>
+    
+      <Switch id="disabled" checked={false} disabled />
+      <Label htmlFor="disabled" className="cursor-pointer ml-2 opacity-50">
+        disabled
+      </Label>
+    </div>
+    `)
 
-  const [code4, setCode4] = useState(`<> 
-<div className="flex items-center ">
-            <Switch id="color" checked={true} className=" bg-blue-500" />
-            <Label htmlFor="color" className="cursor-pointer ml-2 ">
-              color
-            </Label>
-          </div>
-</>`)
+  const [code4, setCode4] = useState(` 
+    <div className="flex items-center ">
+      <Switch id="color" checked={true} className="bg-blue-500" />
+      <Label htmlFor="color" className="cursor-pointer ml-2 ">
+        color
+      </Label>
+    </div>
+    `)
+
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
@@ -92,47 +85,12 @@ export default function Switchpage() {
 
       setComponent(element)
     } catch (error) {
-      if (error instanceof Error) {
-        // console.log('Error rendering component:', error.message, error.stack)
-        setComponent(
-          <div className="flex items-center ">
-            <Switch id="checked" checked={true} className=" bg-red-500" />
-            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
-              Error
-            </Label>
-          </div>,
-        )
-      } else {
-        // console.error('Unknown error occurred:', error)
-        setComponent(
-          <div className="flex items-center ">
-            <Switch id="checked" checked={true} className=" bg-red-500" />
-            <Label htmlFor="checked" className="cursor-pointer ml-2 ">
-              Unknown Error
-            </Label>
-          </div>,
-        )
-      }
+      setComponent(<>컴포넌트를 렌더링 하는 데 실패했습니다.</>)
     }
   }
+
   return (
     <>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbText>Switch</BreadcrumbText>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <Component>
         <ComponentExplain title="Switch" description="단일 설정의 상태를 켜거나 끕니다." />
         <ComponentContainer>
@@ -169,50 +127,38 @@ export default function Switchpage() {
       </Component>
 
       <ComponentPropsTable
-        description="다음 속성을 사용하여 툴팁을 맞춤 설정할 수 있습니다."
+        title="Switch"
+        description="사용자가 단일 설정을 켜거나 끌 수 있는 스위치 컴포넌트의 속성입니다."
         props={[
-          {
-            prop: 'title',
-            type: 'string',
-            default: '',
-            description: '컴포넌트의 제목을 지정할 때 사용됩니다.',
-          },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '컴포넌트에 CSS 클래스를 추가하여 스타일을 지정하는 데 사용됩니다.',
+            description: '스위치의 스타일을 커스터마이즈하기 위해 추가되는 CSS 클래스입니다.',
           },
           {
-            prop: 'btn',
-            type: '() => void',
-            default: '',
-            description: '버튼 클릭 시 실행될 함수를 정의합니다.',
-          },
-          {
-            prop: 'btnMsg',
+            prop: 'id',
             type: 'string',
             default: '',
-            description: '버튼에 표시될 텍스트를 지정합니다.',
+            description: '스위치와 레이블을 연결하기 위한 고유 식별자입니다.',
           },
           {
-            prop: 'icon',
-            type: 'React.ReactNode',
-            default: '',
-            description: '표시될 아이콘을 지정합니다.',
+            prop: 'checked',
+            type: 'boolean',
+            default: 'false',
+            description: '스위치가 체크되어 있는지 여부를 제어합니다.',
           },
-        ]}
-      />
-
-      <ComponentPropsTable
-        title="Child"
-        description="Child로 전달되는 내용은 <Alert> 컴포넌트가 사용자에게 표시할 주된 메시지입니다."
-        props={[
           {
-            prop: 'child',
-            type: 'string',
-            default: '',
-            description: '제목 아래에 표시되어 더 자세한 내용을 제공합니다.',
+            prop: 'defaultChecked',
+            type: 'boolean',
+            default: 'false',
+            description: '스위치의 초기 체크 상태를 설정합니다.',
+          },
+          {
+            prop: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: '스위치가 비활성화되어 사용자 상호작용을 방지할지 여부를 설정합니다.',
           },
         ]}
       />

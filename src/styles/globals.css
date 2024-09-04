@@ -18,6 +18,12 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
     --blacktogray200: 220 6% 10%;
 
     --shadow-color: rgba(12, 12, 13, 0.1);
@@ -36,6 +42,12 @@
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
 
     --blacktogray200: 240 1% 59%;
 
@@ -61,6 +73,7 @@
 /* 라디오 버튼 색상 변경*/
 [type='radio'] {
   accent-color: black;
+  vertical-align: -4px;
 }
 
 .accordion-shadow {

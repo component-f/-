@@ -40,10 +40,12 @@ const CheckBox: React.FC<CheckBoxProps> = ({
       <span
         className={`w-5 h-5 inline-block border rounded-md transition-all duration-200 items-center justify-center ${
           disabled && checked
-            ? 'bg-gray-400 border-gray-400'
+            ? 'bg-gray-200 border-gray-200'
             : checked
               ? 'bg-black border-black'
-              : 'bg-white border-black'
+              : disabled
+                ? 'border-gray-200 opacity-50'
+                : 'bg-white border-black'
         }`}
       >
         {checked && (
@@ -60,7 +62,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           </svg>
         )}
       </span>
-      {label && <span className="ml-2 peer-disabled:text-gray-400">{label}</span>}
+      {label && <span className="ml-2 peer-disabled:text-gray-200">{label}</span>}
     </label>
   )
 }
