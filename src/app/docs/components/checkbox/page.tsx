@@ -39,7 +39,7 @@ export default function CheckBoxPage() {
 
   // 디폴트 체크박스 (세로정렬)
   const [code1, setCode1] = useState(`
-    <form className="mt-4 w-full max-w-xs">
+    <form>
       <h1 className="text-xl font-semibold mb-4">Select options</h1>
       <div>
         <CheckBox
@@ -69,7 +69,7 @@ export default function CheckBoxPage() {
 
   // 가로정렬
   const [code2, setCode2] = useState(`
-    <form className="mt-4 w-full max-w-xs">
+    <form>
       <h1 className="text-xl font-semibold mb-4">Select options</h1>
       <div className="flex">
         <CheckBox
@@ -99,7 +99,7 @@ export default function CheckBoxPage() {
 
   //checked & disabled
   const [code3, setCode3] = useState(`
-    <form className="mt-4 w-full max-w-xs">
+    <form>
       <h1 className="text-xl font-semibold mb-4">Select options</h1>
       <div>
         <CheckBox
