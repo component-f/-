@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { CircleCheckBig, Ban, Info } from 'lucide-react'
-import Alert from '@/components/ui/alert'
+import { Alert } from '@/components/ui/alert'
 import {
   Component,
   ComponentContainer,
@@ -12,7 +12,7 @@ import {
   ComponentPropsTable,
 } from '@/components/common/component'
 import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
-import Skeleton from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function AlertPage() {
   const [defaultCode, setDefaultCode] = useState(`

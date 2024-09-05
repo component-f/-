@@ -63,4 +63,4 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
   )
 }
 
-export default Select
+export { Select }

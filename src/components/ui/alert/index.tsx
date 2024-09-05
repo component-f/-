@@ -9,7 +9,7 @@ type TAlertProps = React.ComponentPropsWithoutRef<'div'> & {
   description?: string
 }
 
-export default function Alert({ className, icon, title, description, btn, btnMsg, ...props }: TAlertProps) {
+function Alert({ className, icon, title, description, btn, btnMsg, ...props }: TAlertProps) {
   return (
     <div
       className={twMerge('flex place-items-center text-sm rounded-lg w-[500px] h-[54px] px-[16px] border', className)}
@@ -28,3 +28,5 @@ export default function Alert({ className, icon, title, description, btn, btnMsg
     </div>
   )
 }
+
+export { Alert }
