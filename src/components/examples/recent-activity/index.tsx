@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Skeleton from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 type TData = {

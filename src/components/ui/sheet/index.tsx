@@ -17,7 +17,7 @@ export function Sheet({ children }: TSheetComponentProps) {
 }
 
 export function SheetTrigger({ children }: TSheetComponentProps) {
-  return <div className="inline-flex items-center justify-center border border-border rounded-lg">{children}</div>
+  return <div className="inline-flex items-center justify-center border rounded-lg">{children}</div>
 }
 
 export function SheetContent({ children, sheet, toggleSheet }: TSheetComponentProps) {

@@ -1,6 +1,6 @@
 'use client'
 
-import Radio from '@/components/ui/radio'
+import { Radio } from '@/components/ui/radio'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
 import {

@@ -1,6 +1,6 @@
 'use client'
 
-import CheckBox from '@/components/ui/checkbox'
+import { CheckBox } from '@/components/ui/checkbox'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
 import {

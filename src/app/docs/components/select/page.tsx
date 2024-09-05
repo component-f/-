@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import Select from '@/components/ui/select'
+import { Select } from '@/components/ui/select'
 import * as Babel from '@babel/standalone'
 import {
   Component,

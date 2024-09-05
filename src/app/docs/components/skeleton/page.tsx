@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Skeleton from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Component,
   ComponentContainer,

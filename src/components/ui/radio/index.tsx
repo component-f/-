@@ -35,4 +35,4 @@ const Radio: React.FC<RadioProps> = ({
   )
 }
 
-export default Radio
+export { Radio }

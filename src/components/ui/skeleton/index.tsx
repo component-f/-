@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 type TSkeletonProps = React.ComponentPropsWithoutRef<'div'>
 
-export default function Skeleton({ className }: TSkeletonProps) {
+function Skeleton({ className }: TSkeletonProps) {
   return (
     <>
       <div className="animate-pulse">
@@ -12,3 +12,5 @@ export default function Skeleton({ className }: TSkeletonProps) {
     </>
   )
 }
+
+export { Skeleton }

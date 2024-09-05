@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import CheckBox from '@/components/ui/checkbox'
+import { CheckBox } from '@/components/ui/checkbox'
 import { useState } from 'react'
 
 export default function Todo() {
