@@ -56,4 +56,4 @@ const Table: React.FC<TableProps> = ({ headers, data, className }) => {
   )
 }
 
-export default Table
+export { Table }

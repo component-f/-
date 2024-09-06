@@ -8,7 +8,7 @@ type AccordionProps = {
   singleOpen?: boolean
 }
 
-export function Accordion({ children, className, singleOpen = false }: AccordionProps) {
+function Accordion({ children, className, singleOpen = false }: AccordionProps) {
   // 확장된 상태를 관리
   const [expanded, setExpanded] = useState<string[]>(() => {
     const defaultExpandedItems: string[] = []
@@ -35,7 +35,7 @@ export function Accordion({ children, className, singleOpen = false }: Accordion
   }
 
   return (
-    <div className={twMerge('border rounded-lg overflow-hidden w-[400px] accordion-shadow', className)}>
+    <div className={twMerge('border rounded-lg overflow-hidden w-[400px] shadow', className)}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === AccordionItem) {
           return React.cloneElement(child, {
@@ -58,7 +58,7 @@ type AccordionItemProps = {
   disable?: boolean
 }
 
-export function AccordionItem({ value, children, isOpen = false, onToggle, disable = false }: AccordionItemProps) {
+function AccordionItem({ value, children, isOpen = false, onToggle, disable = false }: AccordionItemProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const unusedValue = value
   const handleClick = () => {
@@ -90,7 +90,7 @@ type AccordionSummaryProps = {
   expandIcon?: ReactNode
 }
 
-export function AccordionSummary({ children, isOpen, onToggle, expandIcon }: AccordionSummaryProps) {
+function AccordionSummary({ children, isOpen, onToggle, expandIcon }: AccordionSummaryProps) {
   return (
     <div className="relative p-4 flex justify-between items-center cursor-pointer" onClick={onToggle}>
       <div className="text-sm font-medium">{children}</div>
@@ -111,7 +111,7 @@ type AccordionDetailsProps = {
   isOpen?: boolean
 }
 
-export function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
+function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
 
@@ -138,3 +138,5 @@ export function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
     </div>
   )
 }
+
+export { Accordion, AccordionItem, AccordionSummary, AccordionDetails }

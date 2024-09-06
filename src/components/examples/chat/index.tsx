@@ -5,9 +5,9 @@ import { Check, Plus, Send } from 'lucide-react'
 
 import { cn } from '@/utils/cn'
 
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import Avatar from '@/components/ui/avatar'
+import { Avatar } from '@/components/ui/avatar'
 import { Input } from '@/components/ui/input'
 import {
   Modal,

@@ -33,4 +33,4 @@ const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
   },
 )
 
-export default Button
+export { Button }

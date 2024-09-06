@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../button'
+import { Button } from '../button'
 import { X } from 'lucide-react'
 
 type TSheetComponentProps = {
@@ -8,7 +8,7 @@ type TSheetComponentProps = {
   toggleSheet?: () => void
 }
 
-export function Sheet({ children }: TSheetComponentProps) {
+function Sheet({ children }: TSheetComponentProps) {
   return (
     <>
       <div>{children}</div>
@@ -16,11 +16,11 @@ export function Sheet({ children }: TSheetComponentProps) {
   )
 }
 
-export function SheetTrigger({ children }: TSheetComponentProps) {
+function SheetTrigger({ children }: TSheetComponentProps) {
   return <div className="inline-flex items-center justify-center border rounded-lg">{children}</div>
 }
 
-export function SheetContent({ children, sheet, toggleSheet }: TSheetComponentProps) {
+function SheetContent({ children, sheet, toggleSheet }: TSheetComponentProps) {
   return (
     <>
       {sheet && (
@@ -47,22 +47,24 @@ export function SheetContent({ children, sheet, toggleSheet }: TSheetComponentPr
   )
 }
 
-export function SheetHeader({ children }: TSheetComponentProps) {
+function SheetHeader({ children }: TSheetComponentProps) {
   return <div className="flex flex-col space-y-2">{children}</div>
 }
 
-export function SheetTitle({ children }: TSheetComponentProps) {
+function SheetTitle({ children }: TSheetComponentProps) {
   return <h1 className="text-xl font-semibold">{children}</h1>
 }
 
-export function SheetDescription({ children }: TSheetComponentProps) {
+function SheetDescription({ children }: TSheetComponentProps) {
   return <p className="">{children}</p>
 }
 
-export function SheetFooter({ children }: TSheetComponentProps) {
+function SheetFooter({ children }: TSheetComponentProps) {
   return <div className="flex flex-row-reverse">{children}</div>
 }
 
-export function SheetClose({ children }: TSheetComponentProps) {
+function SheetClose({ children }: TSheetComponentProps) {
   return <>{children}</>
 }
+
+export { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose }

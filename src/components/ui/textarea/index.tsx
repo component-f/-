@@ -16,4 +16,4 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TTextareaProps>(({ classN
   )
 })
 
-export default Textarea
+export { Textarea }

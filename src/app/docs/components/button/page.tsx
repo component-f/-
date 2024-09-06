@@ -1,5 +1,5 @@
 'use client'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Delete, Send, Bell, ShoppingCart, Heart } from 'lucide-react'
 
 import React, { useEffect, useState } from 'react'
@@ -16,8 +16,10 @@ import {
 
 export default function Buttonpage() {
   const [code1, setCode1] = useState(`
+    <Button />
+  `)
+  const [code2, setCode2] = useState(`
     <div className="flex space-x-2">
-      <Button />
       <Button variant="text"> Text</Button>
       <Button variant="contained">Contained</Button>
       <Button variant="outlined">Outlined</Button>
@@ -25,7 +27,7 @@ export default function Buttonpage() {
     </div>
     `)
 
-  const [code2, setCode2] = useState(`
+  const [code3, setCode3] = useState(`
     <div className="flex space-x-2">
       <Button className="text-red-500">
         Error
@@ -39,7 +41,7 @@ export default function Buttonpage() {
     </div>
     `)
 
-  const [code3, setCode3] = useState(`
+  const [code4, setCode4] = useState(`
     <div className="flex space-x-2">
       <Button variant="outlined" startIcon={<Delete />}>
         Delete
@@ -50,7 +52,7 @@ export default function Buttonpage() {
     </div>
     `)
 
-  const [code4, setCode4] = useState(`
+  const [code5, setCode5] = useState(`
     <div className="flex space-x-2">
       <Button className="text-red-500">
         <Bell />
@@ -68,6 +70,7 @@ export default function Buttonpage() {
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
   const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
+  const [RenderedComponent5, setRenderedComponent5] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(code1, setRenderedComponent1)
@@ -84,6 +87,10 @@ export default function Buttonpage() {
   useEffect(() => {
     transformAndSetComponent(code4, setRenderedComponent4)
   }, [code4])
+
+  useEffect(() => {
+    transformAndSetComponent(code5, setRenderedComponent5)
+  }, [code5])
 
   const transformAndSetComponent = (
     code: string,
@@ -127,7 +134,7 @@ export default function Buttonpage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="Color" />
+        <ComponentExplain variant="Variant & Disable" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
@@ -135,7 +142,7 @@ export default function Buttonpage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="Button with Icons" />
+        <ComponentExplain variant="Color" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent3}</ComponentExample>
           <ComponentExampleCode code={code3} setCode={setCode3} />
@@ -143,10 +150,18 @@ export default function Buttonpage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="Icons" />
+        <ComponentExplain variant="Button with Icons" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent4}</ComponentExample>
           <ComponentExampleCode code={code4} setCode={setCode4} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="Icons" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent5}</ComponentExample>
+          <ComponentExampleCode code={code5} setCode={setCode5} />
         </ComponentContainer>
       </Component>
 

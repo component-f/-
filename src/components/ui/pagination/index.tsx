@@ -13,7 +13,7 @@ type TPaginationProps = {
   currentPageStyle?: string
 }
 
-export default function Pagination({
+function Pagination({
   currentPage,
   totalPages,
   showingPages,
@@ -117,3 +117,5 @@ export default function Pagination({
     </nav>
   )
 }
+
+export { Pagination }

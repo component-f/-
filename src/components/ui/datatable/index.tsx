@@ -95,4 +95,4 @@ const DataTable = <T,>({ data, columns, className }: DataTableProps<T>) => {
   )
 }
 
-export default DataTable
+export { DataTable }

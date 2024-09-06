@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { Ellipsis, Slash, ChevronDown } from 'lucide-react'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Breadcrumb,
   BreadcrumbList,
