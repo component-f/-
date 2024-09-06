@@ -18,15 +18,15 @@ export function BreadcrumbList({ children }: TBreadcrumbComponentProps) {
 
 export function BreadcrumbSeparator({ separator }: TBreadcrumbComponentProps) {
   return separator ? (
-    <div className="px-2 text-gray-500">{separator}</div>
+    <div className="px-2 text-gray200">{separator}</div>
   ) : (
-    <ChevronRight size={20} className="text-gray-500" />
+    <ChevronRight size={20} className="text-gray200" />
   )
 }
 
 export function BreadcrumbLink({ children, ...props }: TBreadcrumbComponentProps) {
   return (
-    <a className="flex items-center text-gray-500 hover:text-foreground" {...props}>
+    <a className="flex items-center text-gray200 hover:text-accent-foreground focus:text-accent-foreground " {...props}>
       {children}
     </a>
   )

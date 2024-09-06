@@ -27,7 +27,7 @@ export function SheetContent({ children, sheet, toggleSheet }: TSheetComponentPr
         <>
           <div
             className={`fixed inset-0 z-10 bg-black bg-opacity-90 transition-opacity duration-300 ease-in-out ${
-              sheet ? 'opacity-100' : 'opacity-0'
+              sheet ? 'opacity-90' : 'opacity-0'
             }`}
             onClick={toggleSheet}
           />

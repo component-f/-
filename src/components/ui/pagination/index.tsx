@@ -81,7 +81,7 @@ export default function Pagination({
             <button
               onClick={() => onPageChange(page)}
               className={twMerge(
-                `px-4 py-2 mr-1 ${page === currentPage ? `border border-border ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
+                `px-4 py-2 mr-1 ${page === currentPage ? `border ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
                 currentPageStyle,
               )}
             >
