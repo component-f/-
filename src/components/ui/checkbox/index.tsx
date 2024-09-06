@@ -23,7 +23,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
 }) => {
   return (
     <label
-      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center justify-center'} ${
+      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center justify-center'} mr-4 ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       } ${className}`}
       style={{ height: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
@@ -62,7 +62,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           </svg>
         )}
       </span>
-      {label && <span className="ml-2 peer-disabled:text-gray-200">{label}</span>}
+      {label && <span className="ml-2 peer-disabled:text-gray-200 flex-grow">{label}</span>}
     </label>
   )
 }
