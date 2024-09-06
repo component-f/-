@@ -24,7 +24,7 @@ export default function ThemeCustomizer() {
 
   const [open, setOpen] = React.useState(false)
   const menuRef = React.useRef<HTMLDivElement>(null)
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const buttonRef = React.useRef<HTMLDivElement>(null)
 
   const handleToggle = () => {
     setOpen((prevState) => !prevState)
