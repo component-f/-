@@ -1,6 +1,6 @@
 'use client'
 
-import Switch from '@/components/ui/switch'
+import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'

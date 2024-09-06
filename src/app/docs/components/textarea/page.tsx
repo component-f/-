@@ -9,7 +9,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
-import Textarea from '@/components/ui/textarea'
+import { Textarea } from '@/components/ui/textarea'
 import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function TextareaPage() {

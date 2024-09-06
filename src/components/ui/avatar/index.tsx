@@ -5,7 +5,7 @@ export interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   children?: React.ReactNode
 }
 
-export default function Avatar({ src, alt, className, children, ...props }: AvatarProps) {
+function Avatar({ src, alt, className, children, ...props }: AvatarProps) {
   //이미지 있을때와 없을때를 구분하기 위해
   const isImg = !!src
 
@@ -37,3 +37,5 @@ export default function Avatar({ src, alt, className, children, ...props }: Avat
     </>
   )
 }
+
+export { Avatar }

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import Divider from '@/components/ui/divider'
-import Switch from '@/components/ui/switch'
+import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 
 export default function Notifications() {
