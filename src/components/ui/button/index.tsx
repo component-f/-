@@ -19,8 +19,8 @@ const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
 
     const variantClassNames = {
       text: 'border-none text-ring hover:opacity-50',
-      contained: 'bg-foreground text-background  hover:opacity-50',
-      outlined: ' border border-border text-ring hover:opacity-50',
+      contained: 'bg-ring text-background  hover:opacity-50',
+      outlined: ' border text-ring hover:opacity-50',
     }
 
     return (
@@ -33,4 +33,4 @@ const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
   },
 )
 
-export default Button
+export { Button }

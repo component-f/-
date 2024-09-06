@@ -1,7 +1,7 @@
 'use client'
 
-import Table from '@/components/ui/table'
-import DataTable from '@/components/ui/datatable'
+import { Table } from '@/components/ui/table'
+import { DataTable } from '@/components/ui/datatable'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
 import {

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ArrowBigLeft, ArrowBigRight, ArrowBigLeftDash, ArrowBigRightDash } from 'lucide-react'
-import Pagination from '@/components/ui/pagination'
+import { Pagination } from '@/components/ui/pagination'
 import {
   Component,
   ComponentContainer,

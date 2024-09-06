@@ -1,6 +1,6 @@
 'use client'
 
-import Avatar from '@/components/ui/avatar'
+import { Avatar } from '@/components/ui/avatar'
 import { FolderIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import * as Babel from '@babel/standalone'
