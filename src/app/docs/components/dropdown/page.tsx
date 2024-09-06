@@ -24,9 +24,9 @@ export default function DropdownPage() {
   const [showDefault, setShowDefault] = useState(false)
   const [showRadio, setShowRadio] = useState(false)
   const menuRef1 = useRef<HTMLDivElement>(null)
-  const buttonRef1 = useRef<HTMLButtonElement>(null)
+  const buttonRef1 = useRef<HTMLDivElement>(null)
   const menuRef2 = useRef<HTMLDivElement>(null)
-  const buttonRef2 = useRef<HTMLButtonElement>(null)
+  const buttonRef2 = useRef<HTMLDivElement>(null)
 
   const toggleStatusBar1 = () => {
     setShowDefault((prevState) => !prevState)
