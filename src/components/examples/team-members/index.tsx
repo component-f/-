@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import Avatar from '@/components/ui/avatar'
+import { Avatar } from '@/components/ui/avatar'
 import { Select } from '@/components/ui/select'
 
 export default function TeamMembers() {
