@@ -16,6 +16,7 @@ import { ThemeWrapper } from '../theme-wrapper'
 import { useConfig } from '@/hooks/use-config'
 import { themes } from '@/constants/theme'
 import { cn } from '@/utils/cn'
+import Usage from '@/components/common/usage'
 
 export default function ThemeCustomizer() {
   //모드 theme - 'light' or 'dark'
@@ -34,7 +35,7 @@ export default function ThemeCustomizer() {
   return (
     <>
       <div className="flex justify-between w-full relative">
-        <div>install</div>
+        <Usage />
         <div className="w-2/3">
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={handleToggle} buttonRef={buttonRef}>
