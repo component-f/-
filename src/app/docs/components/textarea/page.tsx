@@ -19,7 +19,7 @@ export default function TextareaPage() {
   const [variantCode, setVariantCode] = useState(`
     <Textarea
       placeholder="type your message here."
-      className="border-sky-500 focus:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[500px]"
+      className="border-sky-500 focus-visible:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[500px]"
     />
     `)
   const [disabledCode, setDisabledCode] = useState(`
@@ -44,7 +44,7 @@ export default function TextareaPage() {
       <Component>
         <ComponentExplain
           title="Textarea"
-          description="텍스트 영역이나 텍스트 영역처럼 보이는 구성 요소를 표시합니다."
+          description="Displays a form textarea or a component that looks like a textarea."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -70,43 +70,43 @@ export default function TextareaPage() {
 
       <ComponentPropsTable
         title="Textarea"
-        description="사용자 입력을 받기 위한 텍스트 영역 컴포넌트입니다."
+        description="A textarea component used for capturing user input."
         props={[
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '추가적인 Tailwind CSS 클래스를 적용하여 텍스트 영역의 스타일을 조정합니다.',
+            description: 'Applies additional Tailwind CSS classes to adjust the styling of the textarea.',
           },
           {
             prop: 'ref',
             type: 'React.RefObject<HTMLTextAreaElement>',
             default: '',
-            description: '텍스트 영역의 참조를 전달할 때 사용됩니다.',
+            description: 'Used to pass a reference to the textarea.',
           },
           {
             prop: 'disabled',
             type: 'boolean',
             default: 'false',
-            description: '텍스트 영역을 비활성화합니다. 비활성화된 경우 커서가 표시되지 않습니다.',
+            description: 'Disables the textarea. When disabled, the cursor will not be displayed.',
           },
           {
             prop: 'placeholder',
             type: 'string',
             default: '',
-            description: '사용자에게 입력할 내용에 대한 힌트를 제공합니다.',
+            description: 'Provides a hint to the user about what to input.',
           },
           {
             prop: 'value',
             type: 'string | number | readonly string[]',
             default: '',
-            description: '텍스트 영역의 현재 값을 설정합니다.',
+            description: 'Sets the current value of the textarea.',
           },
           {
             prop: 'onChange',
             type: '(event: React.ChangeEvent<HTMLTextAreaElement>) => void',
             default: 'undefined',
-            description: '텍스트 영역의 값이 변경될 때 호출되는 콜백 함수입니다.',
+            description: 'Callback function that is called when the value of the textarea changes.',
           },
         ]}
       />

@@ -17,7 +17,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 export default function AlertPage() {
   const [defaultCode, setDefaultCode] = useState(`
     <Alert
-      className=""
       title="title"
       description="description."
       icon={<CircleCheckBig size={35} />}
@@ -26,17 +25,17 @@ export default function AlertPage() {
     />`)
 
   const [variantCode, setVariantCode] = useState(`
-    <div className="flex gap-2">
+    <div className="flex flex-col gap-2">
       <Alert
-        className="w-[300px] bg-blue-500 text-white"
+        className="bg-blue-500 text-white border-none"
         title="Success"
-        description="작업이 성공적으로 진행되었습니다."
+        description="The work was completed successfully."
         icon={<CircleCheckBig size={35} />}
       />
       <Alert
-        className="w-[300px] bg-yellow-300 text-grey"
+        className="bg-yellow-300 text-grey border-none"
         title="Info"
-        description="추가적인 정보가 필요합니다."
+        description="Additional information is required."
         icon={<Info size={35} />}
       />
     </div>
@@ -44,12 +43,12 @@ export default function AlertPage() {
 
   const [errorCode, setErrorCode] = useState(`
     <Alert
-      className="w-1/3 bg-red-500 text-white"
+      className="w-[300px] bg-red-500 text-white border-none"
       title="Error"
-      description="오류입니다."
+      description="It's an error"
       icon={<Ban size={35} />}
-      btn={() => alert("확인")}
-      btnMsg="확인"
+      btn={() => alert("check")}
+      btnMsg="check"
     />`)
 
   // 렌더링 상태를 추적하는 상태
@@ -105,7 +104,7 @@ export default function AlertPage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Alert" description="사용자의 주의를 끌기 위한 콜아웃을 표시합니다." />
+        <ComponentExplain title="Alert" description="Displays a callout for user attention." />
         <ComponentContainer>
           <ComponentExample>
             {loading.default ? <Skeleton className="w-[500px] h-[54px] rounded-lg" /> : RenderedComponent1}
@@ -143,43 +142,43 @@ export default function AlertPage() {
 
       <ComponentPropsTable
         title="Alert"
-        description="경고 메시지나 정보 메시지를 표시하기 위한 Alert 컴포넌트의 속성들입니다."
+        description="The properties of the Alert component used to display warning or informational messages."
         props={[
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: 'Alert 컴포넌트의 추가적인 CSS 클래스를 지정합니다.',
+            description: 'Specifies additional CSS classes for the Alert component.',
           },
           {
             prop: 'title',
             type: 'string',
             default: '',
-            description: 'Alert의 제목을 지정합니다.',
+            description: 'Specifies the title of the Alert.',
           },
           {
             prop: 'description',
             type: 'string',
             default: '',
-            description: 'Alert에 표시될 메시지나 콘텐츠를 지정합니다.',
+            description: 'Specifies the message or content to be displayed in the Alert.',
           },
           {
             prop: 'btn',
             type: '() => void',
             default: '',
-            description: '버튼을 클릭했을 때 호출되는 함수입니다.',
+            description: 'The function that is called when the button is clicked.',
           },
           {
             prop: 'btnMsg',
             type: 'string',
             default: '',
-            description: '버튼에 표시될 메시지를 지정합니다.',
+            description: 'Specifies the message to be displayed on the button.',
           },
           {
             prop: 'icon',
             type: 'React.ReactNode',
             default: '',
-            description: 'Alert의 왼쪽에 표시될 아이콘을 지정합니다.',
+            description: 'Specifies the icon to be displayed on the left side of the Alert.',
           },
         ]}
       />

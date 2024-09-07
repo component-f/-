@@ -1,33 +1,99 @@
+'use client'
+
+import { useState } from 'react'
+import { Diamond, Copy, CopyCheck } from 'lucide-react'
 import { PATH } from '@/constants/path'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
-/**
- * 문서 메인 페이지 컴포넌트
- */
 export default function DocsPage() {
+  const [copied, setCopied] = useState(false)
+  const [code] = useState('npm install @component-factory/theme')
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code as string)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
   return (
     <>
-      <div className="flex flex-col space-y-1 w-[100px]">
-        <Link href={PATH.input}>input</Link>
-        <Link href={PATH.label}>label</Link>
-        <Link href={PATH.alert}>alert</Link>
-        <Link href={PATH.avatar}>avatar</Link>
-        <Link href={PATH.radio}>radio</Link>
-        <Link href={PATH.textarea}>textarea</Link>
-        <Link href={PATH.skeleton}>skeleton</Link>
-        <Link href={PATH.breadcrumb}>breadcrumb</Link>
-        <Link href={PATH.button}>button</Link>
-        <Link href={PATH.switch}>switch</Link>
-        <Link href={PATH.pagination}>pagination</Link>
-        <Link href={PATH.sheet}>sheet</Link>
-        <Link href={PATH.accordion}>accordion</Link>
-        <Link href={PATH.dropdown}>dropdown</Link>
-        <Link href={PATH.checkbox}>checkbox</Link>
-        <Link href={PATH.table}>table</Link>
-        <Link href={PATH.select}>select</Link>
-        <Link href={PATH.modal}>modal</Link>
-        <Link href={PATH.toast}>toast</Link>
+      <h2 className="text-2xl font-semibold tracking-tight mt-8">Introduction to Component Factory</h2>
+      <p className="leading-relaxed mt-2">
+        Unlock the power of beautifully crafted, reusable components with Component Factory. Fully customizable and
+        accessible, these components are designed to seamlessly integrate into your projects. And the best part? It's
+        available as an npm package, making it simple to install and use right away.
+      </p>
+
+      <h2 className="text-2xl font-semibold tracking-tight mt-6">What makes Component Factory different?</h2>
+      <p className="leading-relaxed mt-2">
+        Component Factory isn’t just a collection of examples to copy and paste. It's a full-fledged, installable
+        component library available on npm, meaning you can easily add it to your project with a simple install command
+      </p>
+
+      <h2 className="text-2xl font-semibold tracking-tight mt-6">Why choose Component Factory?</h2>
+      <ul className="list-disc list-inside space-y-2 text-gray-700 mt-2">
+        <li className="flex items-center">
+          <span className="mr-2 text-gray200">
+            <Diamond size={12} />
+          </span>
+          <span>Ready-to-use components: No need to reinvent the wheel. Simply install and start building.</span>
+        </li>
+        <li className="flex items-center">
+          <span className="mr-2 text-gray200">
+            <Diamond size={12} />
+          </span>
+          <span>Highly customizable: Tailor each component to fit your design system and project needs.</span>
+        </li>
+        <li className="flex items-center">
+          <span className="mr-2 text-gray200">
+            <Diamond size={12} />
+          </span>
+          <span>
+            Accessible: All components are built with best practices to ensure a great experience for all users.
+          </span>
+        </li>
+        <li className="flex items-center">
+          <span className="mr-2 text-gray200">
+            <Diamond size={12} />
+          </span>
+          <span>Easy to integrate: Install with npm, import the components you need, and start coding.</span>
+        </li>
+      </ul>
+
+      <p className="leading-relaxed mt-2">
+        Component Factory empowers you to create your own unique applications without sacrificing flexibility or ease of
+        use. Whether you’re building a prototype or scaling a production app, Component Factory provides the foundation
+        you need—so you can focus on what matters most.
+      </p>
+
+      <h2 className="text-2xl font-semibold tracking-tight mt-6">Get started today</h2>
+      <p className="mt-2">Install Component Factory via npm and start building:</p>
+      <div className="flex items-center justify-between bg-foreground text-background py-2 px-4 rounded-lg w-[500px] mt-2">
+        {code}
+
+        <div className="flex items-center justify-center w-[20px]">
+          {copied ? (
+            <CopyCheck size={20} className="text-[#0090FF]" />
+          ) : (
+            <Copy size={15} onClick={handleCopy} className="hover:text-[#0090FF] cursor-pointer" />
+          )}
+        </div>
       </div>
+
+      <p className="leading-relaxed mt-2">
+        Component Factory is here to streamline your development process, offering components that are yours to
+        customize, expand, and own.
+      </p>
+
+      <h2 className="text-2xl font-semibold tracking-tight mt-6">Next Steps</h2>
+      <p className="leading-relaxed mt-2">
+        Ready to dive deeper? Check out the full documentation to learn more about how to get the most out of Component
+        Factory, including customization options, advanced usage, and tips for building your own component library.
+      </p>
+
+      <Button variant="contained" className=" mt-4">
+        <Link href={PATH.installation}>Go to install</Link>
+      </Button>
     </>
   )
 }

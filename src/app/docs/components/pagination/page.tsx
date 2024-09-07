@@ -91,7 +91,7 @@ export default function PaginationPage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Pagination" description="페이지 탐색, 다음 및 이전 링크가 있는 페이지 번호 매기기." />
+        <ComponentExplain title="Pagination" description="Pagination with page navigation, next and previous links." />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
@@ -120,55 +120,55 @@ export default function PaginationPage() {
             prop: 'currentPage',
             type: 'number',
             default: '',
-            description: '현재 선택된 페이지 번호를 설정합니다.',
+            description: 'Sets the currently selected page number.',
           },
           {
             prop: 'totalPages',
             type: 'number',
             default: '',
-            description: '총 페이지 수를 설정합니다.',
+            description: 'Specifies the total number of pages.',
           },
           {
             prop: 'showingPages',
             type: 'number',
             default: '',
-            description: '한 번에 표시할 페이지 번호의 수를 설정합니다.',
+            description: 'Determines the number of page numbers to display at once.',
           },
           {
             prop: 'onPageChange',
             type: '(page: number) => void',
             default: '',
-            description: '페이지 번호가 변경될 때 호출되는 콜백 함수입니다.',
+            description: 'Callback function called when the page number is changed.',
           },
           {
             prop: 'currentPageStyle',
             type: 'string',
             default: 'border border-border rounded-lg',
-            description: '현재 선택된 페이지의 스타일을 설정합니다.',
+            description: 'Defines the style for the currently selected page.',
           },
           {
             prop: 'startIcon',
             type: 'React.ReactNode',
             default: '<ChevronsLeft size={20} />',
-            description: '첫 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: 'Specifies the icon used for the button that moves to the first page.',
           },
           {
             prop: 'prevIcon',
             type: 'React.ReactNode',
             default: '<ChevronLeft size={20} /> Previous',
-            description: '이전 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: 'Specifies the icon used for the button that moves to the previous page.',
           },
           {
             prop: 'nextIcon',
             type: 'React.ReactNode',
             default: 'Next <ChevronRight size={20} />',
-            description: '다음 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: 'Specifies the icon used for the button that moves to the next page.',
           },
           {
             prop: 'lastIcon',
             type: 'React.ReactNode',
             default: '<ChevronsRight size={20} />',
-            description: '마지막 페이지로 이동하는 버튼에 사용되는 아이콘을 설정합니다.',
+            description: 'Specifies the icon used for the button that moves to the last page.',
           },
         ]}
       />

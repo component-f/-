@@ -12,6 +12,7 @@ export const PATH = Object.freeze({
    * 문서 페이지
    */
   docs: '/docs' as const,
+  installation: '/docs/installation' as const,
 
   /**
    * 컴포넌트 페이지
