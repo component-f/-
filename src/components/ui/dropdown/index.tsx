@@ -9,7 +9,7 @@ type TDropdownMenu = {
   toggleStatusBar?: (event: React.MouseEvent) => void
   href?: string
   menuRef?: React.RefObject<HTMLDivElement>
-  buttonRef?: React.RefObject<HTMLDivElement>
+  buttonRef?: React.RefObject<HTMLDivElement> // trigger에 button태그 or 버튼 컴포넌트가 오게 될 경우 에러 발생 방지를 위해 HTMLDivElement 사용함.
 }
 
 export function DropdownMenu({ children }: TDropdownMenu) {
