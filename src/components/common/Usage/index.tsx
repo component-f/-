@@ -44,20 +44,22 @@ export default function Usage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Editor
-          value={code}
-          onValueChange={() => {}}
-          highlight={(code) => Prism.highlight(code, Prism.languages.jsx, 'jsx')}
-          padding={10}
-          style={{
-            fontSize: 13,
-            backgroundColor: 'rgb(23, 26, 28)',
-            color: '#ffabed',
-            borderRadius: '12px',
-            padding: '0px 0px 0px 10px',
-            width: '500px',
-          }}
-        />
+        <div className="rounded-xl border border-border">
+          <Editor
+            value={code}
+            onValueChange={() => {}}
+            highlight={(code) => Prism.highlight(code, Prism.languages.jsx, 'jsx')}
+            padding={10}
+            style={{
+              fontSize: 13,
+              backgroundColor: 'rgb(23, 26, 28)',
+              color: '#ffabed',
+              borderRadius: '12px',
+              padding: '0px 0px 0px 10px',
+              width: '500px',
+            }}
+          />
+        </div>
       </CardContent>
       <CardFooter>
         <a
