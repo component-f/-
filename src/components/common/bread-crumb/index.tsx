@@ -11,16 +11,34 @@ import { usePathname } from 'next/navigation'
 
 export default function BreadCrumb() {
   const pathname = usePathname()
-  const componentName = pathname.split('/')[3]
+  const pathSegments = pathname.split('/')
+
+  // 첫 문자 대문자로 변환
+  const formatName = (name: string | undefined) => (name ? name[0].toUpperCase() + name.slice(1) : null)
+
+  const formattedGetStartedName = formatName(pathSegments[2])
+  const formattedComponentName = formatName(pathSegments[3])
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbLink href="/">Home</BreadcrumbLink>
         <BreadcrumbSeparator />
-        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        <BreadcrumbSeparator />
-        <BreadcrumbText>{componentName}</BreadcrumbText>
+
+        {formattedComponentName ? (
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        ) : pathname === '/docs' ? (
+          <BreadcrumbText>Introduction</BreadcrumbText>
+        ) : (
+          <BreadcrumbText>{formattedGetStartedName}</BreadcrumbText>
+        )}
+
+        {formattedComponentName && (
+          <>
+            <BreadcrumbSeparator />
+            <BreadcrumbText>{formattedComponentName}</BreadcrumbText>
+          </>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   )
