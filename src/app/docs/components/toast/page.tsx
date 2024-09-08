@@ -12,7 +12,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import Editor from 'react-simple-code-editor'
 import { highlight, languages } from 'prismjs'
 /**

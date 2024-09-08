@@ -13,7 +13,7 @@ import {
 } from '@/components/common/component'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 /**
  * Label 컴포넌트 문서 페이지 컴포넌트

@@ -16,7 +16,7 @@ import {
   ComponentExplain,
   ComponentPropsTable,
 } from '@/components/common/component'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Radio } from '@/components/ui/radio'
 import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 

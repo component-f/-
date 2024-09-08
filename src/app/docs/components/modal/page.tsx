@@ -22,7 +22,7 @@ import {
   ModalTitle,
   ModalDescription,
 } from '@/components/ui/modal'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 /**
  * Modal 컴포넌트에 대한 문서 페이지 컴포넌트

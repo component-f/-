@@ -73,7 +73,7 @@ const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataT
           {data.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`hover:bg-gray-50 ${isRowSelected(row) ? 'bg-gray-100' : ''}`} // 선택된 행의 배경 색상을 변경
+              className={`hover:bg-gray-50 ${isRowSelected(row) ? 'bg-blue-100' : ''}`} // 선택된 행의 배경 색상을 변경
             >
               <td className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300">
                 <div className="flex justify-start">

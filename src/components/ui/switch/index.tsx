@@ -71,4 +71,4 @@ const Switch: React.FC<SwitchProps> = ({ className, id, checked, defaultChecked,
   )
 }
 
-export default Switch
+export { Switch }
