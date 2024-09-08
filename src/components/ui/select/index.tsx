@@ -4,6 +4,7 @@ interface Option {
   label: string
   value: string
   description?: string // 설명 필드 추가
+  hidden?: boolean // 숨김 필드 추가
 }
 
 interface SelectProps {
@@ -14,7 +15,9 @@ interface SelectProps {
 }
 
 const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSelected }) => {
-  const [selectedValue, setSelectedValue] = useState(defaultSelected || options[0].value)
+  const [selectedValue, setSelectedValue] = useState(
+    defaultSelected || options.find((option) => !option.hidden)?.value || '',
+  )
   const [isOpen, setIsOpen] = useState(false)
   const [dropdownWidth, setDropdownWidth] = useState<number | undefined>(undefined)
   const selectRef = useRef<HTMLDivElement>(null) // 전체 Select 컴포넌트를 참조
@@ -75,30 +78,34 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
           style={{ minWidth: dropdownWidth, right: 0 }} // 드롭다운을 Select 박스 오른쪽 끝에 맞춤
         >
           <ul className="py-1 text-sm">
-            {options.map((option) => (
-              <li
-                key={option.value}
-                className={`cursor-pointer px-4 py-2 ${
-                  option.value === selectedValue ? 'bg-gray-200' : ''
-                } hover:bg-accent hover:text-accent-foreground`}
-                onClick={() => handleSelect(option.value)} // 옵션 클릭 시 드롭다운이 닫히도록 설정
-              >
-                <div className="font-medium">{option.label}</div> {/* 메인 라벨 */}
-                {option.description && <div className="text-xs text-gray-500">{option.description}</div>} {/* 설명 */}
-              </li>
-            ))}
+            {options
+              .filter((option) => !option.hidden) // 숨겨진 옵션 제외
+              .map((option) => (
+                <li
+                  key={option.value}
+                  className={`cursor-pointer px-4 py-2 ${
+                    option.value === selectedValue ? 'bg-gray-200' : ''
+                  } hover:bg-accent hover:text-accent-foreground`}
+                  onClick={() => handleSelect(option.value)} // 옵션 클릭 시 드롭다운이 닫히도록 설정
+                >
+                  <div className="font-medium">{option.label}</div> {/* 메인 라벨 */}
+                  {option.description && <div className="text-xs text-gray-500">{option.description}</div>} {/* 설명 */}
+                </li>
+              ))}
           </ul>
         </div>
       )}
 
       {/* 텍스트 길이를 측정하기 위한 숨겨진 요소 */}
       <div ref={textMeasureRef} className="absolute invisible z-[-1] whitespace-nowrap">
-        {options.map((option) => (
-          <div key={option.value}>
-            <div className="font-medium">{option.label}</div>
-            {option.description && <div className="text-xs text-gray-500">{option.description}</div>}
-          </div>
-        ))}
+        {options
+          .filter((option) => !option.hidden) // 숨겨진 옵션 제외
+          .map((option) => (
+            <div key={option.value}>
+              <div className="font-medium">{option.label}</div>
+              {option.description && <div className="text-xs text-gray-500">{option.description}</div>}
+            </div>
+          ))}
       </div>
     </div>
   )

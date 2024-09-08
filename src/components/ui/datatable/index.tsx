@@ -1,73 +1,101 @@
-import React, { useState } from 'react'
-import CheckBox from '@/components/ui/checkbox' // CheckBox 컴포넌트 임포트
+import React, { useState, useEffect } from 'react'
+import { CheckBox } from '@/components/ui/checkbox' // CheckBox 컴포넌트 임포트
+
+type DataTableColumn<T> = {
+  header: string
+  accessor: keyof T
+  visible?: boolean
+}
 
 type DataTableProps<T> = {
   data: T[]
-  columns: {
-    header: string
-    accessor: keyof T
-  }[]
+  columns: DataTableColumn<T>[]
   className?: string
+  onSelectedRowsChange?: (selectedRows: T[]) => void // 선택된 행을 부모에게 전달하는 콜백
 }
 
-const DataTable = <T,>({ data, columns, className }: DataTableProps<T>) => {
-  const [selectedRows, setSelectedRows] = useState<number[]>([])
-  const [selectAll, setSelectAll] = useState(false)
+const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataTableProps<T>) => {
+  const [selectedRows, setSelectedRows] = useState<T[]>([])
 
-  const handleSelectRow = (index: number) => {
-    if (selectedRows.includes(index)) {
-      setSelectedRows(selectedRows.filter((row) => row !== index))
-    } else {
-      setSelectedRows([...selectedRows, index])
+  useEffect(() => {
+    if (onSelectedRowsChange) {
+      onSelectedRowsChange(selectedRows)
     }
+  }, [selectedRows, onSelectedRowsChange])
+
+  const handleSelectRow = (row: T) => {
+    const rowString = JSON.stringify(row)
+    setSelectedRows((prevSelectedRows) =>
+      prevSelectedRows.some((r) => JSON.stringify(r) === rowString)
+        ? prevSelectedRows.filter((r) => JSON.stringify(r) !== rowString)
+        : [...prevSelectedRows, row],
+    )
   }
 
   const handleSelectAll = () => {
-    if (selectAll) {
+    if (selectedRows.length === data.length) {
       setSelectedRows([])
-      setSelectAll(false)
     } else {
-      setSelectedRows(data.map((_, index) => index))
-      setSelectAll(true)
+      setSelectedRows(data)
     }
+  }
+
+  const isRowSelected = (row: T) => {
+    return selectedRows.some((r) => JSON.stringify(r) === JSON.stringify(row))
   }
 
   return (
     <div className={`overflow-x-auto ${className}`}>
-      <table className="min-w-full border border-border">
+      <table className="min-w-full border border-gray-300">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b bg-gray-200 text-center text-sm font-semibold">
-              <div className="flex justify-center">
-                <CheckBox label="" name="selectAll" value="selectAll" checked={selectAll} onChange={handleSelectAll} />
+            <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+              <div className="flex justify-start">
+                <CheckBox
+                  label=""
+                  name="selectAll"
+                  value="selectAll"
+                  checked={selectedRows.length === data.length}
+                  onChange={handleSelectAll}
+                />
               </div>
             </th>
-            {columns.map((column) => (
-              <th key={column.header} className="py-2 px-4 border-b bg-gray-200 text-left text-sm font-semibold">
-                {column.header}
-              </th>
-            ))}
+            {columns
+              .filter((column) => column.visible !== false)
+              .map((column) => (
+                <th key={column.header} className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                  {column.header}
+                </th>
+              ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white">
           {data.map((row, rowIndex) => (
-            <tr key={rowIndex} className="hover:bg-gray-100">
-              <td className="py-2 px-4 border-b text-sm">
-                <div className="flex justify-center">
+            <tr
+              key={rowIndex}
+              className={`hover:bg-gray-50 ${isRowSelected(row) ? 'bg-gray-100' : ''}`} // 선택된 행의 배경 색상을 변경
+            >
+              <td className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300">
+                <div className="flex justify-start">
                   <CheckBox
                     label=""
                     name={`selectRow-${rowIndex}`}
                     value={`${rowIndex}`}
-                    checked={selectedRows.includes(rowIndex)}
-                    onChange={() => handleSelectRow(rowIndex)}
+                    checked={isRowSelected(row)}
+                    onChange={() => handleSelectRow(row)}
                   />
                 </div>
               </td>
-              {columns.map((column) => (
-                <td key={column.accessor as string} className="py-2 px-4 border-b text-sm">
-                  {row[column.accessor] as string | number | React.ReactNode}
-                </td>
-              ))}
+              {columns
+                .filter((column) => column.visible !== false)
+                .map((column) => (
+                  <td
+                    key={column.accessor as string}
+                    className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300"
+                  >
+                    {String(row[column.accessor])}
+                  </td>
+                ))}
             </tr>
           ))}
         </tbody>
