@@ -1,107 +1,98 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { CheckBox } from '@/components/ui/checkbox' // CheckBox 컴포넌트 임포트
-
-type DataTableColumn<T> = {
-  header: string
-  accessor: keyof T
-  visible?: boolean
-}
 
 type DataTableProps<T> = {
   data: T[]
-  columns: DataTableColumn<T>[]
+  columns: {
+    header: string
+    accessor: keyof T
+  }[]
   className?: string
-  onSelectedRowsChange?: (selectedRows: T[]) => void // 선택된 행을 부모에게 전달하는 콜백
 }
 
-const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataTableProps<T>) => {
-  const [selectedRows, setSelectedRows] = useState<T[]>([])
+const DataTable = <T,>({ data, columns, className }: DataTableProps<T>) => {
+  const [selectedRows, setSelectedRows] = useState<number[]>([])
+  const [selectAll, setSelectAll] = useState(false)
 
-  useEffect(() => {
-    if (onSelectedRowsChange) {
-      onSelectedRowsChange(selectedRows)
+  const handleSelectRow = (index: number) => {
+    if (selectedRows.includes(index)) {
+      setSelectedRows(selectedRows.filter((row) => row !== index))
+    } else {
+      setSelectedRows([...selectedRows, index])
     }
-  }, [selectedRows, onSelectedRowsChange])
-
-  const handleSelectRow = (row: T) => {
-    const rowString = JSON.stringify(row)
-    setSelectedRows((prevSelectedRows) =>
-      prevSelectedRows.some((r) => JSON.stringify(r) === rowString)
-        ? prevSelectedRows.filter((r) => JSON.stringify(r) !== rowString)
-        : [...prevSelectedRows, row],
-    )
   }
 
   const handleSelectAll = () => {
-    if (selectedRows.length === data.length) {
+    if (selectAll) {
       setSelectedRows([])
+      setSelectAll(false)
     } else {
-      setSelectedRows(data)
+      setSelectedRows(data.map((_, index) => index))
+      setSelectAll(true)
     }
   }
 
-  const isRowSelected = (row: T) => {
-    return selectedRows.some((r) => JSON.stringify(r) === JSON.stringify(row))
-  }
-
   return (
-    <div className={`overflow-x-auto ${className}`}>
-      <table className="min-w-full border border-gray-300">
+    <div className={`overflow-x-auto rounded-lg border ${className}`}>
+      <table className="min-w-full border-collapse">
         <thead>
           <tr>
-            <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
-              <div className="flex justify-start">
-                <CheckBox
-                  label=""
-                  name="selectAll"
-                  value="selectAll"
-                  checked={selectedRows.length === data.length}
-                  onChange={handleSelectAll}
-                />
+            <th className="py-2 px-4 border-b bg-accent text-accent-foreground text-center text-sm font-semibold rounded-tl-lg">
+              <div className="flex justify-center">
+                <CheckBox label="" name="selectAll" value="selectAll" checked={selectAll} onChange={handleSelectAll} />
               </div>
             </th>
-            {columns
-              .filter((column) => column.visible !== false)
-              .map((column) => (
-                <th key={column.header} className="py-3 px-4 text-left text-sm font-medium text-gray-500">
-                  {column.header}
-                </th>
-              ))}
+            {columns.map((column, index) => (
+              <th
+                key={column.header}
+                className={`py-2 px-4 border-b bg-accent text-accent-foreground text-left text-sm font-semibold ${
+                  index === columns.length - 1 ? 'rounded-tr-lg' : ''
+                }`}
+              >
+                {column.header}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody className="bg-white">
-          {data.map((row, rowIndex) => (
-            <tr
-              key={rowIndex}
-              className={`hover:bg-gray-50 ${isRowSelected(row) ? 'bg-blue-100' : ''}`} // 선택된 행의 배경 색상을 변경
-            >
-              <td className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300">
-                <div className="flex justify-start">
-                  <CheckBox
-                    label=""
-                    name={`selectRow-${rowIndex}`}
-                    value={`${rowIndex}`}
-                    checked={isRowSelected(row)}
-                    onChange={() => handleSelectRow(row)}
-                  />
-                </div>
-              </td>
-              {columns
-                .filter((column) => column.visible !== false)
-                .map((column) => (
+        <tbody>
+          {data.map((row, rowIndex) => {
+            const isLastRow = rowIndex === data.length - 1
+
+            return (
+              <tr
+                key={rowIndex}
+                className={`hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ${
+                  isLastRow ? '' : 'border-b'
+                }`}
+              >
+                <td className={`py-2 px-4 text-sm ${isLastRow ? 'rounded-bl-lg' : 'border-b'}`}>
+                  <div className="flex justify-center">
+                    <CheckBox
+                      label=""
+                      name={`selectRow-${rowIndex}`}
+                      value={`${rowIndex}`}
+                      checked={selectedRows.includes(rowIndex)}
+                      onChange={() => handleSelectRow(rowIndex)}
+                    />
+                  </div>
+                </td>
+                {columns.map((column, cellIndex) => (
                   <td
                     key={column.accessor as string}
-                    className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300"
+                    className={`py-2 px-4 text-sm ${
+                      isLastRow && cellIndex === columns.length - 1 ? 'rounded-br-lg' : isLastRow ? '' : 'border-b'
+                    }`}
                   >
-                    {String(row[column.accessor])}
+                    {row[column.accessor] as string | number | React.ReactNode}
                   </td>
                 ))}
-            </tr>
-          ))}
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>
   )
 }
 
-export default DataTable
+export { DataTable }
