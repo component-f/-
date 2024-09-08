@@ -69,7 +69,7 @@ export default function DocsPage() {
       <h2 className="text-2xl font-semibold tracking-tight mt-6">Get started today</h2>
       <p className="mt-2">Install Component Factory via npm and start building:</p>
       <div className="flex items-center justify-between bg-foreground text-background py-2 px-4 rounded-lg w-[500px] mt-2">
-        {code}
+        <code>{code}</code>
 
         <div className="flex items-center justify-center w-[20px]">
           {copied ? (

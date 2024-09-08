@@ -6,6 +6,7 @@ import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-jsx'
 import { highlight, languages } from 'prismjs'
 import { Copy, CopyCheck, Zap } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 type TComponents = {
   children?: React.ReactNode
@@ -50,6 +51,7 @@ export function ComponentExample({ children }: TComponents) {
 export function ComponentExampleCode({ code, setCode }: { code: string; setCode: Dispatch<SetStateAction<string>> }) {
   const [copied, setCopied] = useState(false)
   const [expend, setExpend] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     Prism.highlightAll()
@@ -86,12 +88,17 @@ export function ComponentExampleCode({ code, setCode }: { code: string; setCode:
           </div>
         </div>
       </div>
-      <div className="w-full rounded-b-xl bg-foreground overflow-auto hover:ring-4 ring-[#0090FF]">
+      <div
+        className={`w-full rounded-b-xl ${theme === 'dark' && 'border border-border'} overflow-auto hover:ring-4 ring-[#0090ff]`}
+      >
         <Editor
           value={code}
           onValueChange={(code) => setCode(code)}
           highlight={(code) => highlight(code, languages.jsx, 'jsx')}
           padding={10}
+          style={{
+            backgroundColor: '#212121',
+          }}
           className="text-md text-white"
         />
       </div>
