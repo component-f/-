@@ -71,7 +71,7 @@ export default function SelectPage() {
       <Component>
         <ComponentExplain
           title="Select"
-          description="사용자가 주어진 옵션 중 하나를 선택할 수 있는 드롭다운 선택 인터페이스 요소입니다."
+          description="A dropdown selection interface element that allows users to choose one option from a given set."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -89,31 +89,32 @@ export default function SelectPage() {
 
       <ComponentPropsTable
         title="Select"
-        description="선택 컴포넌트의 속성들입니다."
+        description="The properties of the Select component."
         props={[
           {
             prop: 'options',
             type: '{ label: string, value: string }[]',
             default: '[]',
-            description: '드롭다운에서 표시할 옵션 목록입니다.',
+            description: 'The list of options to display in the dropdown.',
           },
           {
             prop: 'onSelect',
             type: '(value: string) => void',
             default: 'undefined',
-            description: '선택된 값이 변경될 때 호출되는 콜백 함수입니다.',
+            description: 'Callback function called when the selected value changes.',
           },
           {
             prop: 'className',
             type: 'string',
             default: 'undefined',
-            description: '선택 컴포넌트의 추가 CSS 클래스를 지정합니다.',
+            description: 'Specifies additional CSS classes for the Select component.',
           },
           {
             prop: 'defaultSelected',
             type: 'string',
-            default: '첫 번째 옵션의 값',
-            description: '컴포넌트가 처음 렌더링될 때 기본적으로 선택된 옵션의 값을 설정합니다.',
+            default: 'Value of the first option',
+            description:
+              'Sets the value of the option that is selected by default when the component is first rendered.',
           },
         ]}
       />

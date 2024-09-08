@@ -190,7 +190,7 @@ export default function CheckBoxPage() {
       <Component>
         <ComponentExplain
           title="Checkbox"
-          description="사용자가 선택하거나 해제하여 특정 옵션을 활성화하거나 비활성화할 수 있는 상호작용 가능한 요소입니다."
+          description="An interactive element that allows users to select or deselect an option to enable or disable a specific setting."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -199,7 +199,7 @@ export default function CheckBoxPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="가로 정렬" />
+        <ComponentExplain variant="Horizontal Alignment" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
@@ -207,7 +207,7 @@ export default function CheckBoxPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="checked & disabled" />
+        <ComponentExplain variant="Checked & Disabled" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent3}</ComponentExample>
           <ComponentExampleCode code={code3} setCode={setCode3} />
@@ -216,49 +216,49 @@ export default function CheckBoxPage() {
 
       <ComponentPropsTable
         title="Checkbox"
-        description="라디오 버튼의 체크나 그룹 정보를 표시하기 위한 Radio 컴포넌트의 속성들입니다."
+        description="The properties of the Radio component used to display the check state or group information of a radio button."
         props={[
           {
             prop: 'label',
             type: 'string',
             default: 'null',
-            description: 'Checkbox 컴포넌트 옆에 표시되는 텍스트입니다.',
+            description: 'The text displayed next to the Checkbox component.',
           },
           {
             prop: 'name',
             type: 'string',
             default: 'null',
-            description: '체크박스의 그룹화 및 식별에 사용됩니다.',
+            description: 'Used for grouping and identifying the checkbox.',
           },
           {
             prop: 'value',
             type: 'string',
             default: 'null',
-            description: '체크박스의 값입니다.',
+            description: 'The value of the checkbox.',
           },
           {
             prop: `checked`,
             type: `boolean`,
             default: `false`,
-            description: '체크박스의 체크 상태를 나타내며, 상태를 제어합니다.',
+            description: 'Indicates the checked state of the checkbox, controlling its state.',
           },
           {
             prop: `defaultChecked`,
             type: `boolean`,
             default: `false`,
-            description: '체크박스의 초기 체크 상태를 제어합니다.',
+            description: 'Controls the initial checked state of the checkbox.',
           },
           {
             prop: 'onChange',
             type: '(event: React.ChangeEvent<HTMLInputElement>) => void',
             default: 'undefined',
-            description: '체크박스 상태가 변경될 때 호출되는 콜백 함수입니다.',
+            description: 'Callback function called when the checkbox state changes.',
           },
           {
             prop: 'disabled',
             type: 'boolean',
             default: 'false',
-            description: '체크박스를 비활성화할지 여부를 결정합니다.',
+            description: 'Determines whether the checkbox is disabled.',
           },
         ]}
       />

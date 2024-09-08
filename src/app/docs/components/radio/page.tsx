@@ -161,7 +161,7 @@ export default function RadioPage() {
       <Component>
         <ComponentExplain
           title="Radio"
-          description="사용자가 주어진 옵션 중 하나만 선택할 수 있도록 하는 단일 선택 인터페이스 요소입니다."
+          description="A single-selection interface element that allows users to choose only one option from a given set."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -170,7 +170,7 @@ export default function RadioPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="세로 정렬" />
+        <ComponentExplain variant="Vertical Alignment" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
           <ComponentExampleCode code={code2} setCode={setCode2} />
@@ -195,49 +195,49 @@ export default function RadioPage() {
 
       <ComponentPropsTable
         title="Radio"
-        description="라디오 버튼의 체크나 그룹 정보를 표시하기 위한 Radio 컴포넌트의 속성들입니다."
+        description="The properties of the Radio component used to display the check state or group information of a radio button."
         props={[
           {
             prop: 'className',
             type: 'string',
             default: 'null',
-            description: 'Radio 컴포넌트의 CSS 스타일을 지정할 수 있습니다.',
+            description: 'Specifies the CSS styles for the Radio component.',
           },
           {
             prop: 'label',
             type: 'string',
             default: 'null',
-            description: '라디오 버튼 옆에 표시될 텍스트입니다.',
+            description: 'The text displayed next to the radio button.',
           },
           {
             prop: 'name',
             type: 'string',
             default: 'null',
-            description: '라디오 버튼의 그룹 이름입니다.',
+            description: 'The group name of the radio button.',
           },
           {
             prop: 'value',
             type: 'string',
             default: 'null',
-            description: '라디오 버튼의 값입니다.',
+            description: 'The value of the radio button.',
           },
           {
             prop: 'onChange',
             type: '(event: React.ChangeEvent<HTMLInputElement>) => void',
             default: 'undefined',
-            description: '라디오 버튼의 선택 상자가 변경될 때 호출되는 콜백 함수입니다.',
+            description: 'Callback function called when the selection box of the radio button changes.',
           },
           {
             prop: 'defaultChecked',
             type: 'boolean',
             default: 'false',
-            description: '컴포넌트가 처음 렌더링될 때 기본적으로 선택된 상태로 표시할지를 결정합니다.',
+            description: 'Determines whether the component should be initially rendered in a selected state.',
           },
           {
             prop: 'disabled',
             type: 'boolean',
             default: 'false',
-            description: '라디오 버튼을 비활성화할지 여부를 결정합니다.',
+            description: 'Determines whether the radio button is disabled.',
           },
         ]}
       />
