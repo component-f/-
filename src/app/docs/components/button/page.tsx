@@ -125,7 +125,7 @@ export default function Buttonpage() {
       <Component>
         <ComponentExplain
           title="Button"
-          description="사용자는 단 한 번의 탭으로 작업을 수행하고 선택을 할 수 있습니다."
+          description="Buttons allow users to take actions, and make choices, with a single tap."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -167,37 +167,37 @@ export default function Buttonpage() {
 
       <ComponentPropsTable
         title="Button"
-        description="사용자가 상호작용할 수 있는 버튼 컴포넌트의 속성입니다."
+        description="the properties of the button component that the user can interact with."
         props={[
           {
             prop: 'variant',
             type: `'text' | 'contained' | 'outlined'`,
             default: `'text'`,
-            description: '버튼의 스타일 변형을 지정합니다.',
+            description: 'Specifies the style variant for the button.',
           },
           {
             prop: 'startIcon',
             type: 'React.ReactNode',
             default: '',
-            description: '버튼의 시작 부분에 표시할 아이콘입니다.',
+            description: 'The icon to display at the beginning of the button.',
           },
           {
             prop: 'endIcon',
             type: 'React.ReactNode',
             default: '',
-            description: '버튼의 끝 부분에 표시할 아이콘입니다.',
+            description: 'The icon to display at the end of the button.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '버튼 내부에 표시될 텍스트나 요소를 포함합니다.',
+            description: 'Contains text or elements that will be displayed inside the button.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '추가적인 CSS 클래스를 지정하여 버튼의 스타일을 커스터마이즈합니다.',
+            description: 'CSS class for additional styling.',
           },
         ]}
       />

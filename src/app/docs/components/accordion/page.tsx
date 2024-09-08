@@ -128,7 +128,10 @@ export default function AccordionPage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Accordion" description="페이지에서 관련 콘텐츠 섹션을 표시하거나 숨길 수 있습니다." />
+        <ComponentExplain
+          title="Accordion"
+          description="The Accordion component lets users show and hide sections of related content on a page."
+        />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={code1} setCode={setCode1} />
@@ -161,118 +164,118 @@ export default function AccordionPage() {
 
       <ComponentPropsTable
         title="Accordion"
-        description="페이지에서 관련 콘텐츠 섹션을 표시하거나 숨길 수 있는 아코디언 컴포넌트의 속성입니다."
+        description="the properties of the accordion component that allows you to show or hide related content sections on the page."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'AccordionItem 컴포넌트를 자식 요소로 포함합니다.',
+            description: 'Includes the AccordionItem component as a child element.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '아코디언에 추가적인 스타일을 지정하기 위한 CSS 클래스입니다.',
+            description: 'a CSS class for specifying additional styles for the accordion.',
           },
           {
             prop: 'singleOpen',
             type: 'boolean',
             default: 'false',
-            description: '단일 아코디언 아이템만 열릴 수 있도록 설정합니다.',
+            description: 'Sets that only a single accordion item can be opened.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="AccordionItem"
-        description="아코디언 내부의 개별 아이템을 구성하는 컴포넌트의 속성입니다."
+        description="the properties of the components that make up the individual items inside the accordion"
         props={[
           {
             prop: 'value',
             type: 'string',
             default: '',
-            description: '각 아코디언 아이템을 식별하기 위한 고유한 값입니다.',
+            description: 'A unique value to identify each accordion item.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'AccordionSummary와 AccordionDetails 컴포넌트를 자식 요소로 포함합니다.',
+            description: 'Includes the AccordionSummary and AccordionDetails components as child elements.',
           },
           {
             prop: 'isOpen',
             type: 'boolean',
             default: 'false',
-            description: '아이템이 열려 있는지를 나타냅니다.',
+            description: 'Indicates whether the item is open.',
           },
           {
             prop: 'onToggle',
             type: '() => void',
             default: '',
-            description: '아이템의 열림 또는 닫힘을 토글하는 함수입니다.',
+            description: 'This function toggles the opening or closing of an item.',
           },
           {
             prop: 'defaultExpanded',
             type: 'boolean',
             default: 'false',
-            description: '컴포넌트가 기본적으로 확장될지 여부를 설정합니다.',
+            description: 'Sets whether the component will be expanded by default.',
           },
           {
             prop: 'disable',
             type: 'boolean',
             default: 'false',
-            description: '아이템이 비활성화 상태인지 여부를 설정합니다.',
+            description: 'Sets whether the item is inactive.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="AccordionSummary"
-        description="아코디언 아이템의 제목과 확장 아이콘을 포함하는 컴포넌트의 속성입니다."
+        description="the properties of the component, including the title and expansion icon of the accordion item."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '아코디언 아이템의 제목이나 요약을 표시할 콘텐츠를 포함합니다.',
+            description: 'Contains content to display the title or summary of the accordion item.',
           },
           {
             prop: 'isOpen',
             type: 'boolean',
             default: 'false',
-            description: '아코디언 아이템이 열려 있는지를 나타냅니다.',
+            description: 'Indicates whether the accordion item is open.',
           },
           {
             prop: 'onToggle',
             type: '() => void',
             default: '',
-            description: '아코디언 아이템의 열림 또는 닫힘을 토글하는 함수입니다.',
+            description: 'A function toggles the open or closed status of an accordion item.',
           },
           {
             prop: 'expandIcon',
             type: 'ReactNode',
             default: '<ChevronDown />',
-            description: '아코디언 요약 부분에 표시될 확장 아이콘을 지정합니다.',
+            description: 'Specifies the expansion icon to be displayed in the accordion summary section.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="AccordionDetails"
-        description="아코디언 아이템의 세부 내용을 표시하는 컴포넌트의 속성입니다."
+        description="the properties of the component that display the details of the accordion item."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '아코디언 아이템의 세부 내용을 포함합니다.',
+            description: 'Contains details of the accordion item.',
           },
           {
             prop: 'isOpen',
             type: 'boolean',
             default: 'false',
-            description: '아코디언 아이템이 열려 있는지를 나타냅니다.',
+            description: 'Indicates whether the accordion item is open.',
           },
         ]}
       />

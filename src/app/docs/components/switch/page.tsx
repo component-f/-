@@ -92,7 +92,7 @@ export default function Switchpage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Switch" description="단일 설정의 상태를 켜거나 끕니다." />
+        <ComponentExplain title="Switch" description="Switches toggle the state of a single setting on or off." />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={code1} setCode={setCode1} />
@@ -128,37 +128,37 @@ export default function Switchpage() {
 
       <ComponentPropsTable
         title="Switch"
-        description="사용자가 단일 설정을 켜거나 끌 수 있는 스위치 컴포넌트의 속성입니다."
+        description="the properties of a switch component that allow the user to turn a single setting on or off."
         props={[
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '스위치의 스타일을 커스터마이즈하기 위해 추가되는 CSS 클래스입니다.',
+            description: 'CSS class for additional styling.',
           },
           {
             prop: 'id',
             type: 'string',
             default: '',
-            description: '스위치와 레이블을 연결하기 위한 고유 식별자입니다.',
+            description: 'A unique identifier to associate a switch with a label.',
           },
           {
             prop: 'checked',
             type: 'boolean',
             default: 'false',
-            description: '스위치가 체크되어 있는지 여부를 제어합니다.',
+            description: 'Controls whether the switch is checked.',
           },
           {
             prop: 'defaultChecked',
             type: 'boolean',
             default: 'false',
-            description: '스위치의 초기 체크 상태를 설정합니다.',
+            description: 'Sets the initial check state of the switch.',
           },
           {
             prop: 'disabled',
             type: 'boolean',
             default: 'false',
-            description: '스위치가 비활성화되어 사용자 상호작용을 방지할지 여부를 설정합니다.',
+            description: 'Sets whether the switch is disabled, preventing user interaction.',
           },
         ]}
       />
