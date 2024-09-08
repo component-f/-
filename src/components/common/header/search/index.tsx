@@ -205,9 +205,9 @@ const Search = () => {
       <Modal>
         <ModalTrigger>
           <Button
-            className="rounded-2xl h-8 flex items-center p-4 bg-accent text-primary-active "
+            className="rounded-2xl h-8 flex items-center p-4 bg-muted  text-primary-active "
             onClick={handleOpen}
-            variant="contained"
+            variant="outlined"
           >
             <SearchIcon size={14} className="mb-[2px] mr-1 -ml-1" />
             <span>Search...</span>
