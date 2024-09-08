@@ -24,9 +24,9 @@ export default function DropdownPage() {
   const [showDefault, setShowDefault] = useState(false)
   const [showRadio, setShowRadio] = useState(false)
   const menuRef1 = useRef<HTMLDivElement>(null)
-  const buttonRef1 = useRef<HTMLButtonElement>(null)
+  const buttonRef1 = useRef<HTMLDivElement>(null)
   const menuRef2 = useRef<HTMLDivElement>(null)
-  const buttonRef2 = useRef<HTMLButtonElement>(null)
+  const buttonRef2 = useRef<HTMLDivElement>(null)
 
   const toggleStatusBar1 = () => {
     setShowDefault((prevState) => !prevState)
@@ -128,7 +128,7 @@ export default function DropdownPage() {
       <Component>
         <ComponentExplain
           title="Dropdown"
-          description="버튼을 눌러 동작이나 기능 세트와 같은 메뉴를 사용자에게 표시합니다."
+          description="Displays a menu to the user — such as a set of actions or functions — triggered by a button."
         />
         <ComponentContainer>
           <ComponentExample>{defaultComponent}</ComponentExample>
@@ -146,107 +146,108 @@ export default function DropdownPage() {
 
       <ComponentPropsTable
         title="DropdownMenu"
-        description="드롭다운 메뉴를 위한 컨테이너 컴포넌트입니다."
+        description="A container component for a dropdown menu."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '드롭다운 메뉴 내부의 컴포넌트를 포함합니다.',
+            description: 'Includes components inside the dropdown menu.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuTrigger"
-        description="드롭다운 메뉴를 여는 트리거 컴포넌트입니다."
+        description="A trigger component that opens the dropdown menu."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '드롭다운 메뉴를 열기 위한 버튼 또는 기타 트리거 요소를 포함합니다.',
+            description: 'Includes the button or other trigger elements to open the dropdown menu.',
           },
           {
             prop: 'toggleStatusBar',
             type: '(event: React.MouseEvent) => void',
             default: '',
-            description: '드롭다운 메뉴를 열기 위한 버튼 또는 기타 트리거 요소를 포함합니다.',
+            description: 'Includes the button or other trigger elements to open the dropdown menu.',
           },
           {
             prop: 'buttonRef',
             type: 'React.RefObject<HTMLButtonElement>',
             default: '',
-            description: '트리거 버튼에 대한 참조를 제공합니다.',
+            description: 'Provides a reference to the trigger button.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuContent"
-        description="드롭다운 메뉴의 콘텐츠를 표시하는 컴포넌트입니다."
+        description="A component that displays the content of the dropdown menu."
         props={[
           {
             prop: 'showStatusBar',
             type: 'boolean',
             default: 'false',
-            description: '드롭다운 메뉴가 열려 있는지 여부를 제어합니다.',
+            description: 'Controls whether the dropdown menu is open.',
           },
           {
             prop: 'toggleStatusBar',
             type: '(event: React.MouseEvent) => void',
             default: '',
-            description: '드롭다운 메뉴의 열림/닫힘 상태를 토글하는 함수입니다.',
+            description: 'A function that toggles the open/close state of the dropdown menu.',
           },
           {
             prop: 'menuRef',
             type: 'React.RefObject<HTMLDivElement>',
             default: '',
-            description: '메뉴 콘텐츠의 참조를 전달하는 데 사용됩니다.',
+            description: 'Used to pass a reference to the menu content.',
           },
           {
             prop: 'buttonRef',
             type: 'React.RefObject<HTMLButtonElement>',
             default: '',
-            description: '트리거 버튼의 참조를 전달하는 데 사용됩니다.',
+            description: 'Used to pass a reference to the trigger button.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '드롭다운 메뉴 내부에 표시될 내용을 포함합니다.',
+            description: 'Includes the content to be displayed inside the dropdown menu.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuLabel"
-        description="드롭다운 메뉴 항목의 레이블을 표시하는 컴포넌트입니다."
+        description="A component that displays the label for dropdown menu items."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '레이블 텍스트 또는 콘텐츠를 포함합니다.',
+            description: 'Includes the label text or content.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuItem"
-        description="드롭다운 메뉴의 각 항목을 나타내는 컴포넌트입니다."
+        description="A component that represents each item in the dropdown menu."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '드롭다운 메뉴 항목에 표시될 내용을 포함합니다.',
+            description: 'Includes the content to be displayed in the dropdown menu item.',
           },
           {
             prop: 'href',
             type: 'string',
             default: '',
-            description: '링크로 동작하도록 할 때 사용하는 URL입니다. 지정되지 않은 경우 단순한 텍스트로 표시됩니다.',
+            description:
+              'The URL used when the item behaves like a link. If not specified, it will be displayed as plain text.',
           },
         ]}
       />

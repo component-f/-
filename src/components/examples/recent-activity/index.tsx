@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Pagination } from '@/components/ui/pagination'
+import Divider from '@/components/ui/divider'
 
 type TData = {
   id: number
@@ -14,6 +16,10 @@ type TData = {
 }
 
 export default function RecentActivity() {
+  const [currentPage1, setCurrentPage1] = useState(1)
+  const handlePageChange1 = (page: number) => {
+    setCurrentPage1(page)
+  }
   const [data, setData] = useState<TData[]>([
     {
       id: 0,
@@ -85,32 +91,46 @@ export default function RecentActivity() {
       </CardHeader>
       <CardContent className="p-6 pt-0">
         <ul>
-          {data.map((item) => (
-            <li key={item.id} className="flex items-center w-full h-16 border-b">
-              {item.img ? (
-                <>
-                  <img src={item.img} className="rounded-lg w-10 h-10 object-cover" />
-                  <div className="flex flex-col ml-4">
-                    <span className="font-semibold text-sm">{item.name}</span>
-                    <p className="text-sm">{item.comment}</p>
-                  </div>
-                  <span className="text-sm ml-auto">{item.time}</span>
-                </>
-              ) : (
-                <>
-                  <Skeleton className="rounded-lg w-10 h-10" />
-                  <div className="pl-4 grid gap-1">
-                    <Skeleton className="rounded-md h-4 w-16" />
-                    <Skeleton className="rounded-md h-4 w-80" />
-                  </div>
-                  <div className="ml-auto">
-                    <Skeleton className="rounded-md h-4 w-14" />
-                  </div>
-                </>
-              )}
-            </li>
+          {data.map((item, index) => (
+            <>
+              <li key={item.id} className="flex items-center w-full py-2 flex-col sm:flex-row">
+                {item.img ? (
+                  <>
+                    <img
+                      src={item.img}
+                      className="rounded-lg object-cover w-28 h-28 sm:w-10 sm:h-10 sm:mr-4 mr-auto flex-shrink-0"
+                    />
+                    <div className="flex flex-col mr-auto ml-0 sm:mt-0 mt-2">
+                      <span className="font-semibold text-sm">{item.name}</span>
+                      <p className="text-sm pr-4">{item.comment}</p>
+                    </div>
+                    <span className="text-xs sm:text-sm ml-auto sm:ml-auto mt-2 sm:mt-0 whitespace-normal">
+                      {item.time}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <div className="mr-auto sm:mr-0">
+                      <Skeleton className="rounded-lg w-28 h-28  sm:w-10 sm:h-10 flex-shrink-0" />
+                    </div>
+                    <div className="flex flex-col gap-1 mr-auto sm:pl-4 ml-0 mt-2 sm:mt-0">
+                      <Skeleton className="rounded-sm h-4 w-16" />
+                      <Skeleton className="rounded-sm h-4 w-60" />
+                    </div>
+                    <div className="ml-auto sm:ml-auto mt-2 sm:mt-0">
+                      <Skeleton className="rounded-sm h-4 w-10" />
+                    </div>
+                  </>
+                )}
+              </li>
+              {data.length - 1 === index || <Divider />}
+            </>
           ))}
         </ul>
+
+        <CardFooter className="flex justify-center pt-6 pb-0">
+          <Pagination showingPages={5} totalPages={10} currentPage={currentPage1} onPageChange={handlePageChange1} />
+        </CardFooter>
       </CardContent>
     </Card>
   )

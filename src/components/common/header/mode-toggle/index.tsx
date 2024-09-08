@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { Sun, Moon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 /**
  * 모드 전환 버튼 컴포넌트( light / dark )
@@ -15,10 +16,8 @@ export default function ModeToggle() {
   }
 
   return (
-    <>
-      <button onClick={handleToggle} className="w-8 h-8 py-auto">
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
-    </>
+    <Button onClick={handleToggle} className="h-8">
+      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+    </Button>
   )
 }

@@ -92,7 +92,7 @@ export default function SheetPage() {
       <Component>
         <ComponentExplain
           title="Sheet"
-          description="화면의 주요 콘텐츠를 보완하는 콘텐츠를 표시하기 위해 Dialog 구성 요소를 확장합니다."
+          description="Extends the Dialog component to display content that complements the main content of the screen."
         />
         <ComponentContainer>
           <ComponentExample>{defaultComponent}</ComponentExample>
@@ -102,128 +102,128 @@ export default function SheetPage() {
 
       <ComponentPropsTable
         title="Sheet"
-        description="프로필 편집 등의 작업을 위한 시트를 구성하는 데 사용되는 컴포넌트의 속성들입니다."
+        description="A component used for composing a sheet for tasks like editing profiles."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet 내부에 표시될 콘텐츠를 포함합니다.',
+            description: 'Includes the content to be displayed inside the sheet.',
           },
           {
             prop: 'sheet',
             type: 'boolean',
             default: 'false',
-            description: '시트의 표시 상태를 결정하는 데 사용됩니다.',
+            description: 'Used to control the visibility of the sheet.',
           },
           {
             prop: 'toggleSheet',
             type: '() => void',
             default: '',
-            description: '시트의 열림 또는 닫힘을 토글하는 함수입니다.',
+            description: 'A function to toggle the opening and closing of the sheet.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetTrigger"
-        description="Sheet 컴포넌트를 열기 위한 트리거 버튼의 속성입니다."
+        description="Properties of the trigger button used to open the Sheet component."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet를 열기 위한 트리거 요소로서의 콘텐츠를 전달합니다.',
+            description: 'Passes content to act as the trigger element for opening the sheet.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetContent"
-        description="Sheet 내부의 콘텐츠를 포함하는 컴포넌트의 속성입니다."
+        description="Properties of the component that contains the content inside the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet 내부에 표시될 콘텐츠를 포함합니다.',
+            description: 'Includes the content to be displayed inside the sheet.',
           },
           {
             prop: 'sheet',
             type: 'boolean',
             default: 'false',
-            description: '시트의 표시 상태를 결정하는 데 사용됩니다.',
+            description: 'Used to control the visibility of the sheet.',
           },
           {
             prop: 'toggleSheet',
             type: '() => void',
             default: '',
-            description: '시트의 열림 또는 닫힘을 토글하는 함수입니다.',
+            description: 'A function to toggle the opening and closing of the sheet.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetHeader"
-        description="Sheet의 헤더를 구성하는 요소입니다."
+        description="Element that composes the header of the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '헤더 내에 표시될 콘텐츠를 포함합니다.',
+            description: 'Includes the content to be displayed inside the header.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetTitle"
-        description="Sheet의 제목을 나타내는 요소입니다."
+        description="Element that represents the title of the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet의 제목으로 사용되는 텍스트 또는 콘텐츠를 전달합니다.',
+            description: 'Passes text or content used as the title of the sheet.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetDescription"
-        description="Sheet에 대한 설명을 제공하는 요소입니다."
+        description="Provides a description for the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet 설명을 제공하는 텍스트 또는 콘텐츠를 전달합니다.',
+            description: 'Passes text or content used as a description for the sheet.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetFooter"
-        description="Sheet의 하단 영역을 구성하는 요소입니다."
+        description="Element that composes the footer area of the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '하단 영역에 포함될 버튼이나 기타 콘텐츠를 전달합니다.',
+            description: 'Passes buttons or other content to be included in the footer area.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="SheetClose"
-        description="Sheet를 닫기 위한 요소입니다."
+        description="Element used to close the Sheet."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Sheet를 닫는 기능을 제공하는 버튼 등의 콘텐츠를 포함합니다.',
+            description: 'Includes content like a button that provides the functionality to close the sheet.',
           },
         ]}
       />

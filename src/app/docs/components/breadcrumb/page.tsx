@@ -168,7 +168,10 @@ export default function BreadcrumbPage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Breadcrumb" description="현재 리소스의 경로를 계층적인 링크 형태로 표시합니다." />
+        <ComponentExplain
+          title="Breadcrumb"
+          description="Displays the path to the current resource using a hierarchy of links."
+        />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
@@ -201,71 +204,71 @@ export default function BreadcrumbPage() {
 
       <ComponentPropsTable
         title="Breadcrumb"
-        description="페이지 탐색을 위한 Breadcrumb 컴포넌트의 속성들입니다."
+        description="The properties of the Breadcrumb component used for page navigation."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Breadcrumb의 각 항목을 포함하는 콘텐츠를 전달합니다.',
+            description: 'Passes the content that includes each item of the Breadcrumb.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="BreadcrumbList"
-        description="Breadcrumb 내에서 리스트를 구성하는 요소입니다."
+        description="An element that composes a list within the Breadcrumb."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Breadcrumb 내에서 여러 항목을 리스트 형식으로 포함합니다.',
+            description: 'Includes multiple items in a list format within the Breadcrumb.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="BreadcrumbLink"
-        description="Breadcrumb 항목에 대한 링크를 제공하는 요소입니다."
+        description="An element that provides a link for a Breadcrumb item."
         props={[
           {
             prop: 'href',
             type: 'string',
             default: '',
-            description: '클릭 시 이동할 URL을 지정합니다.',
+            description: 'Specifies the URL to navigate to when clicked.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '링크 텍스트 또는 콘텐츠를 포함합니다.',
+            description: 'Includes the link text or content.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="BreadcrumbSeparator"
-        description="Breadcrumb 항목들 사이를 구분하는 구분자 요소입니다."
+        description="An element that separates the items in the Breadcrumb."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '<ChevronRight size={20} className="text-gray-500" />',
-            description: '구분자 기호나 텍스트를 포함할 수 있습니다.',
+            description: 'Can include a separator symbol or text.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="BreadcrumbText"
-        description="Breadcrumb 내에서 현재 위치를 나타내는 텍스트 요소입니다."
+        description="A text element that indicates the current position within the Breadcrumb."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '현재 위치를 설명하는 텍스트를 포함합니다.',
+            description: 'Includes the text that describes the current position.',
           },
         ]}
       />
