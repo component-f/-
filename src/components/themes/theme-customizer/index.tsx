@@ -16,7 +16,7 @@ import { ThemeWrapper } from '../theme-wrapper'
 import { useConfig } from '@/hooks/use-config'
 import { themes } from '@/constants/theme'
 import { cn } from '@/utils/cn'
-import Usage from '@/components/common/usage'
+import Usage from '@/components/common/Usage'
 
 export default function ThemeCustomizer() {
   //모드 theme - 'light' or 'dark'

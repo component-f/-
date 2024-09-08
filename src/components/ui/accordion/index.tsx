@@ -8,7 +8,7 @@ type AccordionProps = {
   singleOpen?: boolean
 }
 
-function Accordion({ children, className, singleOpen = false }: AccordionProps) {
+function Accordion({ children, className, singleOpen = false, ...props }: AccordionProps) {
   // 확장된 상태를 관리
   const [expanded, setExpanded] = useState<string[]>(() => {
     const defaultExpandedItems: string[] = []
@@ -35,7 +35,7 @@ function Accordion({ children, className, singleOpen = false }: AccordionProps) 
   }
 
   return (
-    <div className={twMerge('border rounded-lg overflow-hidden w-[400px] shadow', className)}>
+    <div className={twMerge('border rounded-lg overflow-hidden w-[400px] shadow', className)} {...props}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === AccordionItem) {
           return React.cloneElement(child, {
@@ -56,9 +56,18 @@ type AccordionItemProps = {
   onToggle?: () => void
   defaultExpanded?: boolean
   disable?: boolean
+  className?: string
 }
 
-function AccordionItem({ value, children, isOpen = false, onToggle, disable = false }: AccordionItemProps) {
+function AccordionItem({
+  value,
+  children,
+  isOpen = false,
+  onToggle,
+  disable = false,
+  className,
+  ...props
+}: AccordionItemProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const unusedValue = value
   const handleClick = () => {
@@ -68,7 +77,10 @@ function AccordionItem({ value, children, isOpen = false, onToggle, disable = fa
   }
 
   return (
-    <div className={`border-b last:border-b-0 ${disable ? 'opacity-50 cursor-not-allowed' : ''}`}>
+    <div
+      className={twMerge(`border-b last:border-b-0 ${disable ? 'opacity-50 cursor-not-allowed' : ''}`, className)}
+      {...props}
+    >
       <div onClick={handleClick}>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && (child.type === AccordionSummary || child.type === AccordionDetails)) {
@@ -88,11 +100,19 @@ type AccordionSummaryProps = {
   isOpen?: boolean
   onToggle?: () => void
   expandIcon?: ReactNode
+  className?: string
 }
 
-function AccordionSummary({ children, isOpen, onToggle, expandIcon }: AccordionSummaryProps) {
+function AccordionSummary({ children, isOpen, onToggle, expandIcon, className, ...props }: AccordionSummaryProps) {
   return (
-    <div className="relative p-4 flex justify-between items-center cursor-pointer" onClick={onToggle}>
+    <div
+      className={twMerge(
+        'relative p-4 flex justify-between items-center cursor-pointer hover:underline hover:text-ring',
+        className,
+      )}
+      onClick={onToggle}
+      {...props}
+    >
       <div className="text-sm font-medium">{children}</div>
       <div
         className={twMerge(
@@ -109,9 +129,10 @@ function AccordionSummary({ children, isOpen, onToggle, expandIcon }: AccordionS
 type AccordionDetailsProps = {
   children: React.ReactNode
   isOpen?: boolean
+  className?: string
 }
 
-function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
+function AccordionDetails({ children, isOpen, className, ...props }: AccordionDetailsProps) {
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
 
@@ -132,7 +153,9 @@ function AccordionDetails({ children, isOpen }: AccordionDetailsProps) {
       className={twMerge(
         'overflow-hidden transition-all duration-300 font-normal text-[14px]	',
         isOpen ? 'opacity-100' : 'opacity-0',
+        className,
       )}
+      {...props}
     >
       <div className="p-4">{children}</div>
     </div>
