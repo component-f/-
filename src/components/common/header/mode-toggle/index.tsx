@@ -16,7 +16,7 @@ export default function ModeToggle() {
 
   return (
     <>
-      <button onClick={handleToggle} className="w-8 h-8 p-2">
+      <button onClick={handleToggle} className="w-8 h-8 py-auto">
         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
       </button>
     </>
