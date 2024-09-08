@@ -11,6 +11,7 @@ type TPaginationProps = {
   nextIcon?: React.ReactNode
   lastIcon?: React.ReactNode
   currentPageStyle?: string
+  className?: string
 }
 
 function Pagination({
@@ -23,6 +24,8 @@ function Pagination({
   nextIcon,
   lastIcon,
   currentPageStyle,
+  className,
+  ...props
 }: TPaginationProps) {
   function generatePages(currentPage: number, totalPages: number): number[] {
     const maxPagesToShow = showingPages % 2 === 0 ? showingPages - 1 : showingPages
@@ -54,7 +57,12 @@ function Pagination({
         {currentPage === 1 ? null : (
           <>
             <li>
-              <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="py-2">
+              <button
+                onClick={() => onPageChange(1)}
+                disabled={currentPage === 1}
+                className={twMerge('py-2 text-ring', className)}
+                {...props}
+              >
                 {startIcon ? startIcon : <ChevronsLeft size={20} />}
               </button>
             </li>
@@ -62,7 +70,8 @@ function Pagination({
               <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="flex pr-4 py-2 items-center"
+                className={twMerge('flex pr-4 py-2 items-center text-ring', className)}
+                {...props}
               >
                 {prevIcon ? (
                   prevIcon
@@ -81,7 +90,7 @@ function Pagination({
             <button
               onClick={() => onPageChange(page)}
               className={twMerge(
-                `px-4 py-2 mr-1 ${page === currentPage ? `border ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
+                `px-4 py-2 mr-1 ${page === currentPage ? `border border-ring ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
                 currentPageStyle,
               )}
             >
@@ -95,7 +104,8 @@ function Pagination({
               <button
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="flex items-center pl-4 py-2"
+                className={twMerge('flex items-center pl-4 py-2 text-ring', className)}
+                {...props}
               >
                 {nextIcon ? (
                   nextIcon
@@ -107,7 +117,12 @@ function Pagination({
               </button>
             </li>
             <li>
-              <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="py-2">
+              <button
+                onClick={() => onPageChange(totalPages)}
+                disabled={currentPage === totalPages}
+                className={twMerge('py-2 text-ring', className)}
+                {...props}
+              >
                 {lastIcon ? lastIcon : <ChevronsRight size={20} />}
               </button>
             </li>
