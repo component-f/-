@@ -40,9 +40,9 @@ const Switch: React.FC<SwitchProps> = ({ className, id, checked, defaultChecked,
       <div
         onClick={handleChange}
         className={twMerge(
-          'relative flex items-center justify-start w-11 h-6 bg-[#E5E7EB] rounded-full transition-colors duration-200 ease-in-out',
+          'relative flex items-center justify-start w-8 h-6 bg-[#E5E7EB] rounded-full transition-colors duration-200 ease-in-out',
           disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-          isChecked ? twMerge('bg-[hsl(var(--blacktogray200))]', bgClassName) : 'bg-[#E5E7EB]',
+          isChecked ? twMerge('bg-ring', bgClassName) : 'bg-accent',
           'w-[44px] h-[24px]',
           otherClassName,
         )}
@@ -51,9 +51,9 @@ const Switch: React.FC<SwitchProps> = ({ className, id, checked, defaultChecked,
         <span
           onClick={handleChange}
           className={twMerge(
-            'absolute bg-white rounded-full transition-transform duration-200 ease-in-out cursor-pointer shadow',
-            isChecked ? 'transform translate-x-[20px]' : 'transform translate-x-[0px]',
-            'w-[26px] h-[26px]',
+            'absolute bg-background rounded-full transition-transform duration-200 ease-in-out cursor-pointer shadow',
+            isChecked ? 'transform translate-x-[22px]' : 'transform translate-x-[2px]',
+            'w-[20px] h-[20px]',
           )}
         />
       </div>
