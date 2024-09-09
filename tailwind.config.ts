@@ -13,6 +13,7 @@ const config: Config = {
       padding: '2rem',
       screens: {
         '2xl': '1400px',
+        '4xl': '2100px',
       },
     },
     extend: {
@@ -60,6 +61,9 @@ const config: Config = {
         regular: '400',
         semibold: '600',
         bold: '700',
+      },
+      screens: {
+        '4xl': '2100px',
       },
     },
   },
