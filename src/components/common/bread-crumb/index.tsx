@@ -23,7 +23,7 @@ export default function BreadCrumb() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator className="text-gray200" />
 
         {formattedComponentName ? (
           <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
@@ -35,7 +35,7 @@ export default function BreadCrumb() {
 
         {formattedComponentName && (
           <>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="text-gray200" />
             <BreadcrumbText>{formattedComponentName}</BreadcrumbText>
           </>
         )}

@@ -70,7 +70,7 @@ export default function AvatarPage() {
       <Component>
         <ComponentExplain
           title="Avatar"
-          description="머티리얼 디자인 전반에서 발견되며, 표부터 대화 상자 메뉴에 이르기까지 모든 곳에서 사용됩니다."
+          description="Avatars are found throughout material design with uses in everything from tables to dialog menus."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
@@ -96,31 +96,31 @@ export default function AvatarPage() {
 
       <ComponentPropsTable
         title="Avatar"
-        description="사용자의 프로필 사진이나 아이콘을 표시하는 데 사용되는 아바타 컴포넌트의 속성입니다."
+        description="the properties of the avatar component used to display the user's profile picture or icon."
         props={[
           {
             prop: 'src',
             type: 'string',
             default: '',
-            description: '아바타에 표시할 이미지의 URL입니다.',
+            description: 'URL of the image to display on the avatar.',
           },
           {
             prop: 'alt',
             type: 'string',
             default: '',
-            description: '이미지가 로드되지 않을 때 표시할 대체 텍스트입니다.',
+            description: 'Alternative text to display when the image does not load.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '',
-            description: '추가적인 스타일을 지정하기 위한 CSS 클래스입니다.',
+            description: 'CSS class for additional styling.',
           },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: '이미지가 없는 경우 아바타 내에 표시할 이니셜이나 아이콘을 포함합니다.',
+            description: `If you don't have an image, include your initials or an icon to display within your avatar.`,
           },
         ]}
       />

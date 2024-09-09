@@ -1,11 +1,13 @@
 import React from 'react'
 import { Button } from '../button'
 import { X } from 'lucide-react'
+import { twMerge } from 'tailwind-merge'
 
 type TSheetComponentProps = {
   children: React.ReactNode
   sheet?: boolean
   toggleSheet?: () => void
+  className?: string
 }
 
 function Sheet({ children }: TSheetComponentProps) {
@@ -47,16 +49,28 @@ function SheetContent({ children, sheet, toggleSheet }: TSheetComponentProps) {
   )
 }
 
-function SheetHeader({ children }: TSheetComponentProps) {
-  return <div className="flex flex-col space-y-2">{children}</div>
+function SheetHeader({ children, className, ...props }: TSheetComponentProps) {
+  return (
+    <div className={twMerge('flex flex-col space-y-2', className)} {...props}>
+      {children}
+    </div>
+  )
 }
 
-function SheetTitle({ children }: TSheetComponentProps) {
-  return <h1 className="text-xl font-semibold">{children}</h1>
+function SheetTitle({ children, className, ...props }: TSheetComponentProps) {
+  return (
+    <h1 className={twMerge('text-xl font-semibold', className)} {...props}>
+      {children}
+    </h1>
+  )
 }
 
-function SheetDescription({ children }: TSheetComponentProps) {
-  return <p className="">{children}</p>
+function SheetDescription({ children, className, ...props }: TSheetComponentProps) {
+  return (
+    <p className={twMerge('', className)} {...props}>
+      {children}
+    </p>
+  )
 }
 
 function SheetFooter({ children }: TSheetComponentProps) {

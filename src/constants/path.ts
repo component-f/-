@@ -6,7 +6,7 @@ export const PATH = Object.freeze({
   /**
    * main
    */
-  root: '/' as const,
+  main: '/' as const,
 
   /**
    * 문서 페이지

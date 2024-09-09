@@ -6,6 +6,7 @@ import SignUpForm from '@/components/examples/signup-form'
 import Todo from '@/components/examples/to-do'
 import Notifications from '@/components/examples/notifications'
 import TeamMembers from '@/components/examples/team-members'
+import FnQ from '@/components/examples/fnq'
 
 export default function Demo() {
   return (
@@ -21,6 +22,7 @@ export default function Demo() {
             <div className="space-y-4 xl:space-y-4">
               <Chat />
               <Todo />
+              <FnQ />
             </div>
           </div>
         </div>
