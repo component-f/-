@@ -124,7 +124,7 @@ export default function ToastPage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Toast" description="일시적으로 표시되는 간결한 메시지입니다." />
+        <ComponentExplain title="Toast" description="A succinct message that is displayed temporarily." />
         <ComponentContainer>
           <ComponentExample>{DefaultComponent}</ComponentExample>
           <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
@@ -192,25 +192,25 @@ export default function ToastPage() {
             prop: 'variant',
             type: `"default" | "destructive"`,
             default: 'default',
-            description: '토스트의 형태입니다.',
+            description: 'The variant to use.',
           },
           {
             prop: 'title',
             type: `string`,
             default: '',
-            description: '토스트의 제목입니다.',
+            description: 'The title to display.',
           },
           {
             prop: 'description',
             type: `string`,
             default: '',
-            description: '토스트의 설명입니다.',
+            description: 'The description to display.',
           },
           {
             prop: 'duration',
             type: `string`,
             default: '5000',
-            description: '각 토스트가 자동으로 닫히기 전에 경과해야 하는 시간(밀리초)입니다.',
+            description: 'The time in milliseconds that should elapse before automatically closing each toast.',
           },
         ]}
       />
