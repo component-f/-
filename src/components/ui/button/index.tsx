@@ -13,19 +13,19 @@ const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
     const isIconOnly = !startIcon && !endIcon && React.isValidElement(children)
 
     const baseClassName = twMerge(
-      'rounded-[8px] flex justify-center items-center duration-100 font-medium text-sm	disabled:opacity-50',
+      'flex justify-center items-center duration-100 font-medium text-sm	disabled:opacity-50',
       isIconOnly ? 'p-2' : 'py-2 px-4',
     )
 
     const variantClassNames = {
-      text: 'border-none text-ring hover:opacity-50',
-      contained: 'bg-ring text-background  hover:opacity-50',
-      outlined: ' border text-ring hover:opacity-50',
+      text: 'text-ring hover:opacity-50',
+      contained: 'bg-ring text-background  hover:opacity-50 rounded-lg ',
+      outlined: ' border text-ring hover:opacity-50 rounded-lg ',
     }
 
     return (
       <button ref={ref} className={twMerge(baseClassName, variantClassNames[variant], className)} {...props}>
-        {startIcon && <span className="start-icon mr-2">{startIcon}</span>}
+        {startIcon && <span className="start-icon mr-2 ">{startIcon}</span>}
         {children || 'BUTTON'}
         {endIcon && <span className="end-icon ml-2">{endIcon}</span>}
       </button>
