@@ -176,7 +176,7 @@ export default function AccordionPage() {
             prop: 'className',
             type: 'string',
             default: '',
-            description: 'a CSS class for specifying additional styles for the accordion.',
+            description: 'CSS class for additional styling.',
           },
           {
             prop: 'singleOpen',

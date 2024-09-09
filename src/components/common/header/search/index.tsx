@@ -21,14 +21,6 @@ function debounce<T extends (...args: Parameters<T>) => void>(
   }
 }
 
-// '/' 경로 또는 빈 문자열을 'Main'으로 변환하는 함수
-const formatPathName = (name: string) => {
-  if (name === 'root' || name === '/' || name === '') {
-    return 'Main'
-  }
-  return name.replace(/-/g, ' ')
-}
-
 // 검색 항목 렌더링 컴포넌트
 const SearchItem = ({
   item,
@@ -53,7 +45,7 @@ const SearchItem = ({
       onMouseEnter={onMouseEnter}
     >
       <Icon size={16} className="mr-2" />
-      <span className="capitalize block text-sm font-medium">{formatPathName(item)}</span>
+      <span className="capitalize block text-sm font-medium">{item}</span>
     </Link>
   </li>
 )
@@ -136,17 +128,14 @@ const Search = () => {
     [recentSearches],
   )
 
-  // 검색어에 따라 페이지와 컴포넌트 필터링 및 알파벳 순 정렬
+  // 검색어에 따라 페이지와 컴포넌트 필터링
   const filteredPages = Object.entries(PATH)
     .filter(([, path]) => typeof path === 'string' && path.startsWith('/') && !path.startsWith('/docs/components'))
     .filter(([itemKey]) => {
-      // 'Main' 검색 시 'root' 키 포함
-      if (searchTerm.toLowerCase() === 'main') {
-        return itemKey === 'root'
-      }
-      return itemKey.toLowerCase().includes(searchTerm.toLowerCase())
+      const lowerSearchTerm = searchTerm.toLowerCase()
+
+      return itemKey.toLowerCase().includes(lowerSearchTerm)
     })
-    .map(([itemKey, path]) => [itemKey === 'root' || itemKey === '/' ? 'Main' : itemKey, path]) // 'root'를 'Main'으로 변환
     .sort(([a], [b]) => a.localeCompare(b)) as [string, string][]
 
   const filteredComponents = Object.entries(PATH)
@@ -194,8 +183,8 @@ const Search = () => {
       if (allResults[hoveredIndex]) {
         const path = allResults[hoveredIndex][1]
         updateRecentSearches(path)
-        handleClose() // 모달 창 닫기
-        router.push(path) // 경로 이동
+        handleClose()
+        router.push(path)
       }
     }
   }
@@ -239,9 +228,8 @@ const Search = () => {
                       <h3 className="text-sm font-semibold">Recent</h3>
                       <ul className="mb-4 space-y-2">
                         {recentSearches.map((search, index) => {
-                          const searchName = formatPathName(
-                            Object.entries(PATH).find(([, path]) => path === search)?.[0] || search,
-                          )
+                          const searchName = Object.entries(PATH).find(([, path]) => path === search)?.[0] || search
+
                           return (
                             <li
                               key={search}
@@ -257,7 +245,7 @@ const Search = () => {
                               </div>
                               <button
                                 onClick={(e) => {
-                                  e.stopPropagation() // 이벤트 버블링 방지
+                                  e.stopPropagation()
                                   removeRecentSearch(search)
                                 }}
                                 className="text-xs text-gray-400 hover:text-gray-600"
