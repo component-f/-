@@ -25,7 +25,7 @@ import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function SheetPage() {
   const [defaultCode, setDefaultCode] = useState(`
-    <Sheet>
+    <Sheet className="z-50">
       <SheetTrigger>
         <Button onClick={toggleSheet}>Open</Button>
       </SheetTrigger>
