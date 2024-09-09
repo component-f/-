@@ -1,20 +1,10 @@
-'use client'
-
-import { useState } from 'react'
-import { Diamond, Copy, CopyCheck } from 'lucide-react'
+import { Diamond } from 'lucide-react'
 import { PATH } from '@/constants/path'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import CopyToClipboard from '@/components/common/copyToClipboard'
 
 export default function DocsPage() {
-  const [copied, setCopied] = useState(false)
-  const [code] = useState('npm install @component-factory/theme')
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code as string)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
-
   return (
     <>
       <h2 className="text-2xl font-semibold tracking-tight mt-8">Introduction to Component Factory</h2>
@@ -68,17 +58,7 @@ export default function DocsPage() {
 
       <h2 className="text-2xl font-semibold tracking-tight mt-6">Get started today</h2>
       <p className="mt-2">Install Component Factory via npm and start building:</p>
-      <div className="flex items-center justify-between bg-foreground text-background py-2 px-4 rounded-lg w-[500px] mt-2">
-        <code>{code}</code>
-
-        <div className="flex items-center justify-center w-[20px]">
-          {copied ? (
-            <CopyCheck size={20} className="text-[#0090FF]" />
-          ) : (
-            <Copy size={15} onClick={handleCopy} className="hover:text-[#0090FF] cursor-pointer" />
-          )}
-        </div>
-      </div>
+      <CopyToClipboard code={'npm install @component-factory/theme'} />
 
       <p className="leading-relaxed mt-2">
         Component Factory is here to streamline your development process, offering components that are yours to
