@@ -7,9 +7,14 @@ import { Toaster } from '@/components/ui/toaster'
 
 export const metadata = {
   title: 'Component-Factory',
-  description: '컴포넌트 UI 라이브러리입니다.',
+  description: 'Component library you always wanted. Accessible. Customizable.',
   icons: {
     icon: '/images/favicon.ico',
+  },
+  openGraph: {
+    title: 'Component-Factory',
+    description: 'Component library you always wanted. Accessible. Customizable.',
+    images: ['/images/thumbnail.png'],
   },
 }
 

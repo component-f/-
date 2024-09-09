@@ -106,13 +106,13 @@ export default function LabelPage() {
 
       <ComponentPropsTable
         title="Label"
-        description="컨트롤과 연관된 접근 가능한 레이블을 렌더링합니다."
+        description="Renders an accessible label associated with controls."
         props={[
           {
             prop: 'htmlFor',
             type: 'string',
             default: '',
-            description: '레이블이 연결된 요소의 ID입니다.',
+            description: 'The id of the element the label is associated with.',
           },
         ]}
       />
