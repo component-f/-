@@ -73,7 +73,10 @@ export default function TablePage() {
   return (
     <>
       <Component>
-        <ComponentExplain title="Table" description="데이터를 행과 열의 구조로 표시하는 테이블 컴포넌트입니다." />
+        <ComponentExplain
+          title="Table"
+          description="A table component that displays data in a row and column structure."
+        />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={code1} setCode={setCode1} />
@@ -83,7 +86,7 @@ export default function TablePage() {
       <Component>
         <ComponentExplain
           title="DataTable"
-          description="다양한 데이터와 컬럼을 표시할 수 있는 데이터 테이블 컴포넌트입니다."
+          description="A data table component that can display various data and columns."
         />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent2}</ComponentExample>
@@ -93,49 +96,49 @@ export default function TablePage() {
 
       <ComponentPropsTable
         title="Table"
-        description="테이블 컴포넌트의 속성들입니다."
+        description="The properties of the Table component."
         props={[
           {
             prop: 'headers',
             type: 'string[]',
             default: '[]',
-            description: '테이블의 열 헤더를 정의합니다.',
+            description: 'Defines the column headers of the table.',
           },
           {
             prop: 'data',
             type: 'Array<Record<string, any>>',
             default: '[]',
-            description: '각 행의 데이터를 포함하는 객체 배열입니다.',
+            description: 'An array of objects containing data for each row.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '""',
-            description: '테이블의 최상위 div 요소에 적용할 수 있는 추가 클래스입니다.',
+            description: 'Additional classes that can be applied to the top-level div element of the table.',
           },
         ]}
       />
       <ComponentPropsTable
         title="DataTable"
-        description="데이터 테이블 컴포넌트의 속성들입니다."
+        description="The properties of the DataTable component."
         props={[
           {
             prop: 'data',
             type: 'Array<Record<string, any>>',
             default: '[]',
-            description: '테이블에 표시할 데이터 배열입니다.',
+            description: 'The array of data to be displayed in the table.',
           },
           {
             prop: 'columns',
             type: 'Array<{ header: string, accessor: keyof T }>',
             default: '[]',
-            description: '컬럼의 헤더와 접근자를 정의하는 배열입니다.',
+            description: 'An array defining the headers and accessors of the columns.',
           },
           {
             prop: 'className',
             type: 'string',
             default: '""',
-            description: '데이터 테이블의 최상위 div 요소에 적용할 수 있는 추가 클래스입니다.',
+            description: 'Additional classes that can be applied to the top-level div element of the data table.',
           },
         ]}
       />
