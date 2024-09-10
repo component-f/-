@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
 import { SearchIcon, FileTextIcon, LayoutIcon, X, ClockIcon, SearchXIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -92,10 +92,17 @@ const Section = ({
 
 const Search = () => {
   const router = useRouter()
+  const pathname = usePathname()
+
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [hoveredIndex, setHoveredIndex] = useState<number>(0)
   const [recentSearches, setRecentSearches] = useState<string[]>([])
+
+  // 라우트 변경 시 모달을 닫음
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   // 최근 기록 로드
   useEffect(() => {
@@ -164,7 +171,6 @@ const Search = () => {
 
   const handleLinkClick = (path: string) => {
     updateRecentSearches(path)
-    handleClose()
     router.push(path)
   }
 
@@ -183,7 +189,7 @@ const Search = () => {
       if (allResults[hoveredIndex]) {
         const path = allResults[hoveredIndex][1]
         updateRecentSearches(path)
-        handleClose()
+
         router.push(path)
       }
     }

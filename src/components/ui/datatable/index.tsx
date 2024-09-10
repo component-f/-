@@ -104,4 +104,4 @@ const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataT
   )
 }
 
-export default DataTable
+export { DataTable }

@@ -30,6 +30,9 @@
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
+
+    --spinner-base: 220 13% 91%;
+    --spinner-highlight: 240 4% 16%;
   }
   .dark {
     --background: 220 6% 10%;
@@ -58,6 +61,9 @@
 
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
+
+    --spinner-base: 0 0% 30%;
+    --spinner-highlight: 0 0% 98%;
   }
 }
 
@@ -82,7 +88,20 @@
   vertical-align: -4px;
 }
 
-.accordion-shadow {
-  @apply shadow;
-  box-shadow: 0 1px 4px var(--shadow-color);
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid hsl(var(--spinner-base));
+  border-top-color: hsl(var(--spinner-highlight));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

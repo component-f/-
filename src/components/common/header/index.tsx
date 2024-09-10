@@ -1,6 +1,7 @@
 /**
  * 전체 페이지에서 쓰이는 header 컴포넌트
  */
+
 import ModeToggle from './mode-toggle'
 import Logo from '/public/images/logo.svg'
 import GitHub from '/public/images/github-icon.svg'
