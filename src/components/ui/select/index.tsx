@@ -69,7 +69,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
       >
         {options.find((option) => option.value === selectedValue)?.label}
         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-          <svg className="w-5 h-5 text-gray-200" viewBox="0 0 20 20" fill="currentColor" stroke="none">
+          <svg className="w-5 h-5 text-border" viewBox="0 0 20 20" fill="currentColor" stroke="none">
             <path d="M7 10l5 5 5-5H7z" />
           </svg>
         </span>
@@ -78,7 +78,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute z-10 mt-1 border rounded-md shadow-lg bg-white"
+          className="absolute z-10 mt-1 border rounded-md shadow-lg bg-background"
           style={{ minWidth: '100%', right: 0 }} // 드롭다운을 Select 박스 오른쪽 끝에 맞추고, 최소 너비를 select 박스 너비에 맞춤
         >
           <ul className="py-1 text-sm">
@@ -88,7 +88,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
                 <li
                   key={option.value}
                   className={`cursor-pointer px-4 py-2 ${
-                    option.value === selectedValue ? 'bg-gray-200' : ''
+                    option.value === selectedValue ? 'bg-border' : ''
                   } ${option.disabled ? 'hover:cursor-not-allowed opacity-50' : 'hover:bg-accent hover:text-accent-foreground'}`} // 비활성화된 옵션 스타일 추가
                   onClick={() => handleSelect(option.value)} // 옵션 클릭 시 드롭다운이 닫히도록 설정
                 >

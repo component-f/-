@@ -23,10 +23,10 @@ const CheckBox: React.FC<CheckBoxProps> = ({
 }) => {
   return (
     <label
-      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center justify-center'} mr-4 ${
+      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'item-middle'} mr-4 ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       } ${className}`}
-      style={{ height: '100%', width: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
+      style={{ height: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
     >
       <input
         type="checkbox"
@@ -42,15 +42,15 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           disabled && checked
             ? 'bg-gray-200 border-gray-200'
             : checked
-              ? 'bg-black border-black'
+              ? 'bg-foreground border-border'
               : disabled
                 ? 'border-gray-200 opacity-50'
-                : 'bg-white border-black'
+                : 'bg-background border-foreground'
         } ${className}`}
       >
         {checked && (
           <svg
-            className="w-full h-full text-white"
+            className="w-full h-full text-background"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
