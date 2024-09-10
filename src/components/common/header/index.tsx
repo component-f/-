@@ -11,9 +11,6 @@ import { Search } from './search'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import MenuDrawer from './menuDrawer'
-/**
- * @todos 검색 기능
- */
 
 export default function Header() {
   return (
@@ -33,7 +30,9 @@ export default function Header() {
       </nav>
 
       <nav className="flex">
-        <Search />
+        <div className="mr-2">
+          <Search />
+        </div>
         <Button className="w-8 h-8">
           <Link target="_blank" rel="noreferrer" href="https://github.com/component-f/component-factory">
             <GitHub height={16} alt="GitHub" />
