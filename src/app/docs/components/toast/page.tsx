@@ -119,6 +119,29 @@ export default function ToastPage() {
       )
   }
   `,
+    usageImport: `
+  import { useToast } from '@/hooks/useToast'
+  `,
+    usageToast: `
+  export default function ToastPage() {
+      const { toast } = useToast()
+
+      return(
+          <Button
+              variant="outlined" 
+              type="button"
+              onClick={() => {
+                  toast({ 
+                      title: 'Scheduled: Catch up ', 
+                      description: 'Friday, February 10, 2023 at 5:57 PM', 
+                  })
+              }}
+          >
+            show Toast
+          </Button>
+      )
+  }
+`,
   }
 
   return (
@@ -137,9 +160,9 @@ export default function ToastPage() {
         </div>
         <div>
           <div className="font-heading mt-8 scroll-m-20 text-md font-medium tracking-tight">
-            1. 다음 명령을 실행하세요.
+            1. Run the following command:
           </div>
-          <div className="w-full border-b rounded-xl bg-foreground overflow-auto mt-4">
+          <div className="w-full border rounded-xl bg-foreground overflow-auto mt-4">
             <Editor
               value={installCode.install}
               highlight={(code) => highlight(code, languages.jsx, 'jsx')}
@@ -147,15 +170,18 @@ export default function ToastPage() {
               className="text-md text-white"
               readOnly={true}
               onValueChange={() => {}}
+              style={{
+                backgroundColor: '#212121',
+              }}
             />
           </div>
         </div>
 
         <div>
           <div className="font-heading mt-8 scroll-m-20 text-md font-medium tracking-tight">
-            2. 토스터 구성 요소를 추가합니다
+            2. Add the Toaster component
           </div>
-          <div className="w-full border-b rounded-xl bg-foreground overflow-auto  mt-4">
+          <div className="w-full  rounded-xl bg-foreground overflow-auto mt-4 border">
             <Editor
               value={installCode.addToaster}
               highlight={(code) => highlight(code, languages.jsx, 'jsx')}
@@ -163,12 +189,49 @@ export default function ToastPage() {
               className="text-md text-white"
               readOnly={true}
               onValueChange={() => {}}
+              style={{
+                backgroundColor: '#212121',
+              }}
             />
           </div>
         </div>
       </div>
-
-      <div className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Usage</div>
+      <div>
+        <div className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Usage</div>
+        <div>
+          <div className="font-heading mt-8 scroll-m-20 text-md font-medium tracking-tight">
+            The useToast hook returns a toast function that you can use to display a toast.
+          </div>
+          <div>
+            <div className="w-full  rounded-xl bg-foreground overflow-auto mt-4 border">
+              <Editor
+                value={installCode.usageImport}
+                highlight={(code) => highlight(code, languages.jsx, 'jsx')}
+                padding={10}
+                className="text-md text-white"
+                readOnly={true}
+                onValueChange={() => {}}
+                style={{
+                  backgroundColor: '#212121',
+                }}
+              />
+            </div>
+            <div className="w-full  rounded-xl bg-foreground overflow-auto mt-4 border">
+              <Editor
+                value={installCode.usageToast}
+                highlight={(code) => highlight(code, languages.jsx, 'jsx')}
+                padding={10}
+                className="text-md text-white"
+                readOnly={true}
+                onValueChange={() => {}}
+                style={{
+                  backgroundColor: '#212121',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <Component>
         <ComponentExplain variant="Simple" />
         <ComponentContainer>
@@ -209,7 +272,7 @@ export default function ToastPage() {
           {
             prop: 'duration',
             type: `string`,
-            default: '5000',
+            default: '3000',
             description: 'The time in milliseconds that should elapse before automatically closing each toast.',
           },
         ]}
