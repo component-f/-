@@ -219,6 +219,12 @@ export default function CheckBoxPage() {
         description="The properties of the Radio component used to display the check state or group information of a radio button."
         props={[
           {
+            prop: 'className',
+            type: 'string',
+            default: `''`,
+            description: 'Additional CSS classes that can be applied to the CheckBox component for custom styling.',
+          },
+          {
             prop: 'label',
             type: 'string',
             default: 'null',
@@ -241,12 +247,6 @@ export default function CheckBoxPage() {
             type: `boolean`,
             default: `false`,
             description: 'Indicates the checked state of the checkbox, controlling its state.',
-          },
-          {
-            prop: `defaultChecked`,
-            type: `boolean`,
-            default: `false`,
-            description: 'Controls the initial checked state of the checkbox.',
           },
           {
             prop: 'onChange',

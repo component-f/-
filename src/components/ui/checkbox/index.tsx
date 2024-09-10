@@ -23,7 +23,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
 }) => {
   return (
     <label
-      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center justify-center'} mr-4 ${
+      className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'item-middle'} mr-4 ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       } ${className}`}
       style={{ height: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
@@ -38,19 +38,19 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         className="peer hidden"
       />
       <span
-        className={`w-5 h-5 inline-block border rounded-md transition-all duration-200 items-center justify-center ${
+        className={`w-5 h-5 inline-block border rounded-md transition-all duration-200 flex-shrink-0 ${
           disabled && checked
             ? 'bg-gray-200 border-gray-200'
             : checked
-              ? 'bg-black border-black'
+              ? 'bg-foreground border-border'
               : disabled
                 ? 'border-gray-200 opacity-50'
-                : 'bg-white border-black'
-        }`}
+                : 'bg-background border-foreground'
+        } ${className}`}
       >
         {checked && (
           <svg
-            className="w-full h-full text-white"
+            className="w-full h-full text-background"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -62,7 +62,14 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           </svg>
         )}
       </span>
-      {label && <span className="ml-2 peer-disabled:text-gray-200 flex-grow">{label}</span>}
+      {label && (
+        <span
+          className="ml-2 peer-disabled:text-gray-200 flex-grow"
+          style={{ alignSelf: 'flex-start' }} // 라벨이 줄 바꿈될 때 정렬 보정
+        >
+          {label}
+        </span>
+      )}
     </label>
   )
 }

@@ -171,6 +171,12 @@ export default function SelectPage() {
         description="The properties of the Select component."
         props={[
           {
+            prop: 'className',
+            type: 'string',
+            default: 'undefined',
+            description: 'Specifies additional CSS classes for the Select component.',
+          },
+          {
             prop: 'options',
             type: '{ label: string, value: string, description?: string, hidden?: boolean }[]',
             default: '[]',
@@ -182,12 +188,6 @@ export default function SelectPage() {
             type: '(value: string) => void',
             default: 'undefined',
             description: 'Callback function called when the selected value changes.',
-          },
-          {
-            prop: 'className',
-            type: 'string',
-            default: 'undefined',
-            description: 'Specifies additional CSS classes for the Select component.',
           },
           {
             prop: 'defaultSelected',

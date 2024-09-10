@@ -46,10 +46,10 @@ const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataT
 
   return (
     <div className={`overflow-x-auto ${className}`}>
-      <table className="min-w-full border border-gray-300">
+      <table className="min-w-full border border-border">
         <thead>
           <tr>
-            <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+            <th className="py-3 px-4 text-left text-sm font-medium text-foreground">
               <div className="flex justify-start">
                 <CheckBox
                   label=""
@@ -63,19 +63,19 @@ const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataT
             {columns
               .filter((column) => column.visible !== false)
               .map((column) => (
-                <th key={column.header} className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                <th key={column.header} className="py-3 px-4 text-left text-sm font-medium text-foreground">
                   {column.header}
                 </th>
               ))}
           </tr>
         </thead>
-        <tbody className="bg-white">
+        <tbody className="bg-background">
           {data.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`hover:bg-gray-50 ${isRowSelected(row) ? 'bg-gray-200' : ''}`} // 선택된 행의 배경 색상을 변경
+              className={`hover:bg-accent ${isRowSelected(row) ? 'bg-border' : ''}`} // 선택된 행의 배경 색상을 변경
             >
-              <td className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300">
+              <td className="py-3 px-4 text-sm text-gray-500 border-t border-gray-300">
                 <div className="flex justify-start">
                   <CheckBox
                     label=""
@@ -91,7 +91,7 @@ const DataTable = <T,>({ data, columns, className, onSelectedRowsChange }: DataT
                 .map((column) => (
                   <td
                     key={column.accessor as string}
-                    className="py-3 px-4 text-sm text-gray-700 border-t border-gray-300"
+                    className="py-3 px-4 text-sm text-gray-500 border-t border-gray-300"
                   >
                     {String(row[column.accessor])}
                   </td>
