@@ -4,19 +4,22 @@ import { useTheme } from 'next-themes'
 
 import '@/styles/themes.css'
 
-import Chat from '@/components/examples/chat'
-import Notifications from '@/components/examples/notifications'
-import RecentActivity from '@/components/examples/recent-activity'
-import ReportForm from '@/components/examples/report-form'
-import SignUpForm from '@/components/examples/signup-form'
-import Todo from '@/components/examples/to-do'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown'
 import { ThemeWrapper } from '../theme-wrapper'
 import { useConfig } from '@/hooks/use-config'
 import { themes } from '@/constants/theme'
 import { cn } from '@/utils/cn'
-import Usage from '@/components/common/Usage'
+import Usage from '@/components/common/usage'
+import SignUpForm from '@/components/examples/signup-form'
+import CookieSettings from '@/components/examples/cookie-settings'
+import ReportForm from '@/components/examples/report-form'
+import Chat from '@/components/examples/chat'
+import Todo from '@/components/examples/to-do'
+import FnQ from '@/components/examples/fnq'
+import RecentActivity from '@/components/examples/recent-activity'
+import TeamMembers from '@/components/examples/team-members'
+import Notifications from '@/components/examples/notifications'
 
 export default function ThemeCustomizer() {
   //모드 theme - 'light' or 'dark'
@@ -34,9 +37,12 @@ export default function ThemeCustomizer() {
   const { setTheme } = useConfig()
   return (
     <>
-      <div className="flex justify-between w-full relative">
+      <div className="4xl:fixed 4xl:h-1/2 4xl:transform 4xl:translate-y-1/2">
         <Usage />
-        <div className="w-2/3">
+      </div>
+
+      <div className="flex sm:justify-end">
+        <div>
           <DropdownMenu>
             <DropdownMenuTrigger toggleStatusBar={handleToggle} buttonRef={buttonRef}>
               <Button variant="contained" className="mb-4">
@@ -66,16 +72,21 @@ export default function ThemeCustomizer() {
           </DropdownMenu>
 
           <ThemeWrapper>
-            <div className="flex gap-4 justify-between">
-              <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-[repeat(auto-fill,_minmax(400px,_2fr))] gap-4">
+              <div className="space-y-4">
                 <SignUpForm />
-                <Chat />
-                <Notifications />
-              </div>
-              <div className="flex flex-col gap-4">
-                <RecentActivity />
-                <Todo />
+                <CookieSettings />
                 <ReportForm />
+              </div>
+              <div className="space-y-4">
+                <Chat />
+                <Todo />
+                <FnQ />
+              </div>
+              <div className="space-y-4">
+                <RecentActivity />
+                <TeamMembers />
+                <Notifications />
               </div>
             </div>
           </ThemeWrapper>

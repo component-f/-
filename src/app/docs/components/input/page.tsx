@@ -83,7 +83,7 @@ export default function InputPage() {
       <Component>
         <ComponentExplain
           title="Input"
-          description="양식 입력 필드 또는 입력 필드처럼 보이는 구성 요소를 표시합니다."
+          description="Displays a form input field or a component that looks like an input field."
         />
         <ComponentContainer>
           <ComponentExample>

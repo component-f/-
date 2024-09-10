@@ -50,18 +50,16 @@ export default function DropdownPage() {
         menuRef={menuRef1}
         buttonRef={buttonRef1}
       >
-        <DropdownMenuItem href="/">Documentation</DropdownMenuItem>
-        <DropdownMenuItem href="/docs/components/Dropdown">Dropdown</DropdownMenuItem>
+        <DropdownMenuItem href="/docs">Documentation</DropdownMenuItem>
+        <DropdownMenuItem href="/docs/components/dropdown">Dropdown</DropdownMenuItem>
         <DropdownMenuItem href="/examples">Examples</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     `)
   const [radioCode, setRadioCode] = useState(`
     <DropdownMenu>
-      <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2} >
-        <Button
-          variant="outlined"
-        >
+      <DropdownMenuTrigger toggleStatusBar={toggleStatusBar2} buttonRef={buttonRef2}>
+        <Button variant="outlined">
           Open
         </Button>
       </DropdownMenuTrigger>
@@ -71,17 +69,23 @@ export default function DropdownPage() {
         menuRef={menuRef2}
         buttonRef={buttonRef2}
       >
-      <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-        <DropdownMenuItem>
+        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
           <form className="w-full px-4 bg-white rounded-lg shadow">
             <div className="flex flex-col">
-              <Radio label="Top" name="options" value="Top" className="flex text-gray-600" />
-              <Radio label="Bottom" name="options" value="Bottom" className="flex text-gray-600" />
-              <Radio label="Left" name="options" value="Left" className="flex text-gray-600" />
-              <Radio label="Right" name="options" value="Right" className="flex text-gray-600" />
+              <DropdownMenuItem>
+                <Radio label="Top" name="options" value="Top" className="flex text-gray-600" />
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Radio label="Bottom" name="options" value="Bottom" className="flex text-gray-600" />
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Radio label="Left" name="options" value="Left" className="flex text-gray-600" />
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Radio label="Right" name="options" value="Right" className="flex text-gray-600" />
+              </DropdownMenuItem>
             </div>
           </form>
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     `)

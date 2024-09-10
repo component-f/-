@@ -23,6 +23,8 @@ import {
   ModalDescription,
 } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 /**
  * Modal 컴포넌트에 대한 문서 페이지 컴포넌트
@@ -38,10 +40,13 @@ export default function ModalPage() {
       </ModalTrigger>
       <ModalContent>
           <ModalHeader>
-              <ModalTitle>모달 제목</ModalTitle>
-              <ModalDescription>모달 컴포넌트 설명입니다</ModalDescription>
+              <ModalTitle>Edit profile</ModalTitle>
+              <ModalDescription>Make changes to your profile here. Click save when you're done.</ModalDescription>
           </ModalHeader>
-          <div>모달 내용이 들어갈 영역입니다.</div>
+              <div className='flex gap-2 items-center'>
+                  <Label className='w-20'>Name</Label>
+                  <Input placeholder="Name" />
+              </div>
           <ModalFooter>
               <ModalClose>
                   <Button type="button" variant="contained">
@@ -70,6 +75,8 @@ export default function ModalPage() {
 
       const Component = new Function(
         'React',
+        'Label',
+        'Input',
         'Modal',
         'ModalClose',
         'ModalContent',
@@ -84,6 +91,8 @@ export default function ModalPage() {
 
       const element = Component(
         React,
+        Label,
+        Input,
         Modal,
         ModalClose,
         ModalContent,
@@ -106,7 +115,7 @@ export default function ModalPage() {
       <Component>
         <ComponentExplain
           title="Modal"
-          description="기본 창이나 다른 대화 상자 창 위에 겹쳐서 그 아래의 콘텐츠를 비활성화한 창입니다."
+          description="A window overlaid on either the primary window or another modal window, rendering the content underneath inert."
         />
         <ComponentContainer>
           <ComponentExample>{DefaultComponent}</ComponentExample>
@@ -116,104 +125,104 @@ export default function ModalPage() {
 
       <ComponentPropsTable
         title="Modal"
-        description="Modal의 모든 부분을 포함합니다."
+        description="Contains all the parts of a modal."
         props={[
           {
             prop: 'defaultOpen',
             type: 'boolean',
             default: 'false',
-            description: '모달이 처음 렌더링될 때의 열린 상태입니다.',
+            description: 'The open state of the modal when it is initially rendered.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalTrigger"
-        description="Modal을 여는 버튼입니다."
+        description="The button that opens the modal."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalContent"
-        description="Modal에서 렌더링할 콘텐츠를 포함합니다."
+        description="Contains content to be rendered in the open modal."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalHeader"
-        description="Modal에서 렌더링할 콘텐츠의 헤더를 포함합니다."
+        description="Contains header to be rendered in the open modal."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalTitle"
-        description="Modal을 열었을 때 접근 가능한 제목입니다."
+        description="An accessible title to be announced when the modal is opened."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalDescription"
-        description="Modal을 열었을 때 접근 가능한 설명입니다."
+        description="An optional accessible description to be announced when the modal is opened."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalFooter"
-        description="Modal에서 렌더링할 콘텐츠의 푸터를 포함합니다."
+        description="Contains footer to be rendered in the open modal."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="ModalClose"
-        description="Modal을 닫는 버튼입니다."
+        description="The button that closes the modal."
         props={[
           {
             prop: 'children',
             type: 'node',
             default: 'false',
-            description: '선택 항목을 채울 옵션 요소입니다. <option>요소가 될 수 있습니다.',
+            description: 'The content of the component.',
           },
         ]}
       />

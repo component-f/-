@@ -11,6 +11,8 @@ import 'prismjs/themes/prism-funky.css'
 import 'prismjs/components/prism-javascript'
 import { ChevronRight } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function Usage() {
   const { theme } = useTheme()
@@ -27,23 +29,25 @@ export default function Usage() {
   `
 
   return (
-    <Card className="border-none bg-transparent mr-auto shadow-none">
-      <CardHeader>
-        <CardTitle className="flex items-center text-3xl">
+    <Card className="border-none bg-transparent shadow-none">
+      <CardHeader className="p-0">
+        <CardTitle className="flex items-center text-5xl mr-4">
           Start building with
           <br />
           Component Factory.
-          {theme === 'dark' ? (
-            <img src="images/white-logo.svg" className="w-[80px] pb-1" />
-          ) : (
-            <img src="images/black-logo.svg" className="w-[80px] pb-1" />
-          )}
+          <div className="hidden sm:block">
+            {theme === 'dark' ? (
+              <img src="images/white-logo.svg" className="w-[80px] pb-1" />
+            ) : (
+              <img src="images/black-logo.svg" className="w-[80px] pb-1" />
+            )}
+          </div>
         </CardTitle>
         <CardDescription className="pt-4 text-base">
           Don't Repeat Yourself! Install now and start building smarter.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="max-w-xl p-0 mt-6">
         <div className="rounded-xl border border-border">
           <Editor
             value={code}
@@ -51,24 +55,22 @@ export default function Usage() {
             highlight={(code) => Prism.highlight(code, Prism.languages.jsx, 'jsx')}
             padding={10}
             style={{
-              fontSize: 13,
+              fontSize: 15,
               backgroundColor: 'rgb(23, 26, 28)',
               color: '#ffabed',
               borderRadius: '12px',
               padding: '0px 0px 0px 10px',
-              width: '500px',
             }}
           />
         </div>
       </CardContent>
-      <CardFooter>
-        <a
-          href="/docs"
-          className="w-full inline-flex justify-center items-center py-2 px-4 bg-foreground text-background rounded-[8px] font-medium text-sm hover:opacity-50"
-        >
-          Get Started
-          <ChevronRight size={17} className="ml-2" />
-        </a>
+      <CardFooter className="w-full pt-6 px-0">
+        <Button variant="contained" className="mr-4" endIcon={<ChevronRight size={17} />}>
+          <Link href="/docs">Get Started</Link>
+        </Button>
+        <Button variant="outlined" className="mr-4">
+          <Link href="/docs/components/accordion">View Components</Link>
+        </Button>
       </CardFooter>
     </Card>
   )
