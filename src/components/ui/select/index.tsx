@@ -65,6 +65,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring text-sm
         pr-8 relative overflow-hidden"
         onClick={() => setIsOpen(!isOpen)}
+        style={{ width: '100%' }}
       >
         {options.find((option) => option.value === selectedValue)?.label}
         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
