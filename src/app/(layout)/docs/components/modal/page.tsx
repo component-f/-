@@ -133,6 +133,12 @@ export default function ModalPage() {
             default: 'false',
             description: 'The open state of the modal when it is initially rendered.',
           },
+          {
+            prop: 'children',
+            type: 'node',
+            default: '-',
+            description: 'The content of the component.',
+          },
         ]}
       />
 
@@ -143,7 +149,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -156,7 +162,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -169,7 +175,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -182,7 +188,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -195,7 +201,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -208,7 +214,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
@@ -221,7 +227,7 @@ export default function ModalPage() {
           {
             prop: 'children',
             type: 'node',
-            default: 'false',
+            default: '-',
             description: 'The content of the component.',
           },
         ]}
