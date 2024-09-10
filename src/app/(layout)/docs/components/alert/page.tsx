@@ -27,7 +27,7 @@ export default function AlertPage() {
 
   const [variantCode, setVariantCode] = useState(`
     <div className="flex flex-col gap-2">
-      <Alert icon={<Info size={35} className="text-white" />} className="bg-blue-500 border-none">
+      <Alert icon={<CircleCheckBig size={35} className="text-white" />} className="bg-blue-500 border-none">
         <AlertHeader>
           <AlertTitle className="text-white">Success</AlertTitle>
           <AlertDescription className="text-white">The work was completed successfully.</AlertDescription>
@@ -65,7 +65,7 @@ export default function AlertPage() {
 
   const dependencies = {
     default: { Alert, AlertHeader, AlertTitle, AlertDescription, AlertButton, CircleCheckBig },
-    variant: { Alert, AlertHeader, AlertTitle, AlertDescription, AlertButton, Info },
+    variant: { Alert, AlertHeader, AlertTitle, AlertDescription, AlertButton, CircleCheckBig, Info },
     error: { Alert, AlertHeader, AlertTitle, AlertDescription, AlertButton, Ban },
   }
 
