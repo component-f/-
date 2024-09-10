@@ -35,13 +35,11 @@ export default function Usage() {
           Start building with
           <br />
           Component Factory.
-          <div className="hidden xl:block">
-            {theme === 'dark' ? (
-              <img src="images/white-logo.svg" className="w-[80px] pb-1" />
-            ) : (
-              <img src="images/black-logo.svg" className="w-[80px] pb-1" />
-            )}
-          </div>
+          {theme === 'dark' ? (
+            <img src="images/white-logo.svg" className="w-[80px] pb-1" />
+          ) : (
+            <img src="images/black-logo.svg" className="w-[80px] pb-1" />
+          )}
         </CardTitle>
         <CardDescription className="pt-4 text-base">
           Don't Repeat Yourself! Install now and start building smarter.
