@@ -5,6 +5,7 @@ interface Option {
   value: string
   description?: string // 설명 필드 추가
   hidden?: boolean // 숨김 필드 추가
+  disabled?: boolean // 옵션 비활성화 속성 추가
 }
 
 interface SelectProps {
@@ -19,9 +20,8 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
     defaultSelected || options.find((option) => !option.hidden)?.value || '',
   )
   const [isOpen, setIsOpen] = useState(false)
-  const [dropdownWidth, setDropdownWidth] = useState<number | undefined>(undefined)
-  const selectRef = useRef<HTMLDivElement>(null) // 전체 Select 컴포넌트를 참조
-  const textMeasureRef = useRef<HTMLDivElement>(null) // 옵션 크기 체크용
+  const selectRef = useRef<HTMLDivElement>(null) // select box 참조
+  const dropdownRef = useRef<HTMLDivElement>(null) // 드롭다운을 참조하기 위한 ref
 
   useEffect(() => {
     if (defaultSelected) {
@@ -30,12 +30,11 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
   }, [defaultSelected])
 
   useEffect(() => {
-    if (selectRef.current && textMeasureRef.current) {
-      const selectWidth = selectRef.current.offsetWidth
-      const textMeasureWidth = textMeasureRef.current.offsetWidth
-      setDropdownWidth(Math.max(selectWidth, textMeasureWidth + 20)) // 가장 긴 옵션 텍스트의 너비 값으로 설정
+    if (selectRef.current && dropdownRef.current) {
+      // Select 박스의 너비를 드롭다운의 최소 너비로 설정
+      dropdownRef.current.style.minWidth = `${selectRef.current.offsetWidth}px`
     }
-  }, [selectRef.current, textMeasureRef.current, options])
+  }, [isOpen])
 
   const handleClickOutside = (event: MouseEvent) => {
     if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
@@ -51,9 +50,12 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
   }, [])
 
   const handleSelect = (value: string) => {
-    setSelectedValue(value)
-    setIsOpen(false) // 옵션 선택 시 드롭다운 닫기
-    onSelect(value)
+    if (!options.find((option) => option.value === value)?.disabled) {
+      // 비활성화된 옵션은 선택되지 않도록 조건 추가
+      setSelectedValue(value)
+      setIsOpen(false) // 옵션 선택 시 드롭다운 닫기
+      onSelect(value)
+    }
   }
 
   return (
@@ -61,7 +63,7 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
       <button
         className="px-4 py-2 text-left border rounded-md shadow-sm ring-offset-background
         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring text-sm
-        w-auto pr-8 relative overflow-hidden"
+        pr-8 relative overflow-hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         {options.find((option) => option.value === selectedValue)?.label}
@@ -74,8 +76,9 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
 
       {isOpen && (
         <div
+          ref={dropdownRef}
           className="absolute z-10 mt-1 border rounded-md shadow-lg bg-white"
-          style={{ minWidth: dropdownWidth, right: 0 }} // 드롭다운을 Select 박스 오른쪽 끝에 맞춤
+          style={{ minWidth: '100%', right: 0 }} // 드롭다운을 Select 박스 오른쪽 끝에 맞추고, 최소 너비를 select 박스 너비에 맞춤
         >
           <ul className="py-1 text-sm">
             {options
@@ -85,28 +88,19 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, className, defaultSe
                   key={option.value}
                   className={`cursor-pointer px-4 py-2 ${
                     option.value === selectedValue ? 'bg-gray-200' : ''
-                  } hover:bg-accent hover:text-accent-foreground`}
+                  } ${option.disabled ? 'hover:cursor-not-allowed opacity-50' : 'hover:bg-accent hover:text-accent-foreground'}`} // 비활성화된 옵션 스타일 추가
                   onClick={() => handleSelect(option.value)} // 옵션 클릭 시 드롭다운이 닫히도록 설정
                 >
-                  <div className="font-medium">{option.label}</div> {/* 메인 라벨 */}
-                  {option.description && <div className="text-xs text-gray-500">{option.description}</div>} {/* 설명 */}
+                  <div className="text-sm">{option.label}</div> {/* 메인 라벨 */}
+                  {option.description && (
+                    <div className="text-xs text-gray-500 whitespace-nowrap">{option.description}</div>
+                  )}
+                  {/* 설명 */}
                 </li>
               ))}
           </ul>
         </div>
       )}
-
-      {/* 텍스트 길이를 측정하기 위한 숨겨진 요소 */}
-      <div ref={textMeasureRef} className="absolute invisible z-[-1] whitespace-nowrap">
-        {options
-          .filter((option) => !option.hidden) // 숨겨진 옵션 제외
-          .map((option) => (
-            <div key={option.value}>
-              <div className="font-medium">{option.label}</div>
-              {option.description && <div className="text-xs text-gray-500">{option.description}</div>}
-            </div>
-          ))}
-      </div>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import Todo from '@/components/examples/to-do'
 import Notifications from '@/components/examples/notifications'
 import TeamMembers from '@/components/examples/team-members'
 import FnQ from '@/components/examples/fnq'
+import Payments from '@/components/examples/payments'
 
 export default function Demo() {
   return (
@@ -23,13 +24,14 @@ export default function Demo() {
               <Chat />
               <Todo />
               <FnQ />
+              <TeamMembers />
             </div>
           </div>
         </div>
         <div className="space-y-4 lg:col-span-6 xl:col-span-5 xl:space-y-4">
           <RecentActivity />
-          <TeamMembers />
           <Notifications />
+          <Payments />
         </div>
       </div>
     </div>
