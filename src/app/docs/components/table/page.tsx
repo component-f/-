@@ -123,6 +123,12 @@ export default function TablePage() {
         description="The properties of the DataTable component."
         props={[
           {
+            prop: 'className',
+            type: 'string',
+            default: '""',
+            description: 'Additional classes that can be applied to the top-level div element of the data table.',
+          },
+          {
             prop: 'data',
             type: 'Array<Record<string, any>>',
             default: '[]',
@@ -135,10 +141,10 @@ export default function TablePage() {
             description: 'An array defining the headers and accessors of the columns.',
           },
           {
-            prop: 'className',
-            type: 'string',
-            default: '""',
-            description: 'Additional classes that can be applied to the top-level div element of the data table.',
+            prop: 'onSelectedRowsChange',
+            type: '(selectedRows: T[]) => void',
+            default: 'undefined',
+            description: 'Callback function that is triggered when the selected rows change.',
           },
         ]}
       />
