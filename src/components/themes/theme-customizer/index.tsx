@@ -59,11 +59,13 @@ export default function ThemeCustomizer() {
 
               return (
                 <DropdownMenuItem key={index}>
-                  <span
-                    className={cn('flex h-5 w-5 items-center justify-center rounded-full mr-2')}
-                    style={{ backgroundColor: `hsl(${activeColor})` }}
-                  ></span>
-                  <div onClick={() => setTheme(`${theme.name}`)}>{theme.name}</div>
+                  <div className="flex items-center justify-center" onClick={() => setTheme(`${theme.name}`)}>
+                    <span
+                      className={cn('h-5 w-5 rounded-full mr-2')}
+                      style={{ backgroundColor: `hsl(${activeColor})` }}
+                    ></span>
+                    <div>{theme.name}</div>
+                  </div>
                 </DropdownMenuItem>
               )
             })}
