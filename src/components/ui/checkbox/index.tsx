@@ -26,7 +26,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
       className={`flex ${direction === 'vertical' ? 'flex-col items-start' : 'items-center justify-center'} mr-4 ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       } ${className}`}
-      style={{ height: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
+      style={{ height: '100%', width: '100%' }} // 높이를 100%로 설정하여 중앙 정렬 가능
     >
       <input
         type="checkbox"
@@ -38,7 +38,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         className="peer hidden"
       />
       <span
-        className={`w-5 h-5 inline-block border rounded-md transition-all duration-200 items-center justify-center ${
+        className={`w-5 h-5 inline-block border rounded-md transition-all duration-200 flex-shrink-0 ${
           disabled && checked
             ? 'bg-gray-200 border-gray-200'
             : checked
@@ -46,7 +46,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
               : disabled
                 ? 'border-gray-200 opacity-50'
                 : 'bg-white border-black'
-        }`}
+        } ${className}`}
       >
         {checked && (
           <svg
@@ -62,7 +62,14 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           </svg>
         )}
       </span>
-      {label && <span className="ml-2 peer-disabled:text-gray-200 flex-grow">{label}</span>}
+      {label && (
+        <span
+          className="ml-2 peer-disabled:text-gray-200 flex-grow"
+          style={{ alignSelf: 'flex-start' }} // 라벨이 줄 바꿈될 때 정렬 보정
+        >
+          {label}
+        </span>
+      )}
     </label>
   )
 }
