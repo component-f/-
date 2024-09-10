@@ -21,7 +21,7 @@ export default function DocsPage() {
       </p>
 
       <h2 className="text-2xl font-semibold tracking-tight mt-6">Why choose Component Factory?</h2>
-      <ul className="list-disc list-inside space-y-2 text-gray-700 mt-2">
+      <ul className="list-disc list-inside space-y-2 mt-2">
         <li className="flex items-center">
           <span className="mr-2 text-gray200">
             <Diamond size={12} />

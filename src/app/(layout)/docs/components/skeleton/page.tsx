@@ -31,10 +31,7 @@ export default function SkeletonPage() {
   return (
     <>
       <Component>
-        <ComponentExplain
-          title="Skeleton"
-          description="콘텐츠가 로딩되는 동안 플레이스홀더를 표시하는 데 사용됩니다."
-        />
+        <ComponentExplain title="Skeleton" description="Used to display a placeholder while content is loading." />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent1}</ComponentExample>
           <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
