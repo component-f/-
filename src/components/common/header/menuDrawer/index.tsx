@@ -43,7 +43,11 @@ const MenuDrawer: React.FC = () => {
         open={isDrawerOpen}
         toggleDrawer={toggleDrawer}
         className="md:hidden bg-background"
-        drawerLogo={<Logo height={32} className="text-foreground ml-2 mt-1" alt="Logo" />}
+        drawerLogo={
+          <Link href={PATH.main} passHref>
+            <Logo height={32} className="text-foreground ml-2 mt-1 cursor-pointer" alt="Logo" />
+          </Link>
+        }
       >
         <nav className="flex flex-col p-4 space-y-1 ml-3 text-foreground">
           <ul className="font-bold">
