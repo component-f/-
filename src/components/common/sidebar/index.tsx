@@ -15,7 +15,8 @@ export default function Sidebar() {
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
 
   return (
-    <div className="flex flex-col space-y-1 w-[200px] px-4 h-full min-h-screen">
+    // md 이상에서만 보이는 사이드바
+    <div className="hidden md:flex flex-col space-y-1 w-[200px] px-4 h-full min-h-screen">
       <h1 className="font-bold">Get Started</h1>
       {docsPaths.map(([key, path]) => {
         const isActive = pathname === path
@@ -24,7 +25,9 @@ export default function Sidebar() {
             key={key}
             href={path}
             replace
-            className={`capitalize block  text-sm text-gray200 font-medium hover:text-primary-hover ${isActive ? 'font-black text-primary' : ''}`}
+            className={`capitalize block text-sm text-gray200 font-medium hover:text-primary-hover ${
+              isActive ? 'font-black text-primary' : ''
+            }`}
           >
             Introduction
           </Link>
@@ -33,7 +36,9 @@ export default function Sidebar() {
             key={key}
             href={path}
             replace
-            className={`capitalize block  text-sm text-gray200 font-medium hover:text-primary-hover ${isActive ? 'font-black text-primary' : ''}`}
+            className={`capitalize block text-sm text-gray200 font-medium hover:text-primary-hover ${
+              isActive ? 'font-black text-primary' : ''
+            }`}
           >
             {key}
           </Link>
@@ -47,7 +52,9 @@ export default function Sidebar() {
             key={key}
             href={path}
             replace
-            className={`capitalize block  text-sm text-gray200 font-medium hover:text-primary-hover ${isActive ? 'font-black text-primary' : ''}`}
+            className={`capitalize block text-sm text-gray200 font-medium hover:text-primary-hover ${
+              isActive ? 'font-black text-primary' : ''
+            }`}
           >
             {key}
           </Link>

@@ -4,7 +4,7 @@ import pretendard from '@/styles/fonts'
 import '@/styles/globals.css'
 import Header from '@/components/common/header'
 import { Toaster } from '@/components/ui/toaster'
-
+import Footer from '@/components/common/footer'
 export const metadata = {
   title: 'Component-Factory',
   description: 'Component library you always wanted. Accessible. Customizable.',
@@ -25,7 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviders attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
           <Toaster />
-          <main className="grow container">{children}</main>
+          <main className="grow container ">{children}</main>
+          <Footer />
         </ThemeProviders>
       </body>
     </html>
