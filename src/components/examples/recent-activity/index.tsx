@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Pagination } from '@/components/ui/pagination'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import Divider from '@/components/ui/divider'
 
 type TData = {
@@ -16,10 +15,6 @@ type TData = {
 }
 
 export default function RecentActivity() {
-  const [currentPage1, setCurrentPage1] = useState(1)
-  const handlePageChange1 = (page: number) => {
-    setCurrentPage1(page)
-  }
   const [data, setData] = useState<TData[]>([
     {
       id: 0,
@@ -127,10 +122,6 @@ export default function RecentActivity() {
             </>
           ))}
         </ul>
-
-        <CardFooter className="flex justify-center pt-6 pb-0">
-          <Pagination showingPages={5} totalPages={10} currentPage={currentPage1} onPageChange={handlePageChange1} />
-        </CardFooter>
       </CardContent>
     </Card>
   )
