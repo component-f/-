@@ -15,21 +15,32 @@ export default function InstallationPage() {
       </p>
       <CopyToClipboard code={'npm install @component-factory/theme'} />
 
-      <div className="p-4 border-l-4 border-yellow-400 bg-yellow-50 w-[700px] mt-6">
+      <div className="p-4 border-l-4 border-yellow-400 bg-yellow-50 w-auto max-w-[700px] mt-6">
         <p className="text-yellow-700 flex items-center">
           <Clock size={18} className="mr-2" />
           The package has not been published yet. Stay tuned for the release!
         </p>
       </div>
 
-      <div className="flex gap-2 mt-6">
-        <Button variant="contained" endIcon={<GitHub height={16} alt="GitHub" />}>
-          <Link target="_blank" rel="noreferrer" href="https://github.com/component-f/component-factory">
+      <div className="grid mt-6 w-full max-w-[440px] grid-cols-1 gap-2 sm:grid-cols-2">
+        <Button
+          variant="contained"
+          className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] "
+          endIcon={<GitHub height={16} alt="GitHub" />}
+        >
+          <Link
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/component-f/component-factory"
+            className="whitespace-nowrap overflow-hidden text-ellipsis"
+          >
             Subscribe for Updates
           </Link>
         </Button>
-        <Button variant="outlined" className="mr-4">
-          <Link href="/docs/components/accordion">View Components</Link>
+        <Button variant="outlined" className="whitespace-nowrap overflow-hidden  max-w-[160px] ">
+          <Link href="/docs/components/accordion" className="whitespace-nowrap overflow-hidden text-ellipsis">
+            View Components
+          </Link>
         </Button>
       </div>
     </>

@@ -58,8 +58,9 @@ export default function DocsPage() {
 
       <h2 className="text-2xl font-semibold tracking-tight mt-6">Get started today</h2>
       <p className="mt-2">Install Component Factory via npm and start building:</p>
-      <CopyToClipboard code={'npm install @component-factory/theme'} />
-
+      <div className="w-auto">
+        <CopyToClipboard code={'npm install @component-factory/theme'} />
+      </div>
       <p className="leading-relaxed mt-2">
         Component Factory is here to streamline your development process, offering components that are yours to
         customize, expand, and own.

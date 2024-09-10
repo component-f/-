@@ -7,13 +7,15 @@ export const metadata = {
   title: 'Docs - Component-Factory',
   description: '컴포넌트 UI 라이브러리 문서 페이지입니다.',
 }
+
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex grow mt-4">
-      <div className="ml-0 sm:ml-0 md:ml-4 lg:ml-12 xl:ml-16 hidden md:block">
+    <div className="flex min-h-screen">
+      <div className="hidden md:block w-[200px] sticky top-14 h-[calc(100vh-3.5rem)]">
         <Sidebar />
       </div>
-      <main className="grow ml-4 mr-0 sm:mr-0 md:mr-4 lg:mr-12 xl:mr-16">
+
+      <main className="flex-grow mx-auto px-4 md:px-8 max-w-[80vw] md:max-w-[60vw]">
         <BreadCrumb />
         <div className="pb-14">{children}</div>
       </main>
