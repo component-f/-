@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* Suspense로 Streaming을 지원하여 로딩 화면 표시 */}
           <Suspense fallback={<Loading />}>
-            <main className="grow container mx-auto px-4">{children}</main>
+            <main className="grow">{children}</main>
           </Suspense>
 
           <Footer />
