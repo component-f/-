@@ -37,60 +37,58 @@ export default function ThemeCustomizer() {
   const { setTheme } = useConfig()
   return (
     <>
-      <div className="4xl:fixed 4xl:h-1/2 4xl:transform 4xl:translate-y-1/2">
+      <div className="w-[400px] mt-6 xl:[550px] xl:m-6 xl:fixed xl:h-1/3 xl:transform xl:translate-y-1/3 z-40">
         <Usage />
       </div>
 
-      <div className="flex sm:justify-end">
-        <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger toggleStatusBar={handleToggle} buttonRef={buttonRef}>
-              <Button variant="contained" className="mb-4">
-                Customize
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              showStatusBar={open}
-              toggleStatusBar={handleToggle}
-              menuRef={menuRef}
-              buttonRef={buttonRef}
-            >
-              {themes.map((theme, index) => {
-                const activeColor = theme.activeColor[currentTheme as 'light' | 'dark']
+      <div className="w-full xl:w-2/3 mt-4 xl:mt-0 xl:pl-8 xl:absolute xl:right-0 xl:top-0">
+        <DropdownMenu>
+          <DropdownMenuTrigger toggleStatusBar={handleToggle} buttonRef={buttonRef}>
+            <Button variant="contained" className="mb-4">
+              Customize
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            showStatusBar={open}
+            toggleStatusBar={handleToggle}
+            menuRef={menuRef}
+            buttonRef={buttonRef}
+          >
+            {themes.map((theme, index) => {
+              const activeColor = theme.activeColor[currentTheme as 'light' | 'dark']
 
-                return (
-                  <DropdownMenuItem key={index}>
-                    <span
-                      className={cn('flex h-5 w-5 items-center justify-center rounded-full mr-2')}
-                      style={{ backgroundColor: `hsl(${activeColor})` }}
-                    ></span>
-                    <div onClick={() => setTheme(`${theme.name}`)}>{theme.name}</div>
-                  </DropdownMenuItem>
-                )
-              })}
-            </DropdownMenuContent>
-          </DropdownMenu>
+              return (
+                <DropdownMenuItem key={index}>
+                  <span
+                    className={cn('flex h-5 w-5 items-center justify-center rounded-full mr-2')}
+                    style={{ backgroundColor: `hsl(${activeColor})` }}
+                  ></span>
+                  <div onClick={() => setTheme(`${theme.name}`)}>{theme.name}</div>
+                </DropdownMenuItem>
+              )
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
 
-          <ThemeWrapper>
-            <div className="grid grid-cols-[repeat(auto-fill,_minmax(400px,_2fr))] gap-4">
-              <div className="space-y-4">
-                <SignUpForm />
-                <CookieSettings />
-                <ReportForm />
-              </div>
-              <div className="space-y-4">
-                <Chat />
-                <Todo />
-                <FnQ />
-              </div>
-              <div className="space-y-4">
-                <RecentActivity />
-                <TeamMembers />
-                <Notifications />
-              </div>
+        <ThemeWrapper>
+          <div className="grid grid-cols-[repeat(auto-fill,_minmax(400px,_1fr))] gap-4">
+            <div className="space-y-4">
+              <SignUpForm />
+              <CookieSettings />
+              <FnQ />
             </div>
-          </ThemeWrapper>
-        </div>
+            <div className="space-y-4">
+              <ReportForm />
+              <RecentActivity />
+              <TeamMembers />
+              <Chat />
+            </div>
+            <div className="space-y-4">
+              <Todo />
+              <Notifications />
+            </div>
+          </div>
+        </ThemeWrapper>
       </div>
     </>
   )

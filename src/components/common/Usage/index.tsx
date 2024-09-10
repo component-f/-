@@ -31,11 +31,11 @@ export default function Usage() {
   return (
     <Card className="border-none bg-transparent shadow-none">
       <CardHeader className="p-0">
-        <CardTitle className="flex items-center text-5xl mr-4">
+        <CardTitle className="flex items-center text-3xl mr-4">
           Start building with
           <br />
           Component Factory.
-          <div className="hidden sm:block">
+          <div className="hidden xl:block">
             {theme === 'dark' ? (
               <img src="images/white-logo.svg" className="w-[80px] pb-1" />
             ) : (
@@ -55,7 +55,7 @@ export default function Usage() {
             highlight={(code) => Prism.highlight(code, Prism.languages.jsx, 'jsx')}
             padding={10}
             style={{
-              fontSize: 15,
+              fontSize: 12,
               backgroundColor: 'rgb(23, 26, 28)',
               color: '#ffabed',
               borderRadius: '12px',

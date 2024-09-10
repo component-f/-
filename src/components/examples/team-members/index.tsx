@@ -41,7 +41,7 @@ export default function TeamMembers() {
             <Avatar src="/images/avatar02.png" alt="profile-image" />
             <div className="ml-2">
               <p className="text-sm font-medium leading-none">Isabella Nguyen</p>
-              <p className="text-sm text-muted-foreground">isabella.nguyen@email.com</p>
+              <p className="text-sm text-muted-foreground">isabella@email.com</p>
             </div>
           </div>
           <Select

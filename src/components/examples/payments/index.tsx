@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
-import DataTable from '@/components/ui/datatable'
-import Button from '@/components/ui/button'
+import { DataTable } from '@/components/ui/datatable'
+import { Button } from '@/components/ui/button'
 
 type Payment = {
   status: string
