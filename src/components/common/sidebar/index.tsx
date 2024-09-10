@@ -15,8 +15,7 @@ export default function Sidebar() {
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
 
   return (
-    // md 이상에서만 보이는 사이드바
-    <div className="hidden md:flex flex-col space-y-1 w-[200px] px-4 h-full min-h-screen">
+    <div className="hidden md:flex flex-col space-y-1 w-[200px] h-[calc(100vh-3.5rem)] sticky top-14 ml-10 2xl:ml-0 overflow-y-scroll">
       <h1 className="font-bold">Get Started</h1>
       {docsPaths.map(([key, path]) => {
         const isActive = pathname === path

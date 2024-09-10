@@ -73,7 +73,7 @@ export function ComponentExampleCode({ code, setCode }: { code: string; setCode:
         <span className="border-b-2 px-6 py-2 border-sky-500 font-bold text-sm">code</span>
         <div className="flex items-center space-x-6 pr-4">
           <span
-            className="flex justify-center rounded-full border text-[#0090FF] h-[24px] px-1 py-0.5 text-[12px] cursor-pointer hover:border-[#0090FF]"
+            className="flex justify-center rounded-full border overflow-hidden  text-[#0090FF] h-[24px] px-1 py-0.5 text-[12px] cursor-pointer hover:border-[#0090FF]"
             onClick={handleExpendToggle}
           >
             {expend ? 'Collapsed code' : 'Expend code'}

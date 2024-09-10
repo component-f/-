@@ -13,7 +13,7 @@ export default function CopyToClipboard({ code }: { code: string }) {
   }
 
   return (
-    <div className="flex items-center justify-between bg-foreground text-background py-2 px-4 rounded-lg w-[500px] mt-2">
+    <div className="flex items-center justify-between bg-foreground text-background py-2 px-4 rounded-lg w-auto max-w-[500px] mt-2">
       <code>{code}</code>
 
       <div className="flex items-center justify-center w-[20px]">
