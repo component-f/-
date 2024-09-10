@@ -27,15 +27,16 @@ export default function Usage() {
   `
 
   return (
-    <div className="mt-6 xl:w-[550px] xl:m-6 xl:fixed xl:h-1/3 xl:transform xl:translate-y-1/3 z-40 pt-20">
+    <div className="mb-9 w-full min-w-[511px]">
       <Card className="border-none bg-transparent shadow-none">
         <CardHeader className="p-0">
-          <CardTitle className="flex items-center text-3xl mr-4">
-            Start building with
-            <br />
-            Component Factory.
+          <CardTitle className="flex items-center text-3xl md:text-5xl">
+            <div className="flex flex-col md:gap-2 whitespace-nowrap">
+              <span>Start building with</span>
+              <span>Component Factory.</span>
+            </div>
             <div className="hidden xl:block">
-              <LogoIcon className="w-[80px] pb-1 text-foreground" alt="Logo" />
+              <LogoIcon className="w-20 pb-1 text-foreground" alt="Logo-Icon" />
             </div>
           </CardTitle>
           <CardDescription className="pt-4 text-base">
@@ -50,7 +51,7 @@ export default function Usage() {
               highlight={(code) => Prism.highlight(code, Prism.languages.jsx, 'jsx')}
               padding={10}
               style={{
-                fontSize: 12,
+                fontSize: 14,
                 backgroundColor: 'rgb(23, 26, 28)',
                 color: '#ffabed',
                 borderRadius: '12px',
