@@ -14,20 +14,27 @@ import { transformAndSetComponent } from '@/utils/transformAndSetComponent'
 
 export default function TextareaPage() {
   const [defaultCode, setDefaultCode] = useState(`
-    <Textarea placeholder="type your message here." className="w-[500px]" />
+    <Textarea placeholder="type your message here." className="w-[350px]" />
   `)
   const [variantCode, setVariantCode] = useState(`
     <Textarea
       placeholder="type your message here."
-      className="border-sky-500 focus-visible:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[500px]"
+      className="border-sky-500 focus-visible:ring-sky-500 placeholder:text-sky-500 text-sky-500 w-[350px]"
     />
     `)
+  const [counterCode, setCounterCode] = useState(`
+    <div className="flex flex-col gap-4">
+      <Textarea placeholder="type your message here." className="w-[350px]" maxLength={10} />
+      <Textarea placeholder="type your message here." className="w-[350px]" maxLength={50} counterClassName="text-black" counterClassName="text-blue-400"/>
+    </div>
+    `)
   const [disabledCode, setDisabledCode] = useState(`
-    <Textarea placeholder="type your message here." disabled className="w-[500px]" />
+    <Textarea placeholder="type your message here." className="w-[400px]" disabled />
   `)
   const [RenderedComponent1, setRenderedComponent1] = useState<JSX.Element | null>(null)
   const [RenderedComponent2, setRenderedComponent2] = useState<JSX.Element | null>(null)
   const [RenderedComponent3, setRenderedComponent3] = useState<JSX.Element | null>(null)
+  const [RenderedComponent4, setRenderedComponent4] = useState<JSX.Element | null>(null)
 
   useEffect(() => {
     transformAndSetComponent(defaultCode, setRenderedComponent1, { Textarea })
@@ -36,7 +43,10 @@ export default function TextareaPage() {
     transformAndSetComponent(variantCode, setRenderedComponent2, { Textarea })
   }, [variantCode])
   useEffect(() => {
-    transformAndSetComponent(disabledCode, setRenderedComponent3, { Textarea })
+    transformAndSetComponent(counterCode, setRenderedComponent3, { Textarea })
+  }, [counterCode])
+  useEffect(() => {
+    transformAndSetComponent(disabledCode, setRenderedComponent4, { Textarea })
   }, [disabledCode])
 
   return (
@@ -61,9 +71,17 @@ export default function TextareaPage() {
       </Component>
 
       <Component>
-        <ComponentExplain variant="Disabled" />
+        <ComponentExplain variant="Counter" />
         <ComponentContainer>
           <ComponentExample>{RenderedComponent3}</ComponentExample>
+          <ComponentExampleCode code={counterCode} setCode={setCounterCode} />
+        </ComponentContainer>
+      </Component>
+
+      <Component>
+        <ComponentExplain variant="Disabled" />
+        <ComponentContainer>
+          <ComponentExample>{RenderedComponent4}</ComponentExample>
           <ComponentExampleCode code={disabledCode} setCode={setDisabledCode} />
         </ComponentContainer>
       </Component>
@@ -76,7 +94,7 @@ export default function TextareaPage() {
             prop: 'className',
             type: 'string',
             default: '',
-            description: 'Applies additional Tailwind CSS classes to adjust the styling of the textarea.',
+            description: 'Adds custom Tailwind CSS classes for styling the textarea.',
           },
           {
             prop: 'ref',
@@ -88,7 +106,7 @@ export default function TextareaPage() {
             prop: 'disabled',
             type: 'boolean',
             default: 'false',
-            description: 'Disables the textarea. When disabled, the cursor will not be displayed.',
+            description: 'Disables the textarea, hiding the cursor.',
           },
           {
             prop: 'placeholder',
@@ -103,10 +121,16 @@ export default function TextareaPage() {
             description: 'Sets the current value of the textarea.',
           },
           {
-            prop: 'onChange',
-            type: '(event: React.ChangeEvent<HTMLTextAreaElement>) => void',
+            prop: 'maxLength',
+            type: 'number',
             default: 'undefined',
-            description: 'Callback function that is called when the value of the textarea changes.',
+            description: 'Limits the maximum number of characters allowed in the textarea.',
+          },
+          {
+            prop: 'counterClassName',
+            type: 'string',
+            default: 'text-gray-500',
+            description: 'Adds a CSS class for customizing the character counter.',
           },
         ]}
       />
