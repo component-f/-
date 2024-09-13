@@ -1,63 +1,46 @@
-import React, { useEffect } from 'react'
+import { useDropdownStore } from '@/store/useDropdownStore'
+import { cn } from '@/utils/cn'
+import React from 'react'
 
-type TDropdownMenu = {
-  children: React.ReactNode
-  className?: string
-  asChild?: true
-  onClick?: () => void
-  showStatusBar?: boolean
-  toggleStatusBar?: (event: React.MouseEvent) => void
-  href?: string
-  menuRef?: React.RefObject<HTMLDivElement>
-  buttonRef?: React.RefObject<HTMLDivElement> // trigger에 button태그 or 버튼 컴포넌트가 오게 될 경우 에러 발생 방지를 위해 HTMLDivElement 사용함.
-}
-
-export function DropdownMenu({ children }: TDropdownMenu) {
+const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
   return <div className="relative">{children}</div>
 }
 
-export function DropdownMenuTrigger({ children, toggleStatusBar, buttonRef }: TDropdownMenu) {
-  return (
-    <div ref={buttonRef} onClick={toggleStatusBar} className="hover:cursor-pointer">
-      {children}
-    </div>
-  )
-}
+const DropdownMenuTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ className, ...props }, ref) => {
+    const toggleDropdown = useDropdownStore((state) => state.toggleDropdown)
+    return <div ref={ref} className={cn('hover:cursor-pointer', className)} {...props} onClick={toggleDropdown} />
+  },
+)
 
-export function DropdownMenuContent({ children, showStatusBar, toggleStatusBar, menuRef, buttonRef }: TDropdownMenu) {
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      menuRef?.current &&
-      !menuRef.current.contains(event.target as Node) &&
-      buttonRef?.current &&
-      !buttonRef.current.contains(event.target as Node)
-    ) {
-      toggleStatusBar?.(event as unknown as React.MouseEvent)
-    }
-  }
+const DropdownMenuContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
+  ({ children, className, ...props }, ref) => {
+    const { dropdown, toggleDropdown } = useDropdownStore((state) => ({
+      dropdown: state.dropdown,
+      toggleDropdown: state.toggleDropdown,
+    }))
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+    return dropdown ? (
+      <div
+        ref={ref}
+        className={cn(
+          'absolute flex flex-col border rounded-lg shadow-md bg-background mt-1 w-auto p-1 z-50',
+          className,
+        )}
+        onClick={toggleDropdown}
+        {...props}
+      >
+        {children}
+      </div>
+    ) : null
+  },
+)
 
-  return showStatusBar ? (
-    <div
-      ref={menuRef}
-      className="absolute flex flex-col border rounded-lg shadow-md bg-background mt-1 w-auto p-1 z-50"
-    >
-      {children}
-    </div>
-  ) : null
-}
-
-export function DropdownMenuLabel({ children }: TDropdownMenu) {
+const DropdownMenuLabel = ({ children }: { children: React.ReactNode }) => {
   return <label className="flex items-center justify-center py-2 border-b text-sm">{children}</label>
 }
 
-export function DropdownMenuItem({ children, href }: TDropdownMenu) {
+const DropdownMenuItem = ({ children, href }: { children: React.ReactNode; href: string }) => {
   return (
     <>
       {href ? (
@@ -75,3 +58,5 @@ export function DropdownMenuItem({ children, href }: TDropdownMenu) {
     </>
   )
 }
+
+export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger }

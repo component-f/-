@@ -1,33 +1,28 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { ChevronsLeft, ChevronsRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/cn'
+
 type TPaginationProps = {
-  currentPage: number
   totalPages: number
-  onPageChange: (page: number) => void
   showingPages: number
-  startIcon?: React.ReactNode
-  prevIcon?: React.ReactNode
-  nextIcon?: React.ReactNode
-  lastIcon?: React.ReactNode
+  icon?: React.ReactNode[] // 배열로 아이콘을 받는 prop
   currentPageStyle?: string
   className?: string
 }
 
-function Pagination({
-  currentPage,
+const Pagination: React.FC<TPaginationProps> = ({
   totalPages,
   showingPages,
-  onPageChange,
-  startIcon,
-  prevIcon,
-  nextIcon,
-  lastIcon,
+  icon = [<ChevronsLeft />, <ChevronLeft />, <ChevronRight />, <ChevronsRight />], // 기본값 설정
   currentPageStyle,
   className,
-  ...props
-}: TPaginationProps) {
-  function generatePages(currentPage: number, totalPages: number): number[] {
+}) => {
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
+  const generatePages = (currentPage: number, totalPages: number): number[] => {
     const maxPagesToShow = showingPages % 2 === 0 ? showingPages - 1 : showingPages
     const halfPagesToShow = Math.floor(maxPagesToShow / 2)
     let startPage: number, endPage: number
@@ -53,44 +48,33 @@ function Pagination({
 
   return (
     <nav>
-      <ul className="flex items-center">
+      <ul className={cn('flex items-center', className)}>
         {currentPage === 1 ? null : (
           <>
             <li>
-              <button
-                onClick={() => onPageChange(1)}
-                disabled={currentPage === 1}
-                className={twMerge('py-2 text-ring', className)}
-                {...props}
-              >
-                {startIcon ? startIcon : <ChevronsLeft size={20} />}
+              <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1} className="flex items-center">
+                {icon[0] || <ChevronsLeft size={20} />} {/* 첫 번째 아이콘 */}
               </button>
             </li>
             <li>
               <button
-                onClick={() => onPageChange(currentPage - 1)}
+                onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={twMerge('flex pr-4 py-2 items-center text-ring', className)}
-                {...props}
+                className="flex items-center"
               >
-                {prevIcon ? (
-                  prevIcon
-                ) : (
-                  <>
-                    <ChevronLeft size={20} />
-                    Previous
-                  </>
-                )}
+                {icon[1] || <ChevronLeft size={20} />} {/* 두 번째 아이콘 */}
+                Previous
               </button>
             </li>
           </>
         )}
+
         {pages.map((page) => (
           <li key={page}>
             <button
-              onClick={() => onPageChange(page)}
+              onClick={() => setCurrentPage(page)}
               className={twMerge(
-                `px-4 py-2 mr-1 ${page === currentPage ? `border border-ring ${currentPageStyle ? currentPageStyle : 'rounded-lg'}` : ''}`,
+                `px-4 py-2 mx-1 ${page === currentPage ? `border border-ring ${currentPageStyle || 'rounded-lg'}` : ''}`,
                 currentPageStyle,
               )}
             >
@@ -98,32 +82,26 @@ function Pagination({
             </button>
           </li>
         ))}
+
         {currentPage === totalPages ? null : (
           <>
             <li>
               <button
-                onClick={() => onPageChange(currentPage + 1)}
+                onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={twMerge('flex items-center pl-4 py-2 text-ring', className)}
-                {...props}
+                className="flex items-center"
               >
-                {nextIcon ? (
-                  nextIcon
-                ) : (
-                  <>
-                    Next <ChevronRight size={20} />
-                  </>
-                )}
+                Next
+                {icon[2] || <ChevronRight size={20} />} {/* 세 번째 아이콘 */}
               </button>
             </li>
             <li>
               <button
-                onClick={() => onPageChange(totalPages)}
+                onClick={() => setCurrentPage(totalPages)}
                 disabled={currentPage === totalPages}
-                className={twMerge('py-2 text-ring', className)}
-                {...props}
+                className="flex items-center"
               >
-                {lastIcon ? lastIcon : <ChevronsRight size={20} />}
+                {icon[3] || <ChevronsRight size={20} />} {/* 네 번째 아이콘 */}
               </button>
             </li>
           </>

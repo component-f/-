@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import Editor from 'react-simple-code-editor'
 import Prism from 'prismjs'
