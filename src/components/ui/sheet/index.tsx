@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '../button'
 import { X } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
+import useSheetStore from '@/store/useSheetStore'
 
 type TSheetComponentProps = {
   children: React.ReactNode
@@ -11,20 +12,26 @@ type TSheetComponentProps = {
 }
 
 function Sheet({ children, className }: TSheetComponentProps) {
-  return (
-    <>
-      <div className={twMerge(className)}>{children}</div>
-    </>
-  )
+  return <div className={twMerge('z-50', className)}>{children}</div>
 }
 
 function SheetTrigger({ children, className }: TSheetComponentProps) {
+  const toggleSheet = useSheetStore((state) => state.toggleSheet)
   return (
-    <div className={twMerge('inline-flex items-center justify-center border rounded-lg', className)}>{children}</div>
+    <div
+      className={twMerge('inline-flex items-center justify-center border rounded-lg', className)}
+      onClick={toggleSheet}
+    >
+      {children}
+    </div>
   )
 }
 
-function SheetContent({ children, sheet, toggleSheet, className }: TSheetComponentProps) {
+function SheetContent({ children, className }: TSheetComponentProps) {
+  const { sheet, toggleSheet } = useSheetStore((state) => ({
+    sheet: state.sheet,
+    toggleSheet: state.toggleSheet,
+  }))
   return (
     <>
       {sheet && (
