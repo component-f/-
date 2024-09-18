@@ -1,12 +1,17 @@
 import create from 'zustand'
 
 type TDropdownState = {
-  dropdown: boolean
-  toggleDropdown: () => void
+  isOpen: Record<string, boolean> // key: string, value: boolean
+  toggleDropdown: (keyId: string) => void
 }
-const useDropdownStore = create<TDropdownState>((set) => ({
-  dropdown: false,
-  toggleDropdown: () => set((state) => ({ dropdown: !state.dropdown })),
-}))
 
-export { useDropdownStore }
+export const useDropdownStore = create<TDropdownState>((set) => ({
+  isOpen: {}, // 여러 dropdown 상태를 저장할 객체
+  toggleDropdown: (keyId) =>
+    set((state) => ({
+      isOpen: {
+        ...state.isOpen,
+        [keyId]: !state.isOpen[keyId],
+      },
+    })),
+}))
