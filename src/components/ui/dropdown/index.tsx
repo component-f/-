@@ -1,33 +1,66 @@
 import { useDropdownStore } from '@/store/useDropdownStore'
 import { cn } from '@/utils/cn'
-import React from 'react'
+import React, { useEffect, useImperativeHandle, useRef } from 'react'
 
 const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
   return <div className="relative">{children}</div>
 }
 
-const DropdownMenuTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
-  ({ className, ...props }, ref) => {
-    const toggleDropdown = useDropdownStore((state) => state.toggleDropdown)
-    return <div ref={ref} className={cn('hover:cursor-pointer', className)} {...props} onClick={toggleDropdown} />
-  },
-)
-
-const DropdownMenuContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>(
-  ({ children, className, ...props }, ref) => {
-    const { dropdown, toggleDropdown } = useDropdownStore((state) => ({
-      dropdown: state.dropdown,
+const DropdownMenuTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'> & { keyId: string }>(
+  ({ className, keyId, ...props }, ref) => {
+    const { isOpen, toggleDropdown } = useDropdownStore((state) => ({
+      isOpen: state.isOpen,
       toggleDropdown: state.toggleDropdown,
     }))
 
-    return dropdown ? (
+    const handleClick = (e: React.MouseEvent) => {
+      e.stopPropagation()
+      if (!isOpen[keyId]) {
+        toggleDropdown(keyId)
+      }
+    }
+
+    return (
+      <div ref={ref} className={cn('hover:cursor-pointer', className)} {...props} onClick={handleClick}>
+        {props.children}
+      </div>
+    )
+  },
+)
+
+const DropdownMenuContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'> & { keyId: string }>(
+  ({ children, className, keyId, ...props }, ref) => {
+    const { isOpen, toggleDropdown } = useDropdownStore((state) => ({
+      isOpen: state.isOpen,
+      toggleDropdown: state.toggleDropdown,
+    }))
+
+    const contentRef = useRef<HTMLDivElement | null>(null)
+
+    useImperativeHandle(ref, () => contentRef.current!)
+
+    useEffect(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+        if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
+          toggleDropdown(keyId)
+        }
+      }
+
+      document.addEventListener('mousedown', handleClickOutside)
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [keyId, toggleDropdown])
+
+    return isOpen[keyId] ? (
       <div
-        ref={ref}
+        ref={contentRef}
         className={cn(
           'absolute flex flex-col border rounded-lg shadow-md bg-background mt-1 w-auto p-1 z-50',
           className,
         )}
-        onClick={toggleDropdown}
+        onClick={() => toggleDropdown(keyId)}
         {...props}
       >
         {children}
