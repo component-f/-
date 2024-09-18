@@ -10,108 +10,95 @@ export default function DropdownPage() {
 
       <ComponentPropsTable
         title="DropdownMenu"
-        description="A container component for a dropdown menu."
+        description="Wraps the dropdown trigger and content."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Includes components inside the dropdown menu.',
+            description: 'Content inside the DropdownMenu.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuTrigger"
-        description="A trigger component that opens the dropdown menu."
+        description="Toggles the dropdown menu on click."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Includes the button or other trigger elements to open the dropdown menu.',
+            description: 'The trigger element to open/close the dropdown.',
           },
           {
-            prop: 'toggleStatusBar',
-            type: '(event: React.MouseEvent) => void',
+            prop: 'keyId',
+            type: 'string',
             default: '',
-            description: 'Includes the button or other trigger elements to open the dropdown menu.',
+            description: 'Unique key to control dropdown state.',
           },
           {
-            prop: 'buttonRef',
-            type: 'React.RefObject<HTMLButtonElement>',
+            prop: 'className',
+            type: 'string',
             default: '',
-            description: 'Provides a reference to the trigger button.',
+            description: 'CSS classes for styling the trigger.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuContent"
-        description="A component that displays the content of the dropdown menu."
+        description="Holds the content of the dropdown."
         props={[
-          {
-            prop: 'showStatusBar',
-            type: 'boolean',
-            default: 'false',
-            description: 'Controls whether the dropdown menu is open.',
-          },
-          {
-            prop: 'toggleStatusBar',
-            type: '(event: React.MouseEvent) => void',
-            default: '',
-            description: 'A function that toggles the open/close state of the dropdown menu.',
-          },
-          {
-            prop: 'menuRef',
-            type: 'React.RefObject<HTMLDivElement>',
-            default: '',
-            description: 'Used to pass a reference to the menu content.',
-          },
-          {
-            prop: 'buttonRef',
-            type: 'React.RefObject<HTMLButtonElement>',
-            default: '',
-            description: 'Used to pass a reference to the trigger button.',
-          },
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Includes the content to be displayed inside the dropdown menu.',
+            description: 'Content displayed inside the dropdown.',
+          },
+          {
+            prop: 'keyId',
+            type: 'string',
+            default: '',
+            description: 'Unique key to control content visibility.',
+          },
+          {
+            prop: 'className',
+            type: 'string',
+            default: '',
+            description: 'CSS classes for styling the content.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuLabel"
-        description="A component that displays the label for dropdown menu items."
+        description="Displays a label in the dropdown."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Includes the label text or content.',
+            description: 'Label text or content.',
           },
         ]}
       />
 
       <ComponentPropsTable
         title="DropdownMenuItem"
-        description="A component that represents each item in the dropdown menu."
+        description="Represents an item in the dropdown."
         props={[
           {
             prop: 'children',
             type: 'React.ReactNode',
             default: '',
-            description: 'Includes the content to be displayed in the dropdown menu item.',
+            description: 'Content inside the dropdown item.',
           },
           {
             prop: 'href',
             type: 'string',
             default: '',
-            description:
-              'The URL used when the item behaves like a link. If not specified, it will be displayed as plain text.',
+            description: 'URL for making the item a link.',
           },
         ]}
       />
