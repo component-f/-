@@ -15,16 +15,16 @@ export default function PaginationPage() {
       <ComponentPropsTable
         props={[
           {
-            prop: 'totalPages',
-            type: 'number',
-            default: '',
-            description: 'Specifies the total number of pages.',
-          },
-          {
             prop: 'showingPages',
             type: 'number',
             default: '',
             description: 'Determines the number of page numbers to display at once.',
+          },
+          {
+            prop: 'totalPages',
+            type: 'number',
+            default: '',
+            description: 'Specifies the total number of pages.',
           },
           {
             prop: 'currentPageStyle',
@@ -33,28 +33,12 @@ export default function PaginationPage() {
             description: 'Defines the style for the currently selected page.',
           },
           {
-            prop: 'startIcon',
+            prop: 'icon',
             type: 'React.ReactNode',
-            default: '<ChevronsLeft size={20} />',
-            description: 'Specifies the icon used for the button that moves to the first page.',
-          },
-          {
-            prop: 'prevIcon',
-            type: 'React.ReactNode',
-            default: '<ChevronLeft size={20} /> Previous',
-            description: 'Specifies the icon used for the button that moves to the previous page.',
-          },
-          {
-            prop: 'nextIcon',
-            type: 'React.ReactNode',
-            default: 'Next <ChevronRight size={20} />',
-            description: 'Specifies the icon used for the button that moves to the next page.',
-          },
-          {
-            prop: 'lastIcon',
-            type: 'React.ReactNode',
-            default: '<ChevronsRight size={20} />',
-            description: 'Specifies the icon used for the button that moves to the last page.',
+            default:
+              '[<ChevronsLeft size={20} />, <ChevronLeft size={20} />, <ChevronRight size={20} />, <ChevronsRight size={20} />]',
+            description:
+              'An array of icons used for the pagination buttons in the following order: first, previous, next, and last.',
           },
         ]}
       />

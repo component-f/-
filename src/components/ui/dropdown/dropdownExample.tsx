@@ -23,14 +23,12 @@ import { Radio } from '../radio'
 const DropdownDefaultExample = () => {
   const [defaultCode, setDefaultCode] = useState(`
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Button
-          variant="outlined"
-        >
+      <DropdownMenuTrigger keyId="default">
+        <Button variant="outlined">
           Open
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent keyId="default">
         <DropdownMenuItem href="/docs">Documentation</DropdownMenuItem>
         <DropdownMenuItem href="/docs/components/dropdown">Dropdown</DropdownMenuItem>
         <DropdownMenuItem href="/examples">Examples</DropdownMenuItem>
@@ -65,12 +63,12 @@ const DropdownDefaultExample = () => {
 const DropdownRadioExample = () => {
   const [radioCode, setRadioCode] = useState(`
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger keyId="radio">
         <Button variant="outlined">
           Open
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent keyId="radio">
         <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
           <form className="w-full px-4 bg-white rounded-lg shadow">
             <div className="flex flex-col">

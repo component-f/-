@@ -37,9 +37,7 @@ const AlertDefaultExample = () => {
 
   return (
     <Component>
-      <ComponentExplain>
-        <ComponentExplain title="Alert" description="Displays a callout for user attention." />
-      </ComponentExplain>
+      <ComponentExplain title="Alert" description="Displays a callout for user attention." />
       <ComponentContainer>
         <ComponentExample>{renderedComponent}</ComponentExample>
         <ComponentExampleCode code={defaultCode} setCode={setDefaultCode} />
@@ -79,9 +77,7 @@ const AlertVariantExample = () => {
 
   return (
     <Component>
-      <ComponentExplain>
-        <ComponentExplain variant="Variant" />
-      </ComponentExplain>
+      <ComponentExplain variant="Variant" />
       <ComponentContainer>
         <ComponentExample>{renderedComponent}</ComponentExample>
         <ComponentExampleCode code={variantCode} setCode={setVariantCode} />
@@ -114,9 +110,7 @@ const AlertErrorExample = () => {
 
   return (
     <Component>
-      <ComponentExplain>
-        <ComponentExplain variant="Error with button" />
-      </ComponentExplain>
+      <ComponentExplain variant="Error with button" />
       <ComponentContainer>
         <ComponentExample>{renderedComponent}</ComponentExample>
         <ComponentExampleCode code={errorCode} setCode={setErrorCode} />
