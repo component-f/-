@@ -25,7 +25,7 @@ npm install @cyweyo/component-factory
 
 npm을 통해 component-factory를 설치해주세요.
 
-## 사용법(<Textarea />)
+## 사용법(Textarea)
 
 다음은 Textarea 컴포넌트를 사용하는 예시입니다:
 
@@ -57,7 +57,7 @@ export default TextareaExample;
 | `maxLength`        | `number` | 입력 가능한 최대 글자 수                     | -       |
 | `counterClassName` | `string` | 글자 수 카운터의 스타일 지정                 | -       |
 
-## 사용법(<Button />)
+## 사용법(Button)
 
 ```jsx
 import { Button } from '@cyweyo/component-factory';
