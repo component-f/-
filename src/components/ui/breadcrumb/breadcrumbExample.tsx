@@ -63,9 +63,9 @@ const BreadcrumbSeparatorExample = () => {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator separator={<Slash size={15} />} />
         <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator separator={<Slash size={15} />} />
         <BreadcrumbText>Breadcrumb</BreadcrumbText>
       </BreadcrumbList>
     </Breadcrumb>
