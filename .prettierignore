@@ -1,0 +1,6 @@
+build/
+
+node_modules/
+
+# lock file
+yarn.lock

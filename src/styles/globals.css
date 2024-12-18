@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 6% 10%;
+
+    --border: 220 13% 91%;
+    --ring: 220 6% 10%;
+
+    --primary: 220 6% 10%;
+    --primary-hover: 240 4% 16%;
+    --primary-active: 240 4% 6%;
+    --primary-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --blacktogray200: 220 6% 10%;
+
+    --shadow-color: rgba(12, 12, 13, 0.1);
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --spinner-base: 220 13% 91%;
+    --spinner-highlight: 240 4% 16%;
+  }
+  .dark {
+    --background: 220 6% 10%;
+    --foreground: 0 0% 98%;
+
+    --border: 240 0% 59%;
+    --ring: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-hover: 220 13% 91%;
+    --primary-active: 220 13% 81%;
+    --primary-foreground: 220 6% 10%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --blacktogray200: 240 1% 59%;
+
+    --shadow-color: rgba(213, 207, 207, 0.466);
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --spinner-base: 0 0% 30%;
+    --spinner-highlight: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-pretendard), sans-serif;
+  }
+}
+@layer components {
+  .item-middle {
+    @apply flex justify-center items-center;
+  }
+}
+
+/* 라디오 버튼 색상 변경*/
+[type='radio'] {
+  accent-color: black;
+  vertical-align: -4px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid hsl(var(--spinner-base));
+  border-top-color: hsl(var(--spinner-highlight));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
